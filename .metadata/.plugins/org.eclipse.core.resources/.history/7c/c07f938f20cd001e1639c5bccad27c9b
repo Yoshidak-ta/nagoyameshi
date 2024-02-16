@@ -1,0 +1,11 @@
+package com.example.nagoyameshi.security;
+
+@Service
+public class UserDetailsServiceImpl implements userDetailsService {
+	private final UserRepository userRepository;
+    
+	public UserDetailsServiceImpl (UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+}

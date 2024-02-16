@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	
+	<div th:replace="~{fragment :: styles}"></div>
+</head>

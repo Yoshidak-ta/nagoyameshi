@@ -1,0 +1,127 @@
+-- rolesテーブル
+INSERT IGNORE INTO roles (id, name) VALUES (1, 'ROLE_GENERAL');
+INSERT IGNORE INTO roles (id, name) VALUES (2, 'ROLE_ADMIN');
+
+-- usersテーブル
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (1, '山本 圭太', 'ヤマモト ケイタ', 30, '221-9373', 'keita@nagoya.meshi.jp', '法務', 'paid', 'password', 1, true);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (2, '森田 早紀', 'モリタ サキ', 33, '223-3498', 'saki@nagoya.meshi.jp', '医療', 'free', 'password', 2, true);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (3, '柳田 実', 'ヤナギタ ミノル', 36, '324-5498', 'minoru@nagoya.meshi.jp', '営業', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (4, '三上 良悟', 'ミカミ リョウゴ', 24, '348-6542', 'ryogo@nagoya.meshi.jp', '医療', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (5, '小野 大和', 'オノ ヤマト', 30, '698-2498', 'yamato@nagoya.meshi.jp', '法務', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (6, '新山 一樹', 'アラヤマ カヅキ', 42, '521-2915', 'kaduki@nagoya.meshi.jp', 'サービス', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (7, '有本 崇', 'アリモト タカシ', 29, '432-6547', 'takashi@nagoya.meshi.jp', '建築', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (8, '森 淳', 'モリ アツシ', 30, '221-2373', 'atsushi@nagoya.meshi.jp', '建築', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (9, '五十嵐 結城', 'イガラシ ユウキ', 40, '374-6375', 'yuki@nagoya.meshi.jp', 'サービス', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (10, '水戸 慎吾', 'ミト シンゴ', 26, '537-2736', 'shingo@nagoya.meshi.jp', '医療', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (11, '山田 勝', 'ヤマダ マサル', 28, '737-6538', 'masaru@nagoya.meshi.jp', '営業', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (12, '清水 博之', 'シミズ ヒロユキ', 35, '356-8356', 'hiroyuki@nagoya.meshi.jp', '営業', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (13, '本田 瑞希', 'ホンダ ミズキ', 30, '375-7435', 'mizuki@nagoya.meshi.jp', 'サービス', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (14, '遠藤 春香', 'エンドウ ハルカ', 39, '277-1636', 'haruka@nagoya.meshi.jp', '法務', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (15, '須本 力', 'スモト リキ', 31, '613-7149', 'riki@nagoya.meshi.jp', 'サービス', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (16, '須藤 慎太郎', 'スドウ シンタロウ', 40, '163-7428', 'shintaro@nagoya.meshi.jp', '医療', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (17, '新町 遼太郎', 'シンマチ リョウタロウ', 20, '742-3627', 'ryotaro@nagoya.meshi.jp', '営業', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (18, '片山 昭', 'カタヤマ アキラ', 26, '217-7542', 'akira@nagoya.meshi.jp', '法務', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (19, '則本 優斗', 'ノリモト ユウト', 38, '742-8229', 'yuto@nagoya.meshi.jp', '営業', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (20, '秋 太郎', 'アキ タロウ', 35, '278-6583', 'taro@nagoya.meshi.jp', '医療', 'free', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (21, '吉田 五郎', 'ヨシダ ゴロウ', 36, '163-8641', 'goro@nagoya.meshi.jp', 'サービス', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (22, '鈴木 信也', 'スズキ シンヤ', 39, '281-9538', 'shinya@nagoya.meshi.jp', '医療', 'paid', 'password', 1, false);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, member, password, role_id, enabled) VALUES (23, '久保 桃子', 'クボ モモコ', 29, '175-7543', 'momoko@nagoya.meshi.jp', '法務', 'paid', 'password', 1, false);
+
+-- categoriesテーブル
+INSERT IGNORE INTO categories (id, name) VALUES (5, '稲沢カレー');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '岡崎まぜめん');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '豊橋カレーうどん');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '岡崎カレーパン');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'もろこしうどん');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '家康らぁめん（家康ラーメン）');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '瀬戸焼そば');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '豊川稲荷寿司');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'へきなん焼きそば');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '犬山田楽');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '犬山ドッグ');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '高浜とりめし');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '岩倉焼きそば');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'キャベコロ');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '清須からあげまぶし');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'あま麵');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '日間賀島タコ飯');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '幸田角煮バーガー');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'OMOTENASHI Do～n（おもてなし丼）');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'イカフライのレモン煮');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'ガリゴマうどん');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '名古屋カレーうどん');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '味噌おでん');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'どて煮');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '好来系ラーメン');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'エビフライ');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '鉄板ナポリタン');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'ひつまぶし');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'みそかつ');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '台湾ラーメン');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '手羽先唐揚げ');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'あんかけスパゲティ');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '小倉トースト');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '志の田うどん');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '名古屋コーチン親子丼');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '台湾まぜそば');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '天むす');
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'きしめん');
+INSERT IGNORE INTO categories (id, name) VALUES (5, '味噌煮込みうどん');
+
+
+
+
+-- storesテーブル
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (1, 1, 'moku・moku', nagoyameshi_01.png, '8:30～17:00（L.O 16:30）【モーニング】8:30～10:50【ランチ】11:00～14:00 定休日:日曜日', '手作りパンと珈琲 薪ストーブのあるカフェ', '〒495-0011', '愛知県稲沢市祖父江町森上本郷九19-2', '0587-97-6260', 'https://maps.app.goo.gl/xDqKKV7UYEMsMYGh8', '名鉄尾西線「森上駅」より徒歩5分');
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (2,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (3,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (4,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (5,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (6,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (7,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (8,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (9,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (10,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (11,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (12,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (13,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (14,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (15,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (16,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (17,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (18,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (19,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (20,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (21,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (22,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (23,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (24,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (25,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (26,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (27,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (28,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (29,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (30,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (31,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (32,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (33,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (34,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (35,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (36,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (37,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (38,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (39,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (40,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (41,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (42,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (43,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (44,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (45,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (46,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (47,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (48,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (49,);
+INSERT IGNORE INTO stores (id, category_id, name, image_name, business_hours, description, postal_code, address, phone_number, map, transportation, pay) VALUES (50,);
+
+
+

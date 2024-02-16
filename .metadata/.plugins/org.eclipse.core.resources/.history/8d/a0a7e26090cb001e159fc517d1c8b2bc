@@ -1,0 +1,23 @@
+package com.example.nagoyameshi.controller;
+
+import org.springframework.ui.Model;
+
+@Controller
+@RequestMapping("/admin/stores")
+public class AdminStoreController {
+	private final StoreRepository storeRepository;
+	
+	public AdminStoreController(StoreRepository storeRepository) {
+		this.storeRepository = storeRepository;
+	}
+	
+	@GetMapping
+	public String index(Model model) {
+		List<Store> stores = storeRepository,findAll();
+		
+		model.addAttribute("stores", stores);
+		
+		return "admin/stores/index"
+	}
+
+}
