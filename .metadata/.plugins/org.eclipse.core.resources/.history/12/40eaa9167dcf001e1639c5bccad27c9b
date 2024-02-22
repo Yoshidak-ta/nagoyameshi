@@ -1,0 +1,13 @@
+package com.example.nagoyameshi.service;
+
+@Service
+public class StoreService {
+	private final StoreRepository storeRepository;
+	
+	public StoreService(StoreRepository storeRepository) {
+		this.storeRepository = storeRepository;
+	}
+	
+	
+
+}

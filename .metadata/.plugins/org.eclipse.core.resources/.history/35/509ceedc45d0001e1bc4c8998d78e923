@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+ <html xmlns:th="https://www.thymeleaf.org">
+     <head>
+         <div th:replace="~{fragment :: meta}"></div>   
+              
+         <div th:replace="~{fragment :: styles}"></div>
+         
+         <title>店舗登録</title>       
+     </head>
+     <body>
+         <div class="nagoyameshi-wrapper">
+             <!-- ヘッダー -->
+             <div th:replace="~{fragment :: header}"></div>
+             
+             <main>
+                 <div class="container pt-4 pb-5 nagoyameshi-container">
+                     <div class="row justify-content-center">
+                         <div class="col-xl-5 col-lg-6 col-md-8">
+                             <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                                 <ol class="breadcrumb mb-0"> 
+                                     <li class="breadcrumb-item"><a th:href="@{/admin/stores}">店舗一覧</a></li>                                                           
+                                     <li class="breadcrumb-item active" aria-current="page">店舗登録</li>
+                                 </ol>
+                             </nav> 
+                             
+                             <h1 class="mb-4 text-center">店舗登録</h1>         
+                             
+                             <form method="post" th:action="@{/admin/stores/create}" th:object="${storeRegisterForm}" enctype="multipart/form-data">                                                            
+                                 <div class="form-group row mb-3">
+                                     <div class="col-md-4">
+                                         <label for="name" class="col-form-label text-md-left fw-bold">店舗名</label>
+                                     </div>
+                                     <div class="col-md-8">                                    
+                                         <div th:if="${#fields.hasErrors('name')}" class="text-danger small mb-2" th:errors="*{name}"></div>                                    
+                                         <input type="text" class="form-control" th:field="*{name}" autofocus>
+                                     </div>
+                                 </div>
+                                
+                                 <div class="form-group row mb-3">
+									 <div class="col-md-4">
+										 <label for="category" class="col-form-label text-md-left fw-bold">カテゴリ名</label>
+										 <div class="layer js-model">
+											 <div class="modal">
+												 <div class="modal_inner">
+													 <div class="modal_button-wrap">
+														 <button class="close-button js-close-button">
+															 <span></span>
+															 <span></span>
+														 </button>
+													 </div>
+													 <div class="modal_contents">
+														 <div class="modal_content">
+													     1:稲沢カレー
+													     2:岡崎まぜめん
+													     3:豊橋カレーうどん
+													     4:岡崎カレーパン
+													     5:もろこしうどん
+													     6:家康らぁめん
+													     7:瀬戸焼そば
+													     8:豊川稲荷寿司
+													     9:へきなん焼きそば
+													     10:犬山田楽
+													     11:犬山ドッグ
+													     12:高浜とりめし
+													     13:岩倉焼きそば
+													     14:キャベコロ
+													     15:清須からあげまぶし
+													     16:あま麺
+													     17:日間賀島タコ飯
+													     18:幸田角煮バーガー
+													     19:OMOTENASHI Do～n（おもてなし丼）
+													     20:イカフライのレモン煮
+													     21:ガリゴマうどん
+													     22:名古屋カレーうどん
+													     23:味噌おでん
+													     24:どて煮
+													     25:好来系ラーメン
+													     26:エビフライ
+													     27:鉄板ナポリタン
+													     28:ひつまぶし
+													     29:みそかつ
+													     30:台湾ラーメン
+													     31:手羽先唐揚げ
+													     32:あんかけスパゲティ
+													     33:小倉トースト
+													     34:志の田うどん
+													     35:名古屋コーチン親子丼
+													     36:台湾まぜそば
+													     37:天むす
+													     38:きしめん
+													     39:味噌煮込みうどん
+														 </div>
+													 </div>
+												 </div>
+											 </div>
+										 </div>
+										 <button class="button js-modal-button">番号詳細はこちら</button>
+									 </div>
+									 <div class="col-md-8">
+										 <div if:th="${#field.hasErrors('category')}" class="text-danger small mb-2" th:errors="*{category}"></div>
+										 <input typ="text" class="form-control" th:field="*{category}">
+									 </div>
+								 </div>
+                                 
+                                 <div class="form-group row mb-3">
+                                     <div class="col-md-4">
+                                         <label for="imageFile" class="col-form-label text-md-left fw-bold">店舗画像</label>
+                                     </div>                                    
+                                     <div class="col-md-8">
+                                         <div th:if="${#fields.hasErrors('imageFile')}" class="text-danger small mb-2" th:errors="*{imageFile}"></div>  
+                                         <input type="file" class="form-control" th:field="*{imageFile}">
+                                     </div>
+                                 </div>   
+                                 
+                                 <!-- 選択された画像の表示場所 -->
+                                 <div class="row" id="imagePreview"></div>
+                                 
+                                 <div class="form-group row mb-3">
+									 <div class="col-md-4">
+										 <label for="businessHours" class="col-form-label text-md-left fw-bold">営業時間</label>
+									 </div>
+									 <div class="col-md-8">
+										 <div if:th="${#field.hasErrors('businessHours')}" class="text-danger small mb-2" th:errors="*{businessHours}"></div>
+										 <input type="text" class="form-control" th:field="*{businessHours}" autofocus>
+									 </div>
+								 </div>                               
+                                 
+                                 <div class="form-group row mb-3">
+                                     <div class="col-md-4">
+                                         <label for="description" class="col-form-label text-md-left fw-bold">説明</label>
+                                     </div>
+                                     <div class="col-md-8">                            
+                                         <div th:if="${#fields.hasErrors('description')}" class="text-danger small mb-2" th:errors="*{description}"></div>                                        
+                                         <textarea class="form-control" th:field="*{description}" cols="30" rows="5"></textarea>
+                                     </div>
+                                 </div>                                                                                  
+                                                                                                                         
+                                 <div class="form-group row mb-3">
+                                     <div class="col-md-4">
+                                         <label for="postalCode" class="col-form-label text-md-left fw-bold">郵便番号</label>
+                                     </div>
+                                     <div class="col-md-8">
+                                         <div th:if="${#fields.hasErrors('postalCode')}" class="text-danger small mb-2" th:errors="*{postalCode}"></div>
+                                         <input type="text" class="form-control" th:field="*{postalCode}">
+                                     </div>
+                                 </div>
+                                                                                                               
+                                 <div class="form-group row mb-3">
+                                     <div class="col-md-4">
+                                         <label for="address" class="col-form-label text-md-left fw-bold">住所</label>
+                                     </div>
+                                     <div class="col-md-8">
+                                         <div th:if="${#fields.hasErrors('address')}" class="text-danger small mb-2" th:errors="*{address}"></div>
+                                         <input type="text" class="form-control" th:field="*{address}">  
+                                     </div>
+                                 </div>                                                                                
+                                 
+                                 <div class="form-group row mb-3">
+                                     <div class="col-md-4">
+                                         <label for="phoneNumber" class="col-form-label text-md-left fw-bold">電話番号</label>
+                                     </div>
+                                     <div class="col-md-8">
+                                         <div th:if="${#fields.hasErrors('phoneNumber')}" class="text-danger small mb-2" th:errors="*{phoneNumber}"></div>
+                                         <input type="text" class="form-control" th:field="*{phoneNumber}">                                
+                                     </div>
+                                 </div>
+                                 
+                                 <div class="form-group row mb-3">
+									 <div class="col-md-4">
+										 <label for="map" class="col-form-label text-md-left fw-bold">地図</label>
+									 </div>
+									 <div class="col-mb-8">
+										 <div th;if="${#field.hasErrors('map')}" class="text-danger small mb-2" th:errors="*{map}"></div>
+										 <input type="text" class="form-control" th:field="*{map}" autofocus>
+									 </div>
+								 </div>
+								 
+								 <div class="form-group row mb-3">
+									 <div class="col-md-4">
+										 <label for="transportation" class="col-form-label text-md-left fw-bold">交通手段</label>
+									 </div>
+									 <div class="col-mb-8">
+										 <div th;if="${#field.hasErrors('transportation')}" class="text-danger small mb-2" th:errors="*{transportation}"></div>
+										 <input type="text" class="form-control" th:field="*{transportation}" autofocus>
+									 </div>
+								 </div>      
+								 
+								 <div class="form-group row mb-3">
+									 <div class="col-md-4">
+										 <label for="pay" class="col-form-label text-md-left fw-bold">支払い方法</label>
+									 </div>
+									 <div class="col-mb-8">
+										 <div th;if="${#field.hasErrors('pay')}" class="text-danger small mb-2" th:errors="*{pay}"></div>
+										 <input type="text" class="form-control" th:field="*{pay}" autofocus>
+									 </div>
+								 </div>            
+								 
+								 <div class="form-group row mb-3">
+									 <div class="col-md-4">
+										 <label for="map" class="col-form-label text-md-left fw-bold">公式サイト</label>
+									 </div>
+									 <div class="col-mb-8">
+										 <div th;if="${#field.hasErrors('homePage')}" class="text-danger small mb-2" th:errors="*{homePage}"></div>
+										 <input type="text" class="form-control" th:field="*{homePage}" autofocus>
+									 </div>
+								 </div>                                                                                                       
+                                 
+                                 <div class="form-group d-flex justify-content-center my-4">
+                                     <button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">登録</button>
+                                 </div>
+                             </form>                                                                         
+                         </div>
+                     </div>
+                 </div>                
+             </main>
+             
+             <!-- フッター -->
+             <div th:replace="~{fragment :: footer}"></div>
+         </div>    
+         
+         <div th:replace="~{fragment :: scripts}"></div>  
+         <script th:src="@{/js/preview.js}"></script>     
+     </body>
+ </html>

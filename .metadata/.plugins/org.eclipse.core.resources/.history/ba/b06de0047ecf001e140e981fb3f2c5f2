@@ -1,0 +1,17 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.nagoyameshi.repository.StoreRepository;
+
+@Service
+public class StoreService {
+	private final StoreRepository storeRepository;
+	
+	public StoreService(StoreRepository storeRepository) {
+		this.storeRepository = storeRepository;
+	}
+	
+	
+
+}

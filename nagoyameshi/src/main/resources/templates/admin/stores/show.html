@@ -26,7 +26,7 @@
 					
 					<div class="d-flex justify-content-end align-items-end mb-3">
 						<div>
-							<a href="#">編集</a>
+							<a th:href="@{/admin/stores/__${store.getId()}__/edit}">編集</a>
 						</div>
 					</div>
 					
@@ -40,7 +40,6 @@
 							<div class="col-2">
 								<span class="fw-bold">ID</span>
 							</div>
-							
 							<div class="col">
 								<span th:text="${store.getId()}"></span>
 							</div>
@@ -69,7 +68,7 @@
 								<span class="fw-bold">営業時間</span>
 							</div>
 							<div class="col">
-								<span th:text="${store.getBusinessHour()}"></span>
+								<span th:text="${store.getBusinessHours()}"></span>
 							</div>
 						</div>
 						
@@ -114,7 +113,7 @@
 								<span class="fw-bold">地図</span>
 							</div>
 							<div class="col">
-								<a class="nagoyameshi-page-link" th:href="@{__${store.geMap()}__}"></a>
+								<span th:text="${store.getMap()}"></span>
 							</div>
 						</div>
 						
@@ -144,7 +143,7 @@
 								<span th:text="${store.getHomePage()}"></span>
 							</div>
 						</div>
-					</div>
+					</div>	
 				</div>
 			</div>
 		</main>
@@ -153,7 +152,7 @@
 		<div th:replace="~{fragment :: footer}"></div>
 		
 		<!-- Bootstrap -->
-		<div th:replace="~{fraagment :: scripts}"></div>
+		<div th:replace="~{fragment :: scripts}"></div>
 	</div>
   </body>
 </html>

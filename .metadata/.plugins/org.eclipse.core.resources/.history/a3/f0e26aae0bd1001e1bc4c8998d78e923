@@ -1,0 +1,17 @@
+package com.example.nagoyameshi.service;
+
+@Service
+public class UserService {
+	private final RoleRepository roleRepository;
+	private final UserRepository userRepository;
+	private final PasswordEncodeer passwordEncoder;
+	
+	public UserService (RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+		this.roleRepository = roleRepository;
+		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+	}
+	
+	
+
+}

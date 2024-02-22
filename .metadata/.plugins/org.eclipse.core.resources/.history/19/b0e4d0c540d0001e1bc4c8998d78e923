@@ -1,0 +1,45 @@
+package com.example.nagoyameshi.form;
+
+import jakarta.validation.constraints.NotBlank;
+
+@Data
+@AllArgsConstructor
+public class StoreEditForm {
+	@NotNull
+	private Integer id;
+	
+	@NotBlank(message = "店舗名を入力してください。")
+	private String name;
+	
+	@NotBlank(message = "カテゴリ番号を入力くしてください。")
+	private Category category;
+	
+	private MultipartFile imageFile;
+	
+	@NotBlank(message = "営業時間を入れてください")
+	private String businessHours;
+	
+	@NotBlank(message = "説明を入力してください")
+	private String description;
+	
+	@NotBlank(message = "郵便番号を入力してください")
+	private String postalCode;
+	
+	@NotBlank(message = "住所を入力してください")
+	private String address;
+	
+	@NotBlank(message = "電話番号を入力してください")
+	private String phoneNumber;
+	
+	@NotBlank(message = "地図のURLを入力してください")
+	private String map;
+	
+	@NotBlank(message = "交通手段を入力してください")
+	private String transportation;
+	
+	@NotBlank(message = "支払い方法を入力してください")
+	private String pay;
+	
+	@NotBlank(message = "公式サイトのURLを入力してください")
+	private String homePage;
+}

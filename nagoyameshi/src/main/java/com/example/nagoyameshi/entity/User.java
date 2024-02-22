@@ -42,9 +42,6 @@ public class User {
   @Column(name = "job")
   private String job;
   
-  @Column(name = "member")
-  private String member;
-  
   @Column(name = "password")
   private String password;
   
