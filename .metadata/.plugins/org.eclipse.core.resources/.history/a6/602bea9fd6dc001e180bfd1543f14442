@@ -1,0 +1,16 @@
+package com.example.nagoyameshi.form;
+
+@Data
+@AllArgsConstructor
+public class ReservationRegisterForm {
+	private Integer storeId;
+	
+	private Integer userId;
+	
+	private String visitDate;
+	
+	private String visitTime;
+	
+	private String numberOfPeople;
+
+}

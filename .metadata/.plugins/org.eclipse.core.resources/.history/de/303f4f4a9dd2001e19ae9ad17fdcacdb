@@ -1,0 +1,9 @@
+package com.example.nagoyameshi.repository;
+
+import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties.AssertingParty.Verification;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface VerificationTokenRepository extends JpaRepository<Verification, Integer> {
+	public VerificationToken finByToken(String token);
+
+}

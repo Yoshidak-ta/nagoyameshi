@@ -1,0 +1,5 @@
+package com.example.nagoyameshi.repository;
+
+public interface ReservationRepository extends JpaRepository<Resevation,Integer> {
+
+}

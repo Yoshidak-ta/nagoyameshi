@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<div th:replace="~{fragment :: meta}"></div>
+		<div th:replace="~{fragment :: styles}"></div>
+		<title>店舗一覧</title>
+	</head>
+	<body>
+		<div class="nagoyameshi-wrapper">
+			<!-- ヘッダー -->
+             <div th:replace="~{fragment :: header}"></div>
+             
+             <main>
+                 <div class="container nagoyameshi--container pb-5">
+                     <div class="row justify-content-center">
+                         <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                             <ol class="breadcrumb mb-0">                        
+                                 <li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+                                 <li class="breadcrumb-item active" aria-current="page">店舗一覧</li>
+                             </ol>
+                         </nav>
+                         
+                         <div class="col-xl-3 col-lg-4 col-md-12">
+							 <form method="get" th:action="@{/stores}" class="w-100 mb-3">
+								 <div class="input-group">
+									 <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名・カテゴリー">
+									 <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+								 </div>
+							 </form>
+							 
+							 <div class="box">
+								 <div class="categorys-box">
+									 <a th:href="@{/categorys}">カテゴリー</a>	
+								 </div>
+								 <div class="stores-box">
+									 <a th:href="@{/stores}">店舗</a>
+								 </div>							
+							 </div>
+						 </div>
+		             </div>
+                 </div>
+             </main>
+             
+             <!-- フッター -->
+             <div th:replace="~{fragment :: footer}"></div>
+		</div>
+		
+		<div th:replace="~{fragment :: scripts}"></div>
+	</body>
+</html>

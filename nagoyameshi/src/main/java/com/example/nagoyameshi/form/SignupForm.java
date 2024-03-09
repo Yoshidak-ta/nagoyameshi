@@ -18,7 +18,7 @@ public class SignupForm {
 	@NotNull(message = "年齢を入力してください。")
 	private Integer age;
 	
-	@NotBlank(message = "郵便番号を入力してください。")
+	@NotBlank(message = "郵便番号を入力してください。※ハイフン含む")
 	private String postalCode;
 	
 	@NotBlank(message = "住所を入力してください。")

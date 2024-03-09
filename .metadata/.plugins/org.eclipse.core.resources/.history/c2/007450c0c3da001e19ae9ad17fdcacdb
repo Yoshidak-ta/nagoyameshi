@@ -1,0 +1,15 @@
+package com.example.nagoyameshi.form;
+
+import jakarta.validation.constraints.Min;
+import lombok.Data;
+
+@Data
+public class ReservationForm {
+	@NotBlank(message = "来店日時を選択してください。")
+	private Date visitDate;
+	
+	@NotNull(message = "来店人数を入力してください。")
+	@Min(value = 1, message = "来店人数は1人以上に設定にしてください。")
+	private Integer numberOfPeople;
+
+}

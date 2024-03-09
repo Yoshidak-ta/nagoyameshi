@@ -30,15 +30,17 @@ public class Reservation {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@ManyToOne
-	@JoinColumn(name = "seat_id")
-	private Seat seat;
-	
 	@Column(name = "visit_date")
 	private LocalDate visitDate;
 	
+	@Column(name = "visit_time")
+	private String visitTime;
+	
 	@Column(name = "number_of_people")
 	private Integer numberOfPeople;
+	
+	@Column(name = "other")
+	private String other;
 	
 	@Column(name = "created_at", insertable = false, updatable = false)
 	private Timestamp createdAt;

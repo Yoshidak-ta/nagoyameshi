@@ -42,7 +42,7 @@
 									</div>
 									 <div class="col-md-8">
 							    	     <div if:th="${#field.hasErrors('category')}" class="text-danger small mb-2" th:errors="*{category}"></div>
-						    		     <input type="text" class="form-control" th:field="*{category}" autofocus>
+						    		     <input type="text" class="form-control" th:field="*{category}" autofocus placehouder="番号を入力してください">
 									 </div>
 									 <details>
 										<summary>番号詳細はこちら</summary>													
@@ -107,7 +107,7 @@
 									 </div>
 									 <div class="col-md-8">
 										 <div if:th="${#field.hasErrors('businessHours')}" class="text-danger small mb-2" th:errors="*{businessHours}"></div>
-										 <input type="text" class="form-control" th:field="*{businessHours}" autofocus>
+										 <input type="text" class="form-control" th:field="*{businessHours}" autofocus placeholder="【月～木】9:00～18:00 【土日祝】8:00～20:00 定休日:金曜日">
 									 </div>
 								 </div>                               
                                  
@@ -127,7 +127,7 @@
                                      </div>
                                      <div class="col-md-8">
                                          <div th:if="${#fields.hasErrors('postalCode')}" class="text-danger small mb-2" th:errors="*{postalCode}"></div>
-                                         <input type="text" class="form-control" th:field="*{postalCode}">
+                                         <input type="text" class="form-control" th:field="*{postalCode}" placeholder="123-4567">
                                      </div>
                                  </div>
                                                                                                                
@@ -147,7 +147,7 @@
                                      </div>
                                      <div class="col-md-8">
                                          <div th:if="${#fields.hasErrors('phoneNumber')}" class="text-danger small mb-2" th:errors="*{phoneNumber}"></div>
-                                         <input type="text" class="form-control" th:field="*{phoneNumber}">                                
+                                         <input type="text" class="form-control" th:field="*{phoneNumber}" placeholder="012-345-678">                                
                                      </div>
                                  </div>
                                  
@@ -167,7 +167,7 @@
 									 </div>
 									 <div class="col-mb-8">
 										 <div th;if="${#field.hasErrors('transportation')}" class="text-danger small mb-2" th:errors="*{transportation}"></div>
-										 <input type="text" class="form-control" th:field="*{transportation}" autofocus>
+										 <input type="text" class="form-control" th:field="*{transportation}" autofocus placeholder="○○駅西口より徒歩5分 駐車場:あり（周辺コインパーキング ※駐車券サービスあり）">
 									 </div>
 								 </div>      
 								 
@@ -177,7 +177,7 @@
 									 </div>
 									 <div class="col-mb-8">
 										 <div th;if="${#field.hasErrors('pay')}" class="text-danger small mb-2" th:errors="*{pay}"></div>
-										 <input type="text" class="form-control" th:field="*{pay}" autofocus>
+										 <input type="text" class="form-control" th:field="*{pay}" autofocus placeholder="現金 クレジットカード QRコード決済（PayPay,d払い）電子マネー（交通系IC,QuicPay,iD）">
 									 </div>
 								 </div>            
 								 

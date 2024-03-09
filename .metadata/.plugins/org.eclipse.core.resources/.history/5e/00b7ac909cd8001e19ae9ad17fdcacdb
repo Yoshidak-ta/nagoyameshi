@@ -1,0 +1,6 @@
+package com.example.nagoyameshi.controller;
+
+@Controller
+public class ReservationController {
+
+}

@@ -29,13 +29,13 @@ public class StoreEditForm {
 	@NotBlank(message = "説明を入力してください")
 	private String description;
 	
-	@NotBlank(message = "郵便番号を入力してください")
+	@NotBlank(message = "郵便番号を入力してください ※ハイフン含む")
 	private String postalCode;
 	
 	@NotBlank(message = "住所を入力してください")
 	private String address;
 	
-	@NotBlank(message = "電話番号を入力してください")
+	@NotBlank(message = "電話番号を入力してください　※ハイフン含む")
 	private String phoneNumber;
 	
 	@NotBlank(message = "地図のURLを入力してください")
