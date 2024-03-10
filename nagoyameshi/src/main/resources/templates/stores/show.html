@@ -15,13 +15,26 @@
 				<div class="container pt-4 pb-5 nagoyameshi-container">
 					<div class="row justify-content-center">
 						<div class="col-xxl-9 col-xl-10 col-lg-11">
-							<nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-								<ol class="breadcrumb mb-0">
-									<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
-									<li class="breadcrumb-item"><a th:href="@{/stores}">店舗一覧</a></li>
-									<li class="breadcrumb-item active" aria-current="page">店舗詳細</li>
-								</ol>
-							</nav>
+							<div class="d-flex justify-content-between mb-4">
+							    <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+								    <ol class="breadcrumb mb-0">
+									    <li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+									    <li class="breadcrumb-item"><a th:href="@{/stores}">店舗一覧</a></li>
+									    <li class="breadcrumb-item active" aria-current="page">店舗詳細</li>
+								    </ol>
+							    </nav>
+							
+							    <div sec:authorize="hasRole('ROLE_PRIME')">
+								    <div th:if="${userFavorited}">
+									    <a href="#" onclick="event.preventDefault(); document.getElementById('favorite-form').submit();">&#9829; お気に入り解除</a>
+									    <form method="post" th:action="@{/stores/__${store.getId}__/favorites/__${favorite.getId()}__/delete}" id="favorite-form" class="d-none"></form>
+								    </div>
+								    <div th:unless="${userFavorited}">
+								    	<a href="#" onclick="event.preventDefault(); document.getElementById('favorite-form').submit();">&#9825; お気に入り追加</a>
+									    <form th:method="post" th:action="@{/stores/__${store.getId()}__/favorites/register}" id="favorite-form" class="d-none"></form>
+								    </div>
+							    </div>
+							</div>
 							
 							<h1 class="mb-4 text-center" th:text="${store.getName()}"></h1>
 							
@@ -145,11 +158,65 @@
 											</div>
 										</div>
 										
-										<div sec:authorize="hasRole('ROLE_GENERAL')" class="col-lg-4 px-0 ps-lg-4 mb-4 w-100">
-											<div class="card w-100">
+										<div sec:authorize="hasRole('ROLE_PRIME')" class="col-lg-4 px-0 ps-lg-4 mb-4 w-100">
+											<div class="card w-100 justify-content-center">
 												<div class="card-body">
-													<a th:href="@{/stores/__${store.getId()}__/input}" class="btn text-white shadow-sm w-100 nagoyameshi-btn">予約する</a>
+													<a th:href="@{/stores/__${store.getId()}__/reservations/register}">予約する</a>
 												</div>
+											</div>
+										</div>
+										
+										<div class="container px-0">
+											<h2 class="mb-4 text-center">レビュー</h2>
+											<div sec:authorize="hasRole('ROLE_PRIME')" th:unless="${userPosted}" class="row justify-content-center mb-4">
+												<div class="col-lg-4">
+													<a th:href="@{/stores/__${store.getId()}__/reviews/register}" class="btn text-white shadow-sm w-100 nagoyameshi-btn">レビューを投稿する</a>
+												</div>
+											</div>
+											<div th:if="${#lists.isEmpty(reviewList)}" class="mb-4">
+												<p class="text-center">レビューがありません</p>
+											</div>
+											<div th:unless="${#lists.isEmpty(reviewList)}" class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+												<div th:each="review : ${reviewList}">
+													<div class="col">
+														<div class="card">
+															<div class="card-body">
+																<div class="d-flex justify-content-between">
+																	<h5 class="card-title" th:text="${review.getUser().getName()}"></h5>
+																	<span sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == review.getUser().getId()}">
+																		<a th:href="@{/stores/__${store.getId()}__/reviews/__${review.getId()}__/edit}" class="me-2">編集</a>
+																		<a href="#" class="nagoyameshi-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
+																		<!-- 削除モーダル作成 -->
+																	    <div class="modal fade" th:id="${'deleteReviewModal' + review.getId()}" tabindex="-1" th:aria-labelledby="${'deleteReviewModalLabel' + review.getId()}">
+																	        <div class="modal-dialog">
+																    	        <div class="modal-content">
+																	                <div class="modal-header">
+																					    <h5 class="modal-title" th:id="${'deleteReviewModalLabel' + review.getId()}" th:text="${house.getName() + 'のレビューを削除してもよろしいですか？'}"></h5>
+																					    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+																				    </div>
+																				    <div class="modal-footer">
+																					    <form method="post" th:action="@{/houses/__${house.getId()}__/reviews/__${review.getId()}__/delete}">
+																						    <button type="submit" class="btn samuraitravel-btn-danger text-white shadow-sm">削除</button>
+																					    </form>
+																				    </div>
+																			    </div>
+																	        </div>
+																		</div>
+																	</span>
+																</div>
+																
+																<p class="card-text mb-1">
+																	<span class="nagoyameshi-star" th:each="star : ${#numbers.sequence(1, 5)}" th:text="${star <= review.getScore()} ? '&#9733;' : '&#9734;'"></span>
+																</p>
+																<p class="card-text"><small class="text-muted" th:text="${#dates.format(review.getCreatedAt(), 'yyyy年mm月dd日')}"></small></p>
+																<p class="card-text" th:text="${review.getContent()}"></p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="text-center mb-4" th:if="${reviewCount > 6}">
+												<a th:href="@{/stores/__${store.getId()}__/reviews}">すべてのレビューを見る</a>
 											</div>
 										</div>
 									</div>

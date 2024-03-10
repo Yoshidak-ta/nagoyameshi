@@ -4,7 +4,7 @@ INSERT IGNORE INTO roles (id, name) VALUES (2, 'ROLE_PRIME');
 INSERT IGNORE INTO roles (id, name) VALUES (3, 'ROLE_ADMIN');
 
 -- usersテーブル
-INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, password, role_id, enabled) VALUES (1, '山本 圭太', 'ヤマモト ケイタ', 30, '221-9373', '東京都千代田区神田練塀町300番地', 'keita@nagoya.meshi.jp', '会社員', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 1, true);
+INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, password, role_id, enabled) VALUES (1, '山本 圭太', 'ヤマモト ケイタ', 30, '221-9373', '東京都千代田区神田練塀町300番地', 'keita@nagoya.meshi.jp', '会社員', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 2, true);
 INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, password, role_id, enabled) VALUES (2, '森田 早紀', 'モリタ サキ', 33, '223-3498', '東京都千代田区神田練塀町200番地', 'saki@nagoya.meshi.jp', '医療関係者', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 3, true);
 INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, password, role_id, enabled) VALUES (3, '柳田 実', 'ヤナギタ ミノル', 36, '324-5498', '奈良県五條市西吉野町湯川X-XX-XX', 'minoru@nagoya.meshi.jp', '会社員', 'password', 2, false);
 INSERT IGNORE INTO users (id, name, furigana, age, postal_code, address, email, job, password, role_id, enabled) VALUES (4, '三上 良悟', 'ミカミ リョウゴ', 24, '348-6542', '埼玉県吉川市南広島X-XX-XX', 'ryogo@nagoya.meshi.jp', '学生', '$2a$10$2JNjTwZBwo7fprL2X4sv.OEKqxnVtsVQvuXDkI8xVGix.U3W5B7CO', 2, false);
@@ -316,19 +316,19 @@ INSERT IGNORE INTO menus (id, store_id, category_id, image_name, name, price, he
 INSERT IGNORE INTO menus (id, store_id, category_id, image_name, name, price, heading, description) VALUES (80, 80, 23, 'menu_80.png', '親子えび', '1370', 'コクある味噌つゆが手打ち麺に染み渡る...ただただ旨い', 'シャキッと食感の大きめのネギ、かしわもしっかりしたサイズ感。ふつふつと揺れる玉子。具材だけで、美味しさの期待が高まります。手打ち麺ならではの不揃いでコシのある麺が、赤味噌のコク深い味わいのつゆによく合う。衣がボリューミーな海老天はそのまま食べても良いのですが、おすすめはつゆに沈めて衣をほろほろにしたもの！味噌つゆをしっかりと吸い上げた衣、その衣から滲み出た揚油が味噌つゆに旨味をプラス。天ぷらにも、味噌つゆにもwin winの食べ方になります。昨日食べたところだけれど、また今日食べたくなる。味噌煮込みうどんとして完成した一品です。');
 
 --reservationsテーブル
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (1, 4, 1, 4, 2024-04-02, 4);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (2, 25, 1, 25, 2024-04-03, 6);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (3, 73, 1, 73, 2024-5-01, 7);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (4, 3, 1, 3, 2024-04-25, 2);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (5, 15, 1, 15, 2024-03-28, 3);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (6, 45, 1, 45, 2024-04-17, 1);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (7, 31, 1, 31, 2024-05-11, 2);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (8, 60, 1, 60, 2024-03-27, 4);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (9, 29, 1, 29, 2024-04-01, 4);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (10, 53, 1, 53, 2024-05-06, 2);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (11, 1, 1, 1, 2024-05-01, 1);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (12, 7, 1, 7, 2024-04-11, 3);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (13, 13, 1, 13, 2024-04-19, 5);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (14, 73, 1, 73, 2024-04-22, 2);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (15, 69, 1, 69, 2024-05-15, 2);
-INSERT IGNORE INTO reservations (id, store_id, user_id, seat_id, visit_date, number_of_people) VALUES (16, 19, 1, 19, 2024-04-26, 2);
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (1, 4, 1, '2024-04-02', '10:30', 4, '座敷要望');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (2, 25, 1, '2024-04-03', '12:30', 6, '個室要望');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (3, 73, 1, '2024-5-01', '12:30', 7, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (4, 3, 1, '2024-04-25', '18:30', 2, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (5, 15, 1, '2024-03-28', '19:00', 3, 'テーブル席要望');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (6, 45, 1, '2024-04-17', '18:00', 1, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (7, 31, 1, '2024-05-11', '17:30', 2, '予約時間すぎる可能性あり');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (8, 60, 1, '2024-03-27', '20:00', 4, '人数追加の可能性あり');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (9, 29, 1, '2024-04-01', '20;00', 4, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (10, 53, 1, '2024-05-06', '18:00', 2, 'カウンター席希望');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (11, 1, 1, '2024-05-01', '17:30', 1, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (12, 7, 1, '2024-04-11', '20:30', 3, '子供の席希望');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (13, 13, 1, '2024-04-19', '19:00', 5, '個室希望');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (14, 73, 1, '2024-04-22', '17,00', 2, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (15, 69, 1, '2024-05-15', '19:30', 2, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (16, 19, 1, '2024-04-26', '18:30', 2, '');

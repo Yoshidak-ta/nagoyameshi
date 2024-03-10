@@ -4169,3 +4169,294 @@
 2024-03-09 09:13:22,148 [Worker-17: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
 2024-03-09 09:14:41,923 [Worker-17: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2024-03-09 09:14:41,925 [Worker-17: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 09:14:41,941 [Worker-17: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:30:44,197 [Worker-25: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:30:44,220 [Worker-25: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 270 resources from src\main\resources to target\classes
+2024-03-09 10:30:44,410 [Worker-25: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:39:06,949 [Worker-27: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:39:06,973 [Worker-27: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 270 resources from src\main\resources to target\classes
+2024-03-09 10:39:07,103 [Worker-27: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:39:34,888 [Worker-25: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:39:34,915 [Worker-25: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 270 resources from src\main\resources to target\classes
+2024-03-09 10:39:35,058 [Worker-25: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:40:24,755 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:40:24,780 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 270 resources from src\main\resources to target\classes
+2024-03-09 10:40:24,904 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:40:31,355 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:40:31,374 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 270 resources from src\main\resources to target\classes
+2024-03-09 10:40:31,555 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:42:45,673 [Worker-30: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 10:42:45,674 [Worker-30: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:42:45,681 [Worker-30: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:45:54,246 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 10:45:54,246 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:45:54,257 [Worker-29: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:57:23,959 [Worker-34: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:57:23,988 [Worker-34: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 10:57:24,124 [Worker-34: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:58:06,157 [Worker-32: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:58:06,185 [Worker-32: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 10:58:06,332 [Worker-32: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:58:09,538 [Worker-32: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:58:09,569 [Worker-32: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 10:58:09,759 [Worker-32: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 10:58:57,002 [Worker-33: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 10:58:57,020 [Worker-33: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 10:58:57,161 [Worker-33: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 11:03:22,743 [Worker-24: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 11:03:22,785 [Worker-24: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 11:03:22,934 [Worker-24: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 11:06:52,837 [Worker-27: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 11:06:52,862 [Worker-27: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 11:06:52,999 [Worker-27: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 11:08:41,075 [Worker-34: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 11:08:41,107 [Worker-34: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 11:08:41,228 [Worker-34: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 11:08:56,942 [Worker-33: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 11:08:56,966 [Worker-33: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 11:08:57,123 [Worker-33: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 11:09:48,328 [Worker-35: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 11:09:48,346 [Worker-35: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 11:09:48,524 [Worker-35: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 11:10:12,814 [Worker-24: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 11:10:13,038 [Worker-24: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 11:10:13,155 [Worker-24: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 11:11:57,343 [Worker-36: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 11:11:57,344 [Worker-36: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 11:11:57,355 [Worker-36: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 11:56:04,586 [Worker-36: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 11:56:04,587 [Worker-36: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 11:56:04,599 [Worker-36: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 12:01:52,131 [Worker-39: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 12:01:52,132 [Worker-39: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 12:01:52,149 [Worker-39: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 12:03:40,580 [Worker-39: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 12:03:40,581 [Worker-39: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 12:03:40,591 [Worker-39: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:15:51,777 [Worker-45: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:15:51,809 [Worker-45: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:15:51,966 [Worker-45: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:20:36,944 [Worker-46: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:20:36,967 [Worker-46: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:20:37,124 [Worker-46: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:23:28,681 [Worker-45: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:23:28,707 [Worker-45: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:23:28,842 [Worker-45: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:24:04,248 [Worker-46: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:24:04,273 [Worker-46: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:24:04,407 [Worker-46: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:39:54,528 [Worker-49: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:39:54,763 [Worker-49: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:39:54,888 [Worker-49: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:40:54,802 [Worker-49: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:40:54,842 [Worker-49: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:40:54,979 [Worker-49: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:43:39,822 [Worker-52: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:43:39,846 [Worker-52: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:43:39,982 [Worker-52: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:51:38,790 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:51:38,819 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:51:38,935 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:51:59,824 [Worker-50: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:51:59,860 [Worker-50: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:51:59,974 [Worker-50: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:52:32,336 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:52:32,358 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-09 17:52:32,489 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:52:48,175 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 17:52:48,176 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 17:52:48,181 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:53:00,296 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 17:53:00,298 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 3 resources from src\main\resources to target\classes
+2024-03-09 17:53:00,334 [Worker-51: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 17:53:49,979 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 17:53:49,980 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 17:53:49,986 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 18:43:06,791 [Worker-58: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 18:43:06,792 [Worker-58: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 18:43:06,803 [Worker-58: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 18:44:21,822 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 18:44:21,823 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 18:44:21,831 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 18:48:36,128 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 18:48:36,176 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 18:48:36,324 [Worker-55: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 18:52:49,980 [Worker-61: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 18:52:50,013 [Worker-61: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 18:52:50,112 [Worker-61: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 18:55:27,106 [Worker-53: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 18:55:27,127 [Worker-53: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 18:55:27,237 [Worker-53: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:31:52,842 [Worker-67: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:31:52,870 [Worker-67: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 19:31:52,988 [Worker-67: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:34:58,442 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:34:58,471 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 19:34:58,566 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:35:27,916 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:35:27,937 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 19:35:28,036 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:39:34,816 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:39:34,845 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 19:39:35,024 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:41:59,959 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:41:59,979 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 19:42:00,129 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:42:26,102 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:42:26,141 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 19:42:26,261 [Worker-66: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:44:46,879 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 19:44:46,880 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:44:46,893 [Worker-64: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:47:30,891 [Worker-62: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:47:30,926 [Worker-62: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 19:47:31,031 [Worker-62: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 19:58:52,781 [Worker-62: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 19:58:52,782 [Worker-62: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 19:58:52,794 [Worker-62: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:20:01,175 [Worker-81: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:20:01,226 [Worker-81: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 23:20:01,441 [Worker-81: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:21:15,757 [Worker-78: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:21:15,759 [Worker-78: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:21:15,785 [Worker-78: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:23:26,825 [Worker-81: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:23:26,872 [Worker-81: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 23:23:27,068 [Worker-81: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:23:41,335 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:23:41,368 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 23:23:41,531 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:26:48,532 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:26:48,565 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 23:26:48,785 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:27:46,520 [Worker-82: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:27:46,557 [Worker-82: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 23:27:46,793 [Worker-82: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:28:08,068 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:28:08,093 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 23:28:08,235 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:28:30,668 [Worker-82: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:28:30,698 [Worker-82: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-09 23:28:30,897 [Worker-82: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:32:03,404 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:32:03,405 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:32:03,418 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:32:41,947 [Worker-85: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:32:41,948 [Worker-85: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:32:41,961 [Worker-85: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:34:05,075 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:34:05,076 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:34:05,094 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:35:46,815 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:35:46,816 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:35:46,827 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:36:36,845 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:36:36,846 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:36:36,860 [Worker-84: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:36:59,569 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:36:59,571 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:36:59,591 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:39:44,414 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:39:44,415 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:39:44,428 [Worker-83: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:46:52,669 [Worker-88: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:46:52,670 [Worker-88: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:46:52,681 [Worker-88: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:48:29,290 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:48:29,290 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:48:29,302 [Worker-74: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:48:40,728 [Worker-95: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:48:40,728 [Worker-95: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:48:40,738 [Worker-95: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-09 23:51:19,425 [Worker-98: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-09 23:51:19,462 [Worker-98: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-09 23:51:19,549 [Worker-98: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 07:42:41,283 [Worker-101: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 07:42:41,285 [Worker-101: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 07:42:41,294 [Worker-101: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 07:48:59,288 [Worker-109: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 07:48:59,288 [Worker-109: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 07:48:59,301 [Worker-109: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 07:50:29,906 [Worker-111: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 07:50:29,906 [Worker-111: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 07:50:29,912 [Worker-111: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 07:53:24,395 [Worker-107: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 07:53:24,396 [Worker-107: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 07:53:24,405 [Worker-107: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 07:56:49,541 [Worker-113: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 07:56:49,542 [Worker-113: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 07:56:49,550 [Worker-113: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 08:05:17,997 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 08:05:17,998 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 08:05:18,005 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 08:15:54,048 [Worker-113: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 08:15:54,324 [Worker-113: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-10 08:15:54,477 [Worker-113: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 08:16:52,468 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 08:16:52,487 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-10 08:16:52,570 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 08:17:55,030 [Worker-126: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 08:17:55,056 [Worker-126: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-10 08:17:55,140 [Worker-126: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 08:19:28,954 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 08:19:28,972 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-10 08:19:29,059 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 08:20:57,469 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 08:20:57,505 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-10 08:20:57,611 [Worker-120: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 08:27:58,289 [Worker-130: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 08:27:58,321 [Worker-130: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-10 08:27:58,425 [Worker-130: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:25:17,210 [Worker-127: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:25:17,211 [Worker-127: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:25:17,223 [Worker-127: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:26:33,783 [Worker-127: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:26:33,784 [Worker-127: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:26:33,793 [Worker-127: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:27:55,332 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:27:55,333 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:27:55,346 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:28:57,129 [Worker-131: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:28:57,131 [Worker-131: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:28:57,142 [Worker-131: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:29:47,910 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:29:47,911 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:29:47,923 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:30:23,918 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:30:23,919 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:30:23,929 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:31:18,616 [Worker-137: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:31:18,617 [Worker-137: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:31:18,628 [Worker-137: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:33:23,463 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:33:23,464 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:33:23,473 [Worker-135: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:33:26,912 [Worker-131: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:33:26,912 [Worker-131: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:33:26,922 [Worker-131: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:33:33,149 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:33:33,150 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:33:33,158 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:42:20,839 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:42:20,860 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 272 resources from src\main\resources to target\classes
+2024-03-10 12:42:20,948 [Worker-136: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:47:28,231 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:47:28,232 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:47:28,246 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:52:15,818 [Worker-135: ワークスペースをビルド中] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:52:15,819 [Worker-135: ワークスペースをビルド中] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:52:15,828 [Worker-135: ワークスペースをビルド中] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:52:31,141 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-10 12:52:31,143 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:52:31,169 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:55:23,758 [Worker-143: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:55:23,784 [Worker-143: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-10 12:55:23,902 [Worker-143: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 12:57:23,850 [Worker-143: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 12:57:23,882 [Worker-143: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-10 12:57:23,998 [Worker-143: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 15:15:47,979 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 15:15:48,009 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes
+2024-03-10 15:15:48,095 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
+2024-03-10 15:16:12,902 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-10 15:16:12,925 [Worker-139: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 271 resources from src\main\resources to target\classes

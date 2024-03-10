@@ -1,7 +1,5 @@
 package com.example.nagoyameshi.form;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,7 +11,7 @@ public class ReservationRegisterForm {
 	
 	private Integer userId;
 	
-	private Date visitDate;
+	private String visitDate;
 	
 	private String visitTime;
 	

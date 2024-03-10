@@ -1,0 +1,25 @@
+package com.example.nagoyameshi.service;
+
+import com.example.nagoyameshi.entity.Favorite;
+import com.example.nagoyameshi.repository.FavoriteRepository;
+
+@Service
+public class FavoriteService {
+	private final FavoriteRepository favoriteRepository;
+	
+	public FavoriteService(FavoriteRepository favoriteRepository) {
+		this.favoriteRepository = favoriteRepository;
+	}
+	
+//	お気に入り登録・追加
+	@Transactional
+	public void register(Store store, User user) {
+		Favorite favorite = new Favorite();
+		
+		favorite.setStore(store);
+		favorite.setUser(user);
+		
+		favoriteRepository.save(favorite);
+	}
+
+}

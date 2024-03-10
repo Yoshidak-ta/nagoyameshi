@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.nagoyameshi.entity.Reservation;
@@ -23,18 +24,30 @@ import com.example.nagoyameshi.form.ReservationRegisterForm;
 import com.example.nagoyameshi.repository.ReservationRepository;
 import com.example.nagoyameshi.repository.StoreRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
+import com.example.nagoyameshi.service.ReservationService;
 
 @Controller
+@RequestMapping("/stores/{id}/reservations")
 public class ReservationController {
 	private final ReservationRepository reservationRepository;
 	private final StoreRepository storeRepository;
+	private final ReservationService reservationService;
 	
-	public ReservationController(ReservationRepository reservationRepository, StoreRepository storeRepository) {
+	public ReservationController(ReservationRepository reservationRepository, StoreRepository storeRepository, ReservationService reservationService) {
 		this.reservationRepository = reservationRepository;
 		this.storeRepository = storeRepository;
+		this.reservationService = reservationService;
 	}
 	
-	@GetMapping("/reservations")
+	@GetMapping("/register")
+	public String register(Model model) {
+		
+		model.addAttribute("ReservationInputForm", new ReservationInputForm());
+		
+		return "reservations/register";
+	}
+	
+	@GetMapping
 	public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PageableDefault(page = 0, size=10, sort="id", direction = Direction.ASC) Pageable pageable, Model model) {
 		User user = userDetailsImpl.getUser();
 		Page<Reservation> reservationPage = reservationRepository.findByUserOrderByCreatedAtDesc(user, pageable);
@@ -44,7 +57,7 @@ public class ReservationController {
 		return "reservations/index";
 	}
 	
-	@GetMapping("stores/{id}/reservations/input")
+	@GetMapping("/input")
 	public String input(@PathVariable(name = "id") Integer id,
 			            @ModelAttribute @Validated ReservationInputForm reservationInputForm,
 			            BindingResult bindingResult,
@@ -65,7 +78,7 @@ public class ReservationController {
 		
 	}
 	
-	@GetMapping("/stores/{id}/reservations/confirm")
+	@GetMapping("/confirm")
 	public String confirm(@PathVariable(name = "id")Integer id,
 			              @ModelAttribute ReservationInputForm reservationInputForm,
 			              @AuthenticationPrincipal UserDetailsImpl userDetailesImpl,
@@ -81,7 +94,7 @@ public class ReservationController {
 		 return "reservations/confirm";
 	}
 	
-	@PostMapping("/stores/{id}/reservation/create")
+	@PostMapping("/create")
 	public String create(@ModelAttribute ReservationRegisterForm reservationRegisterForm) {
 		reservationService.create(reservationRegisterForm);
 		

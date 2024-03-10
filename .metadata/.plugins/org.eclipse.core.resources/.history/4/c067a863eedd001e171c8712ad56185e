@@ -1,0 +1,12 @@
+package com.example.nagoyameshi.repository;
+
+import org.springframework.data.domain.Page;
+
+import com.example.nagoyameshi.entity.Favorite;
+
+public interface FavoriteRepository extends JpaRepository {
+	public Page<Favorite> findByUserOrderByCreatedAtDesc(User user, Pageable pageable);
+	
+	public Favorite findByStoreAndUser(Store store, User user);
+
+}

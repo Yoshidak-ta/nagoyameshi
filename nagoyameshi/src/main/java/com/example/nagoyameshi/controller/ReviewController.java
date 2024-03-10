@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.nagoyameshi.entity.Review;
 import com.example.nagoyameshi.entity.Store;
 import com.example.nagoyameshi.entity.User;
+import com.example.nagoyameshi.form.ReviewEditForm;
 import com.example.nagoyameshi.form.ReviewForm;
 import com.example.nagoyameshi.repository.ReviewRepository;
 import com.example.nagoyameshi.repository.StoreRepository;
@@ -79,6 +80,53 @@ public class ReviewController {
 		return "redirect:stores/{storeId}";
 	}
 	
+	@GetMapping("/{id}/edit")
+	public String edit(@PathVariable(name = "id")Integer id,
+			           @PathVariable(name = "storeId")Integer storeId,
+			           Model model) {
+		Review review = reviewRepository.getReferenceById(id);
+		Store store = storeRepository.getReferenceById(storeId);
+		ReviewEditForm reviewEditForm = new ReviewEditForm(review.getId(), review.getScore(), review.getContent());
+		
+		model.addAttribute("review", review);
+		model.addAttribute("store", store);
+		model.addAttribute("reviewEditForm", reviewEditForm);
+		
+		return "reviews/edit";
+	}
 	
+    @PostMapping("/{id}/update")
+    public String update(@PathVariable(name = "id")Integer id,
+    		           @PathVariable(name = "storeId")Integer storeId,
+    		           @ModelAttribute @Validated ReviewEditForm reviewEditForm,
+    		           BindingResult bindingResult,
+    		           RedirectAttributes redirectAttributes,
+    		           Model model) {
+    	
+    	Review review = reviewRepository.getReferenceById(id);
+    	Store store = storeRepository.getReferenceById(storeId);
+    	
+    	if(bindingResult.hasErrors()) {
+    		
+    		model.addAttribute("store", store);
+    		model.addAttribute("review", review);
+    		
+    		return "reviews/edit";
+    	}
+    	
+    	reviewService.update(reviewEditForm);
+    	redirectAttributes.addFlashAttribute("successMessage", "レビューを更新しました。");
+    	
+    	return "redirect:stores/{storeId}";
+    }
+    
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable(name = "id")Integer id, RedirectAttributes redirectAttributes) {
+    	reviewRepository.deleteById(id);
+    	
+    	redirectAttributes.addFlashAttribute("successMessage", "レビューを削除しました。");
+    	
+    	return "redirect:/stores/{storeId}";
+    }
 
 }
