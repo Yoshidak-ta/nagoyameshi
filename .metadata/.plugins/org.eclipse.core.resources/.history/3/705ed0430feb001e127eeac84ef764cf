@@ -1,0 +1,21 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.nagoyameshi.repository.CategoryRepository;
+import com.example.nagoyameshi.repository.MenuRepository;
+import com.example.nagoyameshi.repository.StoreRepository;
+
+@Service
+public class MenuService {
+	private final StoreRepository storeRepository;
+	private final MenuRepository menuRepository;
+	private final CategoryRepository categoryRepository;
+	
+	public MenuService(StoreRepository storeRepository, MenuRepository menuRepository, CategoryRepository categoryRepository) {
+		this.storeRepository = storeRepository;
+		this.menuRepository = menuRepository;
+		this.categoryRepository = categoryRepository;
+	}
+
+}

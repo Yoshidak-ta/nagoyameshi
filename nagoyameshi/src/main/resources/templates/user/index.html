@@ -13,7 +13,7 @@
 			<main>
 				<div class="container nagoyameshi-container">
 					<div class="row justify-content-center">
-						<div class="col-xl-5 col-lg-6 col-md-8">
+						<div class="col-xl-6 col-lg-7 col-md-8">
 							<nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 								<ol class="breadcrumb mb-0">
 									<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
@@ -105,6 +105,10 @@
                                 </div>
 							</div>
 						</div>
+						<div sec:authorize="hasRole('ROLE_GENERAL')" class="col-xl-8 col-lg-9 col-md-10 mb-4">
+						     <img th:src="@{/images/primead.jpg}" class="w-100" alt="有料会員特典">
+						     <a th:href="@{/auth/primeregister}" class="btn text-white shadow-sm w-100 nagoyameshi-btn mt-4">有料会員登録</a>
+					    </div>			
 					</div>
 				</div>
 			</main>

@@ -1,0 +1,18 @@
+package com.example.nagoyameshi.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.example.nagoyameshi.repository.MenuRepository;
+import com.example.nagoyameshi.repository.StoreRepository;
+
+@Controller
+public class AdminMenuController {
+	private final MenuRepository menuRepository;
+	private final StoreRepository storeRepository;
+	
+	public AdminMenuController(MenuRepository menuRepository, StoreRepository storeRepository) {
+		this.menuRepository = menuRepository;
+		this.storeRepository = storeRepository;
+	}
+
+}

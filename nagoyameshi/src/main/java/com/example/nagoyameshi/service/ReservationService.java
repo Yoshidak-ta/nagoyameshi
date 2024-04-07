@@ -1,12 +1,14 @@
 package com.example.nagoyameshi.service;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.nagoyameshi.entity.Reservation;
 import com.example.nagoyameshi.entity.Store;
 import com.example.nagoyameshi.entity.User;
-import com.example.nagoyameshi.form.ReservationRegisterForm;
+import com.example.nagoyameshi.form.ReservationConfirmForm;
 import com.example.nagoyameshi.repository.ReservationRepository;
 import com.example.nagoyameshi.repository.StoreRepository;
 import com.example.nagoyameshi.repository.UserRepository;
@@ -24,17 +26,18 @@ public class ReservationService {
 	}
 	
 	@Transactional
-	public void create(ReservationRegisterForm reservationRegisterForm) {
+	public void create(ReservationConfirmForm reservationConfirmForm) {
 		Reservation reservation = new Reservation();
-		Store store = storeRepository.getReferenceById(reservationRegisterForm.getStoreId());
-		User user = userRepository.getReferenceById(reservationRegisterForm.getUserId());
+		Store store = storeRepository.getReferenceById(reservationConfirmForm.getStoreId());
+		User user = userRepository.getReferenceById(reservationConfirmForm.getUserId());
+		LocalDate visitDate = LocalDate.parse(reservationConfirmForm.getVisitDate());
 		
 		reservation.setStore(store);
 		reservation.setUser(user);
-		reservation.setVisitDate(reservationRegisterForm.getVisitDate());
-		reservation.setVisitTime(reservationRegisterForm.getVisitTime());
-		reservation.setNumberOfPeople(reservationRegisterForm.getNumberOfPeople());
-		reservation.setOther(reservationRegisterForm.getOther());
+		reservation.setVisitDate(visitDate);
+		reservation.setVisitTime(reservationConfirmForm.getVisitTime());
+		reservation.setNumberOfPeople(reservationConfirmForm.getNumberOfPeople());
+		reservation.setOther(reservationConfirmForm.getOther());
 		
 		reservationRepository.save(reservation);
 	}

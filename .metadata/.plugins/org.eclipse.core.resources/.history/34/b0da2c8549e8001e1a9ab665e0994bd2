@@ -1,0 +1,6 @@
+package com.example.nagoyameshi.service;
+
+@Service
+public class MenuService {
+
+}

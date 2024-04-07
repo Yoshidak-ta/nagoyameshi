@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extends/spring-sequrity">
+	<head>
+		<div th:replace="~{fragment :: meta}"></div>
+		<div th:replace="~{fragment :: styles}"></div>
+		<title>メニュー編集</title>
+	</head>
+	<body>
+		<div class="nagoyameshi-wrapper">
+			<!-- ヘッダー -->
+			<div th:replace="~{fragment :: meta}"></div>
+			
+			<main>
+				<div class="container nagoyameshi-container">
+					<div class="row justify-content-center">
+						<div class="col-xxl-9 col-xl-10 col-lg-11">
+							<div class="d-flex justify-content-between md-4">
+								<nav class="md-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+									<ol class="breadcrumb md-0">
+										<li class="breadcrumb-item"><a th:href="@{/admin/stores}">店舗一覧</a></li>
+										<li class="breadcrumb-item"><a th:href="@{/admin/stores/__${store.getId()}__}">店舗詳細</a></li>
+										<li class="breadcrumb-item"><a th:href="@{/admin/stores/__${store.getId()}__/menus}">メニュー</a></li>
+										<li class="breadcrumb-item active" aria-current="page">メニュー編集</li>
+									</ol>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

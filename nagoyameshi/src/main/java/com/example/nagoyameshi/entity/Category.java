@@ -19,8 +19,14 @@ public class Category {
   @Column(name = "id")
   private Integer id;
   
+  @Column(name = "image_name")
+  private String imageName;
+  
   @Column(name = "name")
   private String name;
+  
+  @Column(name = "sub_name")
+  private String subName;
   
   @Column(name = "description")
   private String description;

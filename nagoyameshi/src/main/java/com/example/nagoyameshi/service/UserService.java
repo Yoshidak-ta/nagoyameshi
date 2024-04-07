@@ -27,8 +27,6 @@ public class UserService {
 	public User create(SignupForm signupForm) {
 		User user = new User();
 		Role role_general = roleRepository.findByName("ROLE_GENERAL");
-		Role role_prime = roleRepository.findByName("ROLE_PRIME");
-		
 		
 		user.setName(signupForm.getName());
 	    user.setFurigana(signupForm.getFurigana());
@@ -39,7 +37,6 @@ public class UserService {
 		user.setJob(signupForm.getJob());
 		user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
 		user.setRole(role_general);
-		user.setRole(role_prime);
 		user.setEnabled(false);
 		
 		return userRepository.save(user);

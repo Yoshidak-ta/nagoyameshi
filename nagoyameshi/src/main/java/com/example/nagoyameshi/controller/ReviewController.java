@@ -39,11 +39,20 @@ public class ReviewController {
 	}
 	
 	@GetMapping
-	public String index(@PathVariable(name = "storeId")Integer storeId, @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable, Model model) {
+	public String index(@PathVariable(name = "storeId")Integer storeId, @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
 		Store store = storeRepository.getReferenceById(storeId);
+		boolean userPosted = false;
+		
+		if(userDetailsImpl != null) {
+			User user = userDetailsImpl.getUser();
+			userPosted = reviewService.reviewJudge(store, user);
+		}
+		
 		Page<Review> reviewPage = reviewRepository.findByStoreOrderByCreatedAtDesc(store, pageable);
 		
+		
 		model.addAttribute("store", store);
+		model.addAttribute("userPosted", userPosted);
 		model.addAttribute("reviewPage", reviewPage);
 		
 		return "reviews/index";
@@ -61,13 +70,13 @@ public class ReviewController {
 	
 	@PostMapping("/create")
 	public String create(@PathVariable(name = "storeId")Integer storeId,
-			             @AuthenticationPrincipal UserDetailsImpl userdetailsImpl,
+			             @AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			             @ModelAttribute @Validated ReviewForm reviewForm,
 			             BindingResult bindingResult,
 			             RedirectAttributes redirectAttributes,
 			             Model model) {
 		Store store = storeRepository.getReferenceById(storeId);
-		User user = userdetailsImpl.getUser();
+		User user = userDetailsImpl.getUser();
 		
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("store", store);
@@ -77,7 +86,7 @@ public class ReviewController {
 		reviewService.create(store, user, reviewForm);
 		redirectAttributes.addFlashAttribute("successMessage", "レビューを投稿しました。");
 		
-		return "redirect:stores/{storeId}";
+		return "redirect:/stores/{storeId}/reviews";
 	}
 	
 	@GetMapping("/{id}/edit")
@@ -117,7 +126,7 @@ public class ReviewController {
     	reviewService.update(reviewEditForm);
     	redirectAttributes.addFlashAttribute("successMessage", "レビューを更新しました。");
     	
-    	return "redirect:stores/{storeId}";
+    	return "redirect:/stores/{storeId}/reviews";
     }
     
     @PostMapping("/{id}/delete")
@@ -126,7 +135,7 @@ public class ReviewController {
     	
     	redirectAttributes.addFlashAttribute("successMessage", "レビューを削除しました。");
     	
-    	return "redirect:/stores/{storeId}";
+    	return "redirect:/stores/{storeId}/reviews";
     }
 
 }

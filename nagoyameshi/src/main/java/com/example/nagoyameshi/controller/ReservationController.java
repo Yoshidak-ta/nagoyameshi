@@ -1,5 +1,7 @@
 package com.example.nagoyameshi.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -19,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.nagoyameshi.entity.Reservation;
 import com.example.nagoyameshi.entity.Store;
 import com.example.nagoyameshi.entity.User;
-import com.example.nagoyameshi.form.ReservationInputForm;
+import com.example.nagoyameshi.form.ReservationConfirmForm;
 import com.example.nagoyameshi.form.ReservationRegisterForm;
 import com.example.nagoyameshi.repository.ReservationRepository;
 import com.example.nagoyameshi.repository.StoreRepository;
@@ -39,16 +41,8 @@ public class ReservationController {
 		this.reservationService = reservationService;
 	}
 	
-	@GetMapping("/register")
-	public String register(Model model) {
-		
-		model.addAttribute("ReservationInputForm", new ReservationInputForm());
-		
-		return "reservations/register";
-	}
-	
 	@GetMapping
-	public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PageableDefault(page = 0, size=10, sort="id", direction = Direction.ASC) Pageable pageable, Model model) {
+	public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable, Model model) {
 		User user = userDetailsImpl.getUser();
 		Page<Reservation> reservationPage = reservationRepository.findByUserOrderByCreatedAtDesc(user, pageable);
 		
@@ -57,48 +51,62 @@ public class ReservationController {
 		return "reservations/index";
 	}
 	
+	@GetMapping("/register")
+	public String register(@PathVariable(name = "id")Integer id, Model model) {
+		Store store = storeRepository.getReferenceById(id);
+		
+		model.addAttribute("store", store);
+		model.addAttribute("reservationRegisterForm", new ReservationRegisterForm());
+		
+		return "reservations/register";
+	}
+	
 	@GetMapping("/input")
-	public String input(@PathVariable(name = "id") Integer id,
-			            @ModelAttribute @Validated ReservationInputForm reservationInputForm,
+	public String input(@PathVariable(name = "id")Integer id,
+			            @ModelAttribute @Validated ReservationRegisterForm reservationRegisterForm,
 			            BindingResult bindingResult,
 			            RedirectAttributes redirectAttributes,
-			            Model model) 
-	{
-	    Store store = storeRepository.getReferenceById(id);
-	    
-	   if(bindingResult.hasErrors()) {
-		   model.addAttribute("store", store);
-		   model.addAttribute("errorMessage", "予約内容に不備があります。");
-		    return "stores/show";
-	   }
-	   
-	   redirectAttributes.addFlashAttribute("reservationInputForm", reservationInputForm);
-	   
-	   return "redirect:/stores/{id}/reservations/confirm";
+			            Model model) {
+		Store store = storeRepository.getReferenceById(id);
+		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("store", store);
+			model.addAttribute("errorMessage", "予約内容に不備があります。");
+			return "stores/show";
+		}
+		
+		redirectAttributes.addFlashAttribute("reservationRegisterForm", reservationRegisterForm);
+		
+		return "redirect:/stores/{id}/reservations/confirm";
 		
 	}
 	
 	@GetMapping("/confirm")
 	public String confirm(@PathVariable(name = "id")Integer id,
-			              @ModelAttribute ReservationInputForm reservationInputForm,
-			              @AuthenticationPrincipal UserDetailsImpl userDetailesImpl,
-			              Model model) 
-	{
-		Store store = storeRepository.getReferenceById(id);
-		User user = userDetailesImpl.getUser();
+			              @ModelAttribute ReservationRegisterForm reservationRegisterForm,
+			              @AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			              Model model) {
 		
-		ReservationRegisterForm reservationRegisterForm = new ReservationRegisterForm(store.getId(), user.getId(), reservationInputForm.getVisitDate(), reservationInputForm.getVisitTime(), reservationInputForm.getNumberOfPeople(), reservationInputForm.getOther());
-		 model.addAttribute("store", store);
-		 model.addAttribute("reservationRegisterForm", reservationRegisterForm);
-		 
-		 return "reservations/confirm";
+		Store store = storeRepository.getReferenceById(id);
+		User user = userDetailsImpl.getUser();
+		
+		LocalDate visitDate = reservationRegisterForm.getVisitDate();
+		
+		ReservationConfirmForm reservationConfirmForm = new ReservationConfirmForm(store.getId(), user.getId(), visitDate.toString(), reservationRegisterForm.getVisitTime(), reservationRegisterForm.getNumberOfPeople(), reservationRegisterForm.getOther());
+		
+		
+		model.addAttribute("store", store);
+		model.addAttribute("reservationConfirmForm", reservationConfirmForm);
+		
+		return "reservations/confirm";
 	}
 	
+	
 	@PostMapping("/create")
-	public String create(@ModelAttribute ReservationRegisterForm reservationRegisterForm) {
-		reservationService.create(reservationRegisterForm);
-		
-		return "redirect:/reservations?reserved";
-	}
+	  public String create(@ModelAttribute ReservationConfirmForm reservationConfirmForm) {
+		  reservationService.create(reservationConfirmForm);
+		  
+		  return "redirect:/reservations?reserved";
+	  }
 
 }

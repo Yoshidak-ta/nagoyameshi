@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extends/spring-security">
+	<head>
+		<div th:replace="~{fragment :: meta}"></div>
+		<div th:replace="~{fragment :: styles}"></div>
+		<title>メニュー</title>
+	</head>
+	<body>
+		<div class="nagoyameshi-wrapper">
+			<!-- ヘッダー -->
+			<div th:replace="~{fragment :: header}"></div>
+			
+			<main>
+				<div class="container pt-4 pb-5 nagoyameshi-container">
+					<div class="row justify-content-center">
+						<div class="col-xxl-9 col-xl-10 col-lg-11">
+							<div class="d-flex justify-content-between mb-4">
+								<nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+									<ol class="breadcrumb mb-0">
+										<li class="breadcrumb-item"><a th:href="@{/admin/stores}">店舗一覧</a></li>
+										<li class="breadcrumb-item"><a th:href="@{/admin/stores/__${store.getId()}__}">店舗詳細</a></li>
+										<li class="breadcrumb-item active" aria-current="page">メニュー</li>
+									</ol>
+								</nav>
+							</div>
+								
+							<h1 class="mb-4 text-center" th:text="${store.getName()}"></h1>
+								
+							<div th:if="${errorMessage}" class="alert alert-danger">
+								<span th:text="${errorMessage}"></span>
+							</div>
+							
+							<div th:if="${successMessage}" class="alert alert-info">
+								<span th:text="${successMessage}"></span>
+							</div>
+								
+							<nav class="nav nav-tabs mb-2">
+								<li class="nav-item">
+									<a class="nav-link link-dark" th:href="@{/admin/stores/__${store.getId()}__}">店舗詳細</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link link-dark" th:href="@{/admin/stores/__${store.getId()}__/seats}">座席</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active bg-primary text-white" aria-current="page">メニュー</a>
+								</li>
+							</nav>
+							
+							<div th:if="${#lists.isEmpty(menuList)}">
+								<a class="btn text-white shadow-sm w-100 nagoyameshi-btn mt-4" th:href="@{/admin/stores/__${store.getId()}__/menus/register}">メニューを登録する</a>
+							</div>
+							
+							<div th:unless="${#lists.isEmpty(menuList)}">
+							    <div class="d-flex justify-content-end align-items-end mb-3">
+	    					        <div>
+		    					        <a th:href="@{/admin/stores/__${store.getId()}__/menus/__${menu.getId()}__/edit}">編集</a>
+		    					        <a href="#" class="nagoyameshi-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteMenuModal' + menu.getId()}">削除</a>
+		    					        <!-- 削除モーダル -->
+		    					        <div class="modal fade" th:id="${'deleteMenuModal' + menu.getId()}" tabindex="-1" th:aria-labelledby="${'deleteMenuModalLabel' + menu.getId()}">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" th:id="${'deleteMenuModalLabel' + menu.getId()}" th:text="${store.getName() + 'のメニューを削除してもよろしいでしょうか？'}"></h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+													</div>
+													<div class="modal-footer">
+														<form method="post" th:action="@{/stores/__${store.getId()}__/menus/__${menu.getId()}__/delete}">
+															<button type="submit" class="btn nagoyameshi-btn-danger text-white shadow-sm">削除</button>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+    			    			    </div>
+	    			    	    </div>
+							
+			    				<div class="mt-5 mb-3 text-center">
+			    				    <h2 class="fw-bold" th:text="${menu.getName()}"></h2>
+				    			    <h3 th:text="'税込価格：' + ${price} + '円'"></h3>
+					    		</div>	
+							
+						    	<div class="mb-4">
+							    	<img th:if="${menu.getImageName()}" th:src="@{/images/menus/__${menu.getImageName()}__}" class="w-100" alt="メニュー画像">
+								    <img th:unless="${menu.getImageName()}" th:src="@{/images/noImage.jpg}" class="w-100" alt="NOIMAGE">
+    							</div>
+							
+	    						<div class="row justify-content-center">
+		    					    <h2 class="mt-3 mb-3 w-75 text-white text-center fw-bold" style="background-color: rgba(250, 0, 0, 0.5);">✍おすすめポイント✍</h2>
+			    				    <div class="w-100">
+				    					<h2 class="fw-bold mt-2 mb-3" th:text="${menu.getHeading()}"></h2>
+					    			    <span th:text="${menu.getDescription()}"></span>
+						    	    </div>
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			
+			<!-- フッター -->
+			<div th:replace="~{fragment :: footer}"></div>
+		</div>
+		
+		<div th:replace="~{fragment :: styles}"></div>
+	</body>
+</html>

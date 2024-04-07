@@ -1,7 +1,5 @@
 package com.example.nagoyameshi.controller;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -15,30 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.nagoyameshi.entity.Favorite;
-import com.example.nagoyameshi.entity.Review;
 import com.example.nagoyameshi.entity.Store;
 import com.example.nagoyameshi.entity.User;
-import com.example.nagoyameshi.form.ReservationInputForm;
+import com.example.nagoyameshi.form.ReservationRegisterForm;
 import com.example.nagoyameshi.repository.FavoriteRepository;
-import com.example.nagoyameshi.repository.ReviewRepository;
 import com.example.nagoyameshi.repository.StoreRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.FavoriteService;
-import com.example.nagoyameshi.service.ReviewService;
 
 @Controller
 @RequestMapping("/stores")
 public class StoreController {
 	private final StoreRepository storeRepository;
-	private final ReviewRepository reviewRepository;
-	private final ReviewService reviewService;
 	private final FavoriteRepository favoriteRepository;
 	private final FavoriteService favoriteService;
 	
-	public StoreController(StoreRepository storeRepository, ReviewRepository reviewRepository, ReviewService reviewService, FavoriteRepository favoriteRepository, FavoriteService favoriteService) {
+	public StoreController(StoreRepository storeRepository, FavoriteRepository favoriteRepository, FavoriteService favoriteService) {
 		this.storeRepository = storeRepository;
-		this.reviewRepository = reviewRepository;
-		this.reviewService = reviewService;
 		this.favoriteRepository = favoriteRepository;
 		this.favoriteService = favoriteService;
 	}
@@ -46,24 +37,22 @@ public class StoreController {
 	@GetMapping
 	public String index(@RequestParam(name = "keyword", required = false) String keyword,
 			            @RequestParam(name = "category", required = false) String category,
-			            @RequestParam(name = "order", required = false) String order,
 			            @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
 			            Model model)
 	{
 		Page<Store> storePage;
 		
 		if(keyword != null && !keyword.isEmpty()) {
-		   storePage = storeRepository.findByNameLikeOrCategoryLikeOrderByCreatedAtDesc("%" + keyword + "%", "%" + category + "%", pageable);
-		} else if (category != null && !category.isEmpty()) {
-			storePage = storeRepository.findByCategoryLikeOrderByCreatedAtDesc("%" + category + "%", pageable);
+		   storePage = storeRepository.findByNameLikeOrCategory_SubNameLike("%" + keyword + "%", "%" + keyword + "%", pageable);
+		} else if(category != null && !category.isEmpty()) {
+			storePage = storeRepository.findByCategory_SubNameLike("%" + category + "%", pageable);
 		} else {
-			storePage = storeRepository.findAllByOrderByCreatedAtDesc(pageable);
+			storePage = storeRepository.findAll(pageable);
 		}
 		
 		model.addAttribute("storePage", storePage);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("category", category);
-		model.addAttribute("order", order);
 		
 		return "stores/index";
 	}
@@ -72,34 +61,32 @@ public class StoreController {
 	public String show(@PathVariable(name = "id") Integer id, Model model, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		Store store = storeRepository.getReferenceById(id);
 		Favorite favorite = null;
-		boolean userPosted = false;
 		boolean userFavorited = false;
 		  
 		  if(userDetailsImpl != null) {
 			  User user = userDetailsImpl.getUser();
-			  userPosted = reviewService.reviewJudge(store, user);
 			  userFavorited = favoriteService.favoriteJudge(store, user);
 			  
 			  if(userFavorited) {
 				  favorite = favoriteRepository.findByStoreAndUser(store, user);
 			  }
+			  		      
 		  }
 		  
-		List<Review> reviewList = reviewRepository.findTop6ByStoreOrderByCreatedAtDesc(store);
-        long reviewCount = reviewRepository.countByStore(store);
-		  
 	    model.addAttribute("store", store);
-        model.addAttribute("reservationInputForm", new ReservationInputForm());
-    	model.addAttribute("userPosted", userPosted);
+	    model.addAttribute("reservationInputForm", new ReservationRegisterForm());
     	model.addAttribute("userFavorited", userFavorited);
-	    model.addAttribute("reviewList", reviewList);
-	    model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("store", store);
 		model.addAttribute("favorite", favorite);
 		
 		
 		return "stores/show";
+		
+	
+
 	}
+	
+	
 	
 	
 	

@@ -1,0 +1,9 @@
+package com.example.nagoyameshi.form;
+
+import lombok.Data;
+
+@Data
+@AllArgsContructor
+public class MenuEditForm {
+
+}

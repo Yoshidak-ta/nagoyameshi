@@ -21,7 +21,7 @@ public class ReviewService {
 //	登録用
 	@Transactional
 	public void create(Store store, User user, ReviewForm reviewForm) {
-		Review review = new Review();
+		Review review = new Review();		
 		
 		review.setStore(store);
 		review.setUser(user);

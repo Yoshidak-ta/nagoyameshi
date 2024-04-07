@@ -1,6 +1,0 @@
-package com.example.nagoyameshi.repository;
-
-public interface VerificationTokenRepository extends JpaRepository<Verification, Integer> {
-	public VerificationToken finByToken(String token);
-
-}
