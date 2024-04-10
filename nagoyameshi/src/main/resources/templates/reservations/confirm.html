@@ -28,14 +28,15 @@
                              <h1 class="mb-4 text-center">予約内容確認</h1>
                                          
                             <div th:object="${reservationConfirmForm}">
-								
+																
+                                <input type="hidden" th:field="*{visitDate}">
 								<div class="container mb-4">
 									<div class="row pb-2 mb-2 border-bottom">
 										<div class="col-6">
 											<span class="fw-bold">来店日付</span>
 										</div>
 										<div class="col">
-											<span th:text="*{visitDate}"></span>
+											<span th:text="*{#temporals.format(visitDate, 'yyyy-MM-dd')}"></span>										
 										</div>
 									</div>
 								</div>

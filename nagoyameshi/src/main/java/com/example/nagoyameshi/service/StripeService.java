@@ -3,7 +3,6 @@ package com.example.nagoyameshi.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.example.nagoyameshi.form.ReservationConfirmForm;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
@@ -15,14 +14,9 @@ import jakarta.servlet.http.HttpServletRequest;
 public class StripeService {
 	@Value("${stripe.api-key}")
 	private String stripeApiKey;
-	
-	private final ReservationService reservationService;
-	
-	public StripeService(ReservationService reservationService) {
-		this.reservationService = reservationService;
-	}
+		
 	 // セッションを作成し、Stripeに必要な情報を返す
-    public String createStripeSession(String storeName, ReservationConfirmForm reservationConfirmForm, HttpServletRequest httpServletRequest) {
+    public String createStripeSession(String userName, HttpServletRequest httpServletRequest) {
         Stripe.apiKey = stripeApiKey;
         String requestUrl = new String(httpServletRequest.getRequestURL());
         SessionCreateParams params =
@@ -34,7 +28,6 @@ public class StripeService {
                             SessionCreateParams.LineItem.PriceData.builder()   
                                 .setProductData(
                                     SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                        .setName(storeName)
                                         .build())
                                 .setCurrency("jpy")                                
                                 .build())
@@ -45,12 +38,6 @@ public class StripeService {
                 .setCancelUrl(requestUrl.replace("/primeregister", ""))
                 .setPaymentIntentData(
                     SessionCreateParams.PaymentIntentData.builder()
-                        .putMetadata("storeId", reservationConfirmForm.getStoreId().toString())
-                        .putMetadata("userId", reservationConfirmForm.getUserId().toString())
-                        .putMetadata("visitDate", reservationConfirmForm.getVisitDate())
-                        .putMetadata("visitTime", reservationConfirmForm.getVisitTime())
-                        .putMetadata("numberOfPeole", reservationConfirmForm.getNumberOfPeople().toString())
-                        .putMetadata("other", reservationConfirmForm.getOther())
                         .build())
                 .build();
         try {

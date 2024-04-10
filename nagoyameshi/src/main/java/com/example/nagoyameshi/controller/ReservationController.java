@@ -1,6 +1,6 @@
 package com.example.nagoyameshi.controller;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -72,7 +72,7 @@ public class ReservationController {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("store", store);
 			model.addAttribute("errorMessage", "予約内容に不備があります。");
-			return "stores/show";
+			return "reservations/register";
 		}
 		
 		redirectAttributes.addFlashAttribute("reservationRegisterForm", reservationRegisterForm);
@@ -90,9 +90,9 @@ public class ReservationController {
 		Store store = storeRepository.getReferenceById(id);
 		User user = userDetailsImpl.getUser();
 		
-		LocalDate visitDate = reservationRegisterForm.getVisitDate();
+		Date visitDate = reservationRegisterForm.getVisitDate();
 		
-		ReservationConfirmForm reservationConfirmForm = new ReservationConfirmForm(store.getId(), user.getId(), visitDate.toString(), reservationRegisterForm.getVisitTime(), reservationRegisterForm.getNumberOfPeople(), reservationRegisterForm.getOther());
+		ReservationConfirmForm reservationConfirmForm = new ReservationConfirmForm(store.getId(), user.getId(), visitDate, reservationRegisterForm.getVisitTime(), reservationRegisterForm.getNumberOfPeople(), reservationRegisterForm.getOther());
 		
 		
 		model.addAttribute("store", store);

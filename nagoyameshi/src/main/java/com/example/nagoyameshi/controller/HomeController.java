@@ -58,10 +58,8 @@ public class HomeController {
 	    	  return "/primeregister";
 	    	}
     	
-    	String sessionId = stripeService.createStripeSession(user.getName(), reservationConfirmForm, httpServletRequest);
     	
     	model.addAttribute("user", user);
-    	model.addAttribute("sessionId", sessionId);
     	
     	return "/";
     	
