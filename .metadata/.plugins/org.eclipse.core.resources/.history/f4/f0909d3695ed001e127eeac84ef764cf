@@ -1,7 +1,0 @@
-package com.example.nagoyameshi.form;
-
-@Data
-@AllArgsContructor
-public class MenuEditForm {
-
-}

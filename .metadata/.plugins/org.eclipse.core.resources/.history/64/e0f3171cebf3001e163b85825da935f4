@@ -1,9 +1,0 @@
-let maxDate = new Date();
-maxDate = maxDate.setMounth(maxDate.getMounth() + 3);
-
-flatpickr('#visitDate', {
-	mode: 'single',
-	locale: 'ja',
-	minDate: 'today',
-	maxDate: maxDate
-});

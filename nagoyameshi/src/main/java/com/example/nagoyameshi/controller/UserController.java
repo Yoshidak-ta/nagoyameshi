@@ -18,8 +18,10 @@ import com.example.nagoyameshi.repository.UserRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 	private final UserRepository userRepository;
 	private final UserService userService;
@@ -35,8 +37,9 @@ public class UserController {
 		
 		model.addAttribute("user", user);
 		
-		return "user/index";
+		return "users/index";
 	}
+	
 	@GetMapping("/edit")
 	public String edit(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
@@ -44,7 +47,7 @@ public class UserController {
 		
 		model.addAttribute("userEditForm", userEditForm);
 		
-		return "user/edit";
+		return "users/edit";
 	}
 	
 	@PostMapping("/update")
@@ -56,14 +59,32 @@ public class UserController {
 		}
 		
 		if(bindingResult.hasErrors()) {
-			return "user/edit";
+			return "users/edit";
 		}
 		
 		userService.update(userEditForm);
 		redirectAttributes.addFlashAttribute("successMessage", "会員情報を編集しました。");
 		
-		return "redirect:/user";
+		return "redirect:/users";
 	}
 	
+	@GetMapping("/primeregister")
+    public String primeregister(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+    		                   HttpServletRequest httpServletRequest, 
+    		                   Model model) {
+    	
+    	User user = userDetailsImpl.getUser();
+    	int userRole = user.getRole().getId();
+    	
+    	if(userRole == 1) {
+	          model.addAttribute("user", user);
+	    	  model.addAttribute("errorMessage", "下記機能をご利用の場合は有料会員登録が必要です。");
+	    	  return "users/primeregister";
+	    	}
+    	
+    	model.addAttribute("user", user);
+    	
+    	return "users/primeregister";
+    }
 
 }

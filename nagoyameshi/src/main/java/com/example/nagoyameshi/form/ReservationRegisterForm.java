@@ -1,6 +1,6 @@
 package com.example.nagoyameshi.form;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -16,7 +16,7 @@ public class ReservationRegisterForm {
 	private Integer userId;;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date visitDate;
+	private LocalDate visitDate;
 	
 	@NotBlank(message = "来店時刻を選択してください。")
 	private String visitTime;

@@ -29,7 +29,6 @@ public class StripeService {
                                 .setProductData(
                                     SessionCreateParams.LineItem.PriceData.ProductData.builder()
                                         .build())
-                                .setCurrency("jpy")                                
                                 .build())
                         .setQuantity(1L)
                         .build())
