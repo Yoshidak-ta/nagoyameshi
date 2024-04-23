@@ -332,3 +332,4 @@ INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, 
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (14, 73, 1, '2024-04-22', '17,00', 2, '');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (15, 69, 1, '2024-05-15', '19:30', 2, '');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (16, 19, 1, '2024-04-26', '18:30', 2, '');
+

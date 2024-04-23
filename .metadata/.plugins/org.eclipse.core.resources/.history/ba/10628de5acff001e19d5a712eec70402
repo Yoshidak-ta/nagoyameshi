@@ -1,0 +1,27 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.stereotype.Service;
+
+import com.stripe.param.checkout.SessionCreateParams;
+
+@Service
+public class StripeService {
+	 @Value("${stripe.api-key}")
+     private String stripeApiKey;
+
+	Stripe.apiKey = stripeApiKey;
+	String priceId = "price_1P6VSsG3807R4hwqpWoHOwNd";
+	
+	SessionCreateParams params = new SessionCreateParams.Builder()
+			.setSuccessUrl()
+			.setCancelUrl()
+			.setMode(SessionCreateParams.Mode.SUBSCRIPTION)
+			.addLineItem(new SessionCreateParams.LineItem.Builder()
+					.setQuantity(1L)
+					.setPrice(priceId)
+					.build()
+			        )
+			.build();
+			
+
+}

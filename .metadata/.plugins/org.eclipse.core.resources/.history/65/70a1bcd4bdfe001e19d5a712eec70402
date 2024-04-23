@@ -1,0 +1,9 @@
+package com.example.nagoyameshi.entity;
+
+@Entity
+@Table(name = "primeregisters")
+@Data
+public class Pay {
+	
+
+}

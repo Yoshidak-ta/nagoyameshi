@@ -1,0 +1,22 @@
+package com.example.nagoyameshi.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+
+import com.example.nagoyameshi.service.StripeService;
+
+@Controller
+public class StripeWebhookController {
+	private final StripeService stripeService;
+
+	@Value("${stripe.api-key}")
+	private String stripeApiKey;
+
+	@Value("${stripe.webhook-secret}")
+	private String webhookSecret;
+
+	public StripeWebhookController(StripeService stripeService) {
+		this.stripeService = stripeService;
+	}
+
+}

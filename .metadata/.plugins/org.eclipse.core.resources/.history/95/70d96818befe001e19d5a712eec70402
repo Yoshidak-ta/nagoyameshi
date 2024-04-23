@@ -1,0 +1,12 @@
+package com.example.nagoyameshi.entity;
+
+import jakarta.persistence.Entity;
+import lombok.Data;
+
+@Entity
+@Table(name = "primeregisters")
+@Data
+public class Pay {
+	
+
+}

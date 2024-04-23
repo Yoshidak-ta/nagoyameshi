@@ -1,0 +1,22 @@
+package com.example.nagoyameshi.form;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+public class PrimeRegisterForm {
+	@NotNull(message = "クレジットカード番号を入力してください。")
+	private Integer cardNumber;
+	
+	@NotBlank(message = "カード名義をローマ字（大文字）で入力してください。")
+	private String meigi;
+	
+	@NotNull(message = "有効期限を入力してください。")
+	private Integer expiry;
+	
+	@NotNull(message = "セキュリティコードを入力してください。")
+	private Integer securityCode;
+
+}

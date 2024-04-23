@@ -1,0 +1,10 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.stripe.param.checkout.SessionCreateParams;
+
+@Service
+public class StripeService {
+

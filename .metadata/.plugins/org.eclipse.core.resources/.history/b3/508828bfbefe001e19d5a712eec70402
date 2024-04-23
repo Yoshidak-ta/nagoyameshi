@@ -1,0 +1,32 @@
+package com.example.nagoyameshi.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Entity
+@Table(name = "primeregisters")
+@Data
+public class Pay {
+	@id
+	@GeneratedValue(strategy = GenerationType.IDENTITY
+    @Column(name = "id")
+	private Integer id;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@Column(name = "card_number")
+	private Integer cardNumber;
+	
+	@Column(name = "meigi")
+	private String meigi;
+	
+	@Column(name = "expiry")
+	private Integer expiry;
+	
+	@Column(name = "security_code")
+	private Integer securityCode;
+
+}
