@@ -1,0 +1,13 @@
+let maxDate = new Date();
+maxDate = maxDate.setMonth(maxDate.getMonth() + 3);
+
+flatpickr('#visitDate', {
+	altInput: true,
+    altFormat: "Y-m-d", 
+    dateFormat: "Y-m-d",
+	mode: 'single',
+	locale: 'ja',
+	minDate: 'today',
+	maxDate: maxDate,
+     
+});

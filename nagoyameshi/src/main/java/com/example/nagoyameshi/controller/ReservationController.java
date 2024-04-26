@@ -1,7 +1,6 @@
 package com.example.nagoyameshi.controller;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -115,10 +114,9 @@ public class ReservationController {
 		Store store = storeRepository.getReferenceById(id);
 		User user = userDetailsImpl.getUser();
 
-		LocalDate visitDate = reservationRegisterForm.getVisitDate();
-
 		ReservationConfirmForm reservationConfirmForm = new ReservationConfirmForm(store.getId(), user.getId(),
-				visitDate, reservationRegisterForm.getVisitTime(), reservationRegisterForm.getNumberOfPeople(),
+				reservationRegisterForm.getVisitDate(), reservationRegisterForm.getVisitTime(),
+				reservationRegisterForm.getNumberOfPeople(),
 				reservationRegisterForm.getOther());
 
 		model.addAttribute("store", store);
@@ -137,7 +135,7 @@ public class ReservationController {
 		reservationService.create(reservationConfirmForm);
 		redirectAttributes.addFlashAttribute("successMessage", "予約を完了しました。");
 
-		return "redirect:/reservations/register";
+		return "redirect:/stores/{id}/reservations/register";
 	}
 
 	@InitBinder
@@ -151,5 +149,4 @@ public class ReservationController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormatAlternate, true));
 	}
-
 }
