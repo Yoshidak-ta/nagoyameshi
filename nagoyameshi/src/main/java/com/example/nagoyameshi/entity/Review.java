@@ -20,24 +20,24 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "store_id")
 	private Store store;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@Column(name = "score")
 	private Integer score;
-	
+
 	@Column(name = "content")
 	private String content;
-	
+
 	@Column(name = "created_at", insertable = false, updatable = false)
 	private Timestamp createdAt;
-	
+
 	@Column(name = "updated_at", insertable = false, updatable = false)
 	private Timestamp updatedAt;
 

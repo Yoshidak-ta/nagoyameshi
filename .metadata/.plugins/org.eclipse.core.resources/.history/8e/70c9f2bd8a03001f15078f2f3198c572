@@ -1,0 +1,37 @@
+package com.example.nagoyameshi.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.nagoyameshi.entity.Seat;
+import com.example.nagoyameshi.entity.Store;
+import com.example.nagoyameshi.repository.SeatRepository;
+import com.example.nagoyameshi.repository.StoreRepository;
+
+@Controller
+@RequestMapping("/stores/{id}")
+public class SeatController {
+	private final SeatRepository seatRepository;
+	private final StoreRepository storeRepository;
+	
+	public SeatController(SeatRepository seatRepository, StoreRepository storeRepository) {
+		this.seatRepository = seatRepository;
+		this.storeRepository = storeRepository;
+	}
+	
+	@GetMapping("/seats")
+	public String index(@PathVariable(name = "id")Integer id, Model model) {
+		Seat seat = seatRepository.getReferenceById(id);
+		Store store = storeRepository.getReferenceById(id);
+		
+		model.addAttribute("seat", seat);
+		model.addAttribute("store", store);
+		
+		return "seats/index";
+		
+	}
+
+}

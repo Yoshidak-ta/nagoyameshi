@@ -40,10 +40,14 @@
 						<div class="col" th:each="newStores : ${newStores}">
 							<a th:href="@{/stores/__${newStores.getId()}__}" class="link-dark nagoyameshi-card-link">
 								<div class="card h-100">
-									<img th:if="${newStores.getImageName()}" th:src="@{/images/stores/__${newStores.getImageName()}__}" class="card-img-top nagoyameshi-vertical-card-image" alt="店舗画像">
+									<img th:if="${newStores.getImageName()}" th:src="@{/images/stores/__${newStores.getImageName()}__}" class="card-img-top nagoyameshi-vertical-card-image" alt="店舗画像" width="100" height="150">
 									<img th:unless="${newStores.getImageName()}" th:src="@{/images/noimage.jpg}" class="card-img-top nagoyameshi-vertical-card-image" alt="NO IMAGE">
 									<div class="card-body">
 										<h3 class="card-title" th:text="${newStores.getName()}"></h3>
+										<div class="mb-2 d-flex justify-content-left">
+								            <span class="nagoyameshi-star" th:each="star : ${#numbers.sequence(1, 5)}" th:text="${star <= newStores.getAverageScore()} ? '&#9733;' : '&#9734;'"></span>
+							                <small th:text="${newStores.getAverageScore() + '(' + newStores.getReview().size() + '件)'}"></small>
+			                            </div>
 										<p class="card-text mb-1">
 											<small class="text-muted" th:text="${newStores.getCategory().getName()}"></small>
 										</p>

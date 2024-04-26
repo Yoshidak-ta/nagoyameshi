@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.nagoyameshi.entity.User;
-import com.example.nagoyameshi.form.PrimeRegisterForm;
 import com.example.nagoyameshi.form.UserEditForm;
 import com.example.nagoyameshi.repository.UserRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
@@ -76,7 +75,6 @@ public class UserController {
 
 	@GetMapping("/primeregister")
 	public String primeregister(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
-			@ModelAttribute PrimeRegisterForm primeRegisterForm,
 			HttpServletRequest httpServletRequest,
 			Model model) {
 

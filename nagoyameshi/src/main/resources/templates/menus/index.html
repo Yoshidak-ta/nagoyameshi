@@ -25,7 +25,12 @@
 								</nav>
 							</div>
 								
-							<h1 class="mb-4 text-center" th:text="${store.getName()}"></h1>
+							<h1 class="mb-2 text-center" th:text="${store.getName()}"></h1>
+							
+							<div class="mb-2 d-flex justify-content-center">
+								<h3 class="nagoyameshi-star" th:each="star : ${#numbers.sequence(1, 5)}" th:text="${star <= averageScore} ? '&#9733;' : '&#9734;'"></h3>
+								<small th:text="${averageScore + '(' + reviewList.size() + '件)'}"></small>
+							</div>
 								
 							<div th:if="${errorMessage}" class="alert alert-danger">
 								<span th:text="${errorMessage}"></span>

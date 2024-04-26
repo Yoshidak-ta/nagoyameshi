@@ -5,5 +5,8 @@ flatpickr('#visitDate', {
 	mode: 'single',
 	locale: 'ja',
 	minDate: 'today',
-	maxDate: maxDate
+	maxDate: maxDate,
+	altInput: true,
+    altFormat: "Y-m-d",
+    dateFormat: "Y-m-d",
 });
