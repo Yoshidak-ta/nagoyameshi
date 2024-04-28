@@ -37,7 +37,10 @@ public class HomeController {
 			Double averageScore = reviewRepository.findAverageScoreByStore(store);
 			if (averageScore != null) {
 				store.setAverageScore(averageScore);
+			} else {
+				store.setAverageScore(0.0);
 			}
+
 			if (reviewList != null) {
 				store.setReview(reviewList);
 			}

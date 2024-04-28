@@ -87,7 +87,7 @@ public class UserController {
 			return "users/primeregister";
 		}
 
-		String sessionId = stripeService.createStripeSession(user.getName(), httpServletRequest);
+		String sessionId = stripeService.createStripeSession(httpServletRequest);
 
 		model.addAttribute("user", user);
 		model.addAttribute("sessionId", sessionId);

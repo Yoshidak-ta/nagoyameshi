@@ -22,7 +22,11 @@
 						
 						<h1 class="mb-4 text-center">お気に入り一覧</h1>
 						
-						<div class="mb-3" th:each="favorite : ${favoritePage}">
+						<div th:if="${favoritePage.isEmpty()}">
+							<h5 class="text-center">お気に入り店舗はありません</h5>
+						</div>
+						
+						<div th:unless="${favoritePage.isEmpty()}" class="mb-3" th:each="favorite : ${favoritePage}">
 							<a th:href="@{/stores/__${favorite.getStore().getId()}__}" class="link-dark nagoyameshi-card-link">
 								<div class="card h-100">
 									<div class="row g-0">

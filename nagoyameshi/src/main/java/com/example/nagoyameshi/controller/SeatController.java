@@ -37,6 +37,9 @@ public class SeatController {
 
 		List<Review> reviewList = reviewRepository.findByStore(store);
 		Double averageScore = reviewRepository.findAverageScoreByStore(store);
+		if (averageScore == null) {
+			averageScore = 0.0;
+		}
 
 		model.addAttribute("averageScore", averageScore);
 		model.addAttribute("reviewList", reviewList);

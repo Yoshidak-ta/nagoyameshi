@@ -324,12 +324,12 @@ INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, 
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (6, 45, 1, '2024-04-17', '18:00', 1, '');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (7, 31, 1, '2024-05-11', '17:30', 2, '予約時間すぎる可能性あり');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (8, 60, 1, '2024-03-27', '20:00', 4, '人数追加の可能性あり');
-INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (9, 29, 1, '2024-04-01', '20;00', 4, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (9, 29, 1, '2024-04-01', '20:00', 4, '');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (10, 53, 1, '2024-05-06', '18:00', 2, 'カウンター席希望');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (11, 1, 1, '2024-05-01', '17:30', 1, '');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (12, 7, 1, '2024-04-11', '20:30', 3, '子供の席希望');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (13, 13, 1, '2024-04-19', '19:00', 5, '個室希望');
-INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (14, 73, 1, '2024-04-22', '17,00', 2, '');
+INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (14, 73, 1, '2024-04-22', '17:00', 2, '');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (15, 69, 1, '2024-05-15', '19:30', 2, '');
 INSERT IGNORE INTO reservations (id, store_id, user_id, visit_date, visit_time, number_of_people, other) VALUES (16, 19, 1, '2024-04-26', '18:30', 2, '');
 

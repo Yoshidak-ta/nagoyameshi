@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS reservations (
   store_id INT NOT NULL,
   user_id INT NOT NULL,
   visit_date DATE NOT NULL,
-  visit_Time VARCHAR(50) NOT NULL,
+  visit_time VARCHAR(50) NOT NULL,
   number_of_people INT NOT NULL,
   other TEXT NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -47,6 +47,10 @@
 								<span th:text="${errorMessage}"></span>
 							</div>
 							
+							<div th:if="${successMessage}" class="alert alert-info">
+								<span th:text="${successMessage}"></span>
+							</div>
+							
 							<nav class="nav nav-tabs mb-2">
 								<li class="nav-item">
 									<a class="nav-link active bg-primary text-white" aria-current="page" th:href="@{/stores/__${store.getId()}__}">店舗詳細</a>

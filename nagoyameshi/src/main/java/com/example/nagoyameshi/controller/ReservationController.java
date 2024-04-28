@@ -1,5 +1,6 @@
 package com.example.nagoyameshi.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.nagoyameshi.entity.Reservation;
@@ -31,7 +31,6 @@ import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.ReservationService;
 
 @Controller
-@RequestMapping("/stores/{id}/reservations")
 public class ReservationController {
 	private final ReservationRepository reservationRepository;
 	private final StoreRepository storeRepository;
@@ -46,19 +45,22 @@ public class ReservationController {
 		this.reviewRepository = reviewRepository;
 	}
 
-	@GetMapping
+	@GetMapping("/reservations")
 	public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
 			Model model) {
 		User user = userDetailsImpl.getUser();
 		Page<Reservation> reservationPage = reservationRepository.findByUserOrderByCreatedAtDesc(user, pageable);
 
+		LocalDate today = LocalDate.now();
+
 		model.addAttribute("reservationPage", reservationPage);
+		model.addAttribute("today", today);
 
 		return "reservations/index";
 	}
 
-	@GetMapping("/register")
+	@GetMapping("/stores/{id}/reservations/register")
 	public String register(@PathVariable(name = "id") Integer id,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
 		Store store = storeRepository.getReferenceById(id);
@@ -66,6 +68,9 @@ public class ReservationController {
 
 		List<Review> reviewList = reviewRepository.findByStore(store);
 		Double averageScore = reviewRepository.findAverageScoreByStore(store);
+		if (averageScore == null) {
+			averageScore = 0.0;
+		}
 
 		model.addAttribute("averageScore", averageScore);
 		model.addAttribute("reviewList", reviewList);
@@ -76,7 +81,7 @@ public class ReservationController {
 		return "reservations/register";
 	}
 
-	@GetMapping("/input")
+	@GetMapping("/stores/{id}/reservations/input")
 	public String input(@PathVariable(name = "id") Integer id,
 			@ModelAttribute @Validated ReservationRegisterForm reservationRegisterForm,
 			BindingResult bindingResult,
@@ -100,7 +105,7 @@ public class ReservationController {
 
 	}
 
-	@GetMapping("/confirm")
+	@GetMapping("/stores/{id}/reservations/confirm")
 	public String confirm(@PathVariable(name = "id") Integer id,
 			@ModelAttribute ReservationRegisterForm reservationRegisterForm,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
@@ -120,14 +125,28 @@ public class ReservationController {
 		return "reservations/confirm";
 	}
 
-	@PostMapping("/create")
-	public String create(@ModelAttribute ReservationConfirmForm reservationConfirmForm,
+	@PostMapping("/stores/{id}/reservations/create")
+	public String create(@PathVariable(name = "id") Integer id,
+			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			@ModelAttribute ReservationConfirmForm reservationConfirmForm,
 			RedirectAttributes redirectAttributes) {
+		Store store = storeRepository.getReferenceById(id);
+		User user = userDetailsImpl.getUser();
 
-		reservationService.create(reservationConfirmForm);
+		reservationService.create(store, user, reservationConfirmForm);
 		redirectAttributes.addFlashAttribute("successMessage", "予約を完了しました。");
 
-		return "redirect:/stores/{id}";
+		return "redirect:/reservations";
+	}
+
+	@PostMapping("/reservations/delete")
+	public String delete(Integer id, RedirectAttributes redirectAttributes) {
+		reservationRepository.deleteById(id);
+
+		redirectAttributes.addFlashAttribute("successMessage", "予約をキャンセルしました。");
+
+		return "redirect:/reservations";
+
 	}
 
 }
