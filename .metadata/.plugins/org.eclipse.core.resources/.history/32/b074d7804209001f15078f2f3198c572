@@ -78,9 +78,9 @@ public class AuthController {
 
 		return "auth/confirm";
 	}
-
-	@PostMapping("/signup/register")
-	public String register(@ModelAttribute @Validated SignupConfirmForm signupConfirmForm, BindingResult bindingResult,
+	
+	@PostMapping("/signup")
+	public String signup(@ModelAttribute @Validated SignupConfirmForm signupConfirmForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
 		//		メールアドレスが登録済みであれば、BindingResultオブジェクトにエラーの内容を追加する
 		if (userService.isEmailRegistered(signupConfirmForm.getEmail())) {
@@ -121,6 +121,6 @@ public class AuthController {
 			model.addAttribute("errorMessage", errorMessage);
 		}
 
-		return "auth/signup/confirm/verify";
+		return "auth/verify";
 	}
 }

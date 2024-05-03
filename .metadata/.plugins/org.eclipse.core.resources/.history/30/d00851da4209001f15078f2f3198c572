@@ -79,7 +79,7 @@ public class AuthController {
 		return "auth/confirm";
 	}
 
-	@PostMapping("/signup/register")
+	@PostMapping("/register")
 	public String register(@ModelAttribute @Validated SignupConfirmForm signupConfirmForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
 		//		メールアドレスが登録済みであれば、BindingResultオブジェクトにエラーの内容を追加する
@@ -104,7 +104,7 @@ public class AuthController {
 		redirectAttributes.addFlashAttribute("successMessage",
 				"ご入力いただいたメールアドレスに認証メールを送信いたしました。メールに記載されているリンクをクリックし、会員登録を完了してください。");
 
-		return "redirect:/";
+		return "redirect:/users";
 	}
 
 	@GetMapping("/signup/confirm/verify")
@@ -121,6 +121,6 @@ public class AuthController {
 			model.addAttribute("errorMessage", errorMessage);
 		}
 
-		return "auth/signup/confirm/verify";
+		return "auth/verify";
 	}
 }

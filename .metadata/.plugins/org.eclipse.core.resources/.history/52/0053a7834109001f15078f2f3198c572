@@ -51,7 +51,7 @@ public class AuthController {
 		return "auth/signup";
 	}
 
-	@GetMapping("/signup/input")
+	@GetMapping("/input")
 	public String input(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
@@ -60,27 +60,11 @@ public class AuthController {
 
 		redirectAttributes.addFlashAttribute("signupForm", signupForm);
 
-		return "redirect:/signup/confirm";
+		return "redirect:/confirm";
 	}
 
-	@GetMapping("/signup/confirm")
-	public String confirm(@ModelAttribute SignupForm signupForm, HttpServletRequest httpServletRequest, Model model) {
-
-		SignupConfirmForm signupConfirmForm = new SignupConfirmForm(signupForm.getName(), signupForm.getFurigana(),
-				signupForm.getAge(), signupForm.getPostalCode(), signupForm.getAddress(), signupForm.getEmail(),
-				signupForm.getJob(), signupForm.getPassword(), signupForm.getPasswordConfirmation(),
-				signupForm.getRoleId());
-
-		String sessionId = stripeService.createStripeSession(signupConfirmForm, httpServletRequest);
-
-		model.addAttribute("signupConfirmForm", signupConfirmForm);
-		model.addAttribute("sessionId", sessionId);
-
-		return "auth/confirm";
-	}
-
-	@PostMapping("/signup/register")
-	public String register(@ModelAttribute @Validated SignupConfirmForm signupConfirmForm, BindingResult bindingResult,
+	@PostMapping("/signup")
+	public String signup(@ModelAttribute @Validated SignupConfirmForm signupConfirmForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
 		//		メールアドレスが登録済みであれば、BindingResultオブジェクトにエラーの内容を追加する
 		if (userService.isEmailRegistered(signupConfirmForm.getEmail())) {
@@ -107,6 +91,22 @@ public class AuthController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/confirm")
+	public String confirm(@ModelAttribute SignupForm signupForm, HttpServletRequest httpServletRequest, Model model) {
+
+		SignupConfirmForm signupConfirmForm = new SignupConfirmForm(signupForm.getName(), signupForm.getFurigana(),
+				signupForm.getAge(), signupForm.getPostalCode(), signupForm.getAddress(), signupForm.getEmail(),
+				signupForm.getJob(), signupForm.getPassword(), signupForm.getPasswordConfirmation(),
+				signupForm.getRoleId());
+
+		String sessionId = stripeService.createStripeSession(signupConfirmForm, httpServletRequest);
+
+		model.addAttribute("signupConfirmForm", signupConfirmForm);
+		model.addAttribute("sessionId", sessionId);
+
+		return "auth/confirm";
+	}
+
 	@GetMapping("/signup/confirm/verify")
 	public String verify(@RequestParam(name = "token") String token, Model model) {
 		VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
@@ -121,6 +121,6 @@ public class AuthController {
 			model.addAttribute("errorMessage", errorMessage);
 		}
 
-		return "auth/signup/confirm/verify";
+		return "auth/verify";
 	}
 }

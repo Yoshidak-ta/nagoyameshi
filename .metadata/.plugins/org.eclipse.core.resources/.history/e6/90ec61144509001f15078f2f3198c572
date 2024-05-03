@@ -121,6 +121,6 @@ public class AuthController {
 			model.addAttribute("errorMessage", errorMessage);
 		}
 
-		return "auth/signup/confirm/verify";
+		return "auth/verify";
 	}
 }

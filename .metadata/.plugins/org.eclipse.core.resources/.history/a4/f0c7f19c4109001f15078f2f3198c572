@@ -19,7 +19,7 @@
 							
 							<h1 class="mb-4 text-center">会員登録</h1>
 							
-							<form method="get" th:action="@{/signup/input}" th:object="${signupForm}">
+							<form method="get" th:action="@{/input}" th:object="${signupForm}">
 								<div class="form-group row mb-3">
 									<div class="col-md-5">
 										<label for="name" class="col-form-label text-md-left fw-bold">
@@ -172,7 +172,6 @@
 										<label for="role" class="col-form-label text-md-left fw-bold">
 											<div class="d-flex align-items-center">
 												<span class="me-1">有料会員登録</span>
-												<span class="badge bg-danger">必須</span>
 											</div>
 										</label>
 									</div>
