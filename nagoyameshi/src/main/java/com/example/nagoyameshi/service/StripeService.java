@@ -51,6 +51,7 @@ public class StripeService {
 								.putMetadata("postalCode", signupConfirmForm.getPostalCode())
 								.putMetadata("address", signupConfirmForm.getAddress())
 								.putMetadata("password", signupConfirmForm.getPassword())
+								.putMetadata("passwordConfirmation", signupConfirmForm.getPasswordConfirmation())
 								.putMetadata("roleId", signupConfirmForm.getRoleId().toString())
 								.build())
 				.build();

@@ -22,6 +22,8 @@ public class SignupConfirmForm {
 
 	private String password;
 
+	private String passwordConfirmation;
+
 	private Integer roleId;
 
 }

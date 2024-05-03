@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
-import com.example.nagoyameshi.form.SignupForm;
+import com.example.nagoyameshi.form.SignupConfirmForm;
 import com.example.nagoyameshi.form.UserEditForm;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
@@ -24,18 +24,18 @@ public class UserService {
 	}
 
 	@Transactional
-	public User create(SignupForm signupForm) {
+	public User create(SignupConfirmForm signupConfirmForm) {
 		User user = new User();
 		Role role_general = roleRepository.findByName("ROLE_GENERAL");
 
-		user.setName(signupForm.getName());
-		user.setFurigana(signupForm.getFurigana());
-		user.setAge(signupForm.getAge());
-		user.setPostalCode(signupForm.getPostalCode());
-		user.setAddress(signupForm.getAddress());
-		user.setEmail(signupForm.getEmail());
-		user.setJob(signupForm.getJob());
-		user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
+		user.setName(signupConfirmForm.getName());
+		user.setFurigana(signupConfirmForm.getFurigana());
+		user.setAge(signupConfirmForm.getAge());
+		user.setPostalCode(signupConfirmForm.getPostalCode());
+		user.setAddress(signupConfirmForm.getAddress());
+		user.setEmail(signupConfirmForm.getEmail());
+		user.setJob(signupConfirmForm.getJob());
+		user.setPassword(passwordEncoder.encode(signupConfirmForm.getPassword()));
 		user.setRole(role_general);
 		user.setEnabled(false);
 

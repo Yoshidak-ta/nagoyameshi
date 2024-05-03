@@ -3,9 +3,11 @@ package com.example.nagoyameshi.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -61,12 +63,41 @@ public class AuthController {
 		return "redirect:/confirm";
 	}
 
+	@PostMapping("/signup")
+	public String signup(@ModelAttribute @Validated SignupConfirmForm signupConfirmForm, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
+		//		メールアドレスが登録済みであれば、BindingResultオブジェクトにエラーの内容を追加する
+		if (userService.isEmailRegistered(signupConfirmForm.getEmail())) {
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "既に登録済みのメールアドレスです。");
+			bindingResult.addError(fieldError);
+		}
+
+		//		パスワードとパスワード（確認用）の入力値が一致しなければBindingResultオブジェクトにエラー内容を追加
+		if (!userService.isSamePassword(signupConfirmForm.getPassword(), signupConfirmForm.getPasswordConfirmation())) {
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
+			bindingResult.addError(fieldError);
+		}
+
+		if (bindingResult.hasErrors()) {
+			return "auth/signup";
+		}
+
+		User createdUser = userService.create(signupConfirmForm);
+		String requestUrl = new String(httpServletRequest.getRequestURL());
+		signupEventPublisher.publishSignupEvent(createdUser, requestUrl);
+		redirectAttributes.addFlashAttribute("successMessage",
+				"ご入力いただいたメールアドレスに認証メールを送信いたしました。メールに記載されているリンクをクリックし、会員登録を完了してください。");
+
+		return "redirect:/";
+	}
+
 	@GetMapping("/confirm")
 	public String confirm(@ModelAttribute SignupForm signupForm, HttpServletRequest httpServletRequest, Model model) {
 
 		SignupConfirmForm signupConfirmForm = new SignupConfirmForm(signupForm.getName(), signupForm.getFurigana(),
 				signupForm.getAge(), signupForm.getPostalCode(), signupForm.getAddress(), signupForm.getEmail(),
-				signupForm.getJob(), signupForm.getPassword(), signupForm.getRoleId());
+				signupForm.getJob(), signupForm.getPassword(), signupForm.getPasswordConfirmation(),
+				signupForm.getRoleId());
 
 		String sessionId = stripeService.createStripeSession(signupConfirmForm, httpServletRequest);
 
@@ -75,36 +106,6 @@ public class AuthController {
 
 		return "auth/confirm";
 	}
-
-	/*
-	@PostMapping("/signup")
-	public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
-		//		メールアドレスが登録済みであれば、BindingResultオブジェクトにエラーの内容を追加する
-		if (userService.isEmailRegistered(signupForm.getEmail())) {
-			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "既に登録済みのメールアドレスです。");
-			bindingResult.addError(fieldError);
-		}
-	
-		//		パスワードとパスワード（確認用）の入力値が一致しなければBindingResultオブジェクトにエラー内容を追加
-		if (!userService.isSamePassword(signupForm.getPassword(), signupForm.getPasswordConfirmation())) {
-			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
-			bindingResult.addError(fieldError);
-		}
-	
-		if (bindingResult.hasErrors()) {
-			return "auth/signup";
-		}
-	
-		User createdUser = userService.create(signupForm);
-		String requestUrl = new String(httpServletRequest.getRequestURL());
-		signupEventPublisher.publishSignupEvent(createdUser, requestUrl);
-		redirectAttributes.addFlashAttribute("successMessage",
-				"ご入力いただいたメールアドレスに認証メールを送信いたしました。メールに記載されているリンクをクリックし、会員登録を完了してください。");
-	
-		return "redirect:/";
-	}
-	*/
 
 	@GetMapping("/signup/confirm/verify")
 	public String verify(@RequestParam(name = "token") String token, Model model) {
