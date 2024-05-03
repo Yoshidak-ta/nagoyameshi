@@ -1,0 +1,11 @@
+package com.example.nagoyameshi.service;
+
+@Service
+public class AuthService {
+	private final UseerRepository userRepository;
+	
+	public AuthService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+}

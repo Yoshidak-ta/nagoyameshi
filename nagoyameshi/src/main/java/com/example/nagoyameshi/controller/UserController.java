@@ -19,19 +19,15 @@ import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.StripeService;
 import com.example.nagoyameshi.service.UserService;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 @Controller
 @RequestMapping("/users")
 public class UserController {
 	private final UserRepository userRepository;
 	private final UserService userService;
-	private final StripeService stripeService;
 
 	public UserController(UserRepository userRepository, UserService userService, StripeService stripeService) {
 		this.userRepository = userRepository;
 		this.userService = userService;
-		this.stripeService = stripeService;
 	}
 
 	@GetMapping
@@ -47,7 +43,7 @@ public class UserController {
 	public String edit(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		UserEditForm userEditForm = new UserEditForm(user.getId(), user.getName(), user.getFurigana(), user.getAge(),
-				user.getPostalCode(), user.getAddress(), user.getEmail(), user.getJob());
+				user.getPostalCode(), user.getAddress(), user.getEmail(), user.getJob(), user.getRole());
 
 		model.addAttribute("userEditForm", userEditForm);
 
@@ -74,9 +70,7 @@ public class UserController {
 	}
 
 	@GetMapping("/primeregister")
-	public String primeregister(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
-			HttpServletRequest httpServletRequest,
-			Model model) {
+	public String primeregister(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
 
 		User user = userDetailsImpl.getUser();
 		int userRole = user.getRole().getId();
@@ -87,10 +81,7 @@ public class UserController {
 			return "users/primeregister";
 		}
 
-		String sessionId = stripeService.createStripeSession(httpServletRequest);
-
 		model.addAttribute("user", user);
-		model.addAttribute("sessionId", sessionId);
 
 		return "users/primeregister";
 	}

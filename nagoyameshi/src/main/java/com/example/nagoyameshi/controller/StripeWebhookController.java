@@ -40,6 +40,10 @@ public class StripeWebhookController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 
+		if ("checkout.session.completed".equals(event.getType())) {
+			stripeService.processSessionCompleted(event);
+		}
+
 		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 

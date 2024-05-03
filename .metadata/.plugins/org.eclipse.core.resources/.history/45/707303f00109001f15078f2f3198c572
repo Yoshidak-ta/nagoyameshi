@@ -1,0 +1,23 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.nagoyameshi.entity.User;
+import com.example.nagoyameshi.repository.UserRepository;
+
+@Service
+public class AuthService {
+	private final UserRepository userRepository;
+
+	public AuthService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	@Transactional
+	public void create(Map<String, String> paymentIntentObject) {
+		User user = new User();
+
+		String name = paymentIntentObject.get("name");
+	}
+
+}

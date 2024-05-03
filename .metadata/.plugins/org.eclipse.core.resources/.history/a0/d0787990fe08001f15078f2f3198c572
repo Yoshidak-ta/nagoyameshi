@@ -1,0 +1,15 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.nagoyameshi.repository.UserRepository;
+
+@Service
+public class AuthService {
+	private final UseerRepository userRepository;
+
+	public AuthService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+}

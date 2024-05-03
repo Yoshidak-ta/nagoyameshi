@@ -1,0 +1,50 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.example.nagoyameshi.entity.User;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.checkout.Session;
+import com.stripe.param.checkout.SessionCreateParams;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+@Service
+public class StripeService {
+	@Value("${stripe.api-key}")
+	private String stripeApiKey;
+
+	// セッションを作成し、Stripeに必要な情報を返す
+	public String createStripeSession(User user, HttpServletRequest httpServletRequest) {
+		Stripe.apiKey = stripeApiKey;
+		String requestUrl = new String(httpServletRequest.getRequestURL());
+		String domain = "http://localhost:8080";
+		SessionCreateParams params = SessionCreateParams.builder()
+				.addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
+				.setMode(SessionCreateParams.Mode.SUBSCRIPTION)
+				.setSuccessUrl(requestUrl.replaceAll(domain, "") + "/users")
+				.setCancelUrl(domain + "/users/primeregister")
+				.addLineItem(
+						SessionCreateParams.LineItem.builder()
+								.setQuantity(1L)
+								.setPrice("price_1P6VSsG3807R4hwqpWoHOwNd")
+								.build())
+				.setUiMode(SessionCreateParams.UiMode.EMBEDDED)
+				.setPaymentIntentData(
+						SessionCreateParams.PaymentIntentData.builder()
+								.putMetadata("userId", user.getId().toString())
+								.build())
+				.build();
+
+		try {
+			Session session = Session.create(params);
+			return session.getId();
+		} catch (StripeException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+}

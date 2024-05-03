@@ -1,0 +1,40 @@
+package com.example.nagoyameshi.service;
+
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.nagoyameshi.entity.Role;
+import com.example.nagoyameshi.entity.User;
+import com.example.nagoyameshi.repository.UserRepository;
+
+@Service
+public class AuthService {
+	private final UserRepository userRepository;
+	private final RoleRepository roleRepository;
+
+	public AuthService(UserRepository userRepository, RoleRepository roleRepository) {
+		this.userRepository = userRepository;
+		this.roleRepository = roleRepository;
+	}
+
+	@Transactional
+	public void create(Map<String, String> paymentIntentObject) {
+		User user = new User();
+		Integer roleId = Integer.valueOf(paymentIntentObject.get("roleId"));
+
+		String name = paymentIntentObject.get("name");
+		String furigana = paymentIntentObject.get("furigana");
+		Integer age = Integer.valueOf(paymentIntentObject.get("age"));
+		String postalCode = paymentIntentObject.get("postalCode");
+		String email = paymentIntentObject.get("email");
+		String job = paymentIntentObject.get("job");
+		String password = paymentIntentObject.get("password");
+		Role role = 
+		
+		
+		
+	}
+
+}
