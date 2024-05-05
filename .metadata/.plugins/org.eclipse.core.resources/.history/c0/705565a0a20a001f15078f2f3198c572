@@ -75,7 +75,7 @@ public class AuthController {
 
 		SignupConfirmForm signupConfirmForm = new SignupConfirmForm(signupForm.getName(), signupForm.getFurigana(),
 				signupForm.getAge(), signupForm.getPostalCode(), signupForm.getAddress(), signupForm.getEmail(),
-				signupForm.getJob(), signupForm.getPassword(),
+				signupForm.getJob(), signupForm.getPassword(), signupForm.getPasswordConfirmation(),
 				signupForm.getRoleId());
 
 		if (signupConfirmForm.getRoleId() == 2) {

@@ -32,7 +32,8 @@ public class StripeService {
 	public String createStripeSession(SignupConfirmForm signupConfirmForm, HttpServletRequest httpServletRequest) {
 		Stripe.apiKey = stripeApiKey;
 		String requestUrl = new String(httpServletRequest.getRequestURL());
-		String age = (signupConfirmForm.getAge() != 0) ? signupConfirmForm.getAge().toString() : "デフォルト値または空文字列";
+		String age = (signupConfirmForm.getAge() != null) ? signupConfirmForm.getAge().toString() : "デフォルト値または空文字列";
+		String password = (signupConfirmForm.getPassword() != null) ? signupConfirmForm.getPassword() : "デフォルト値または空文字列";
 		String domain = "http://localhost:8080/";
 		SessionCreateParams params = SessionCreateParams.builder()
 				.addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
@@ -51,7 +52,8 @@ public class StripeService {
 								.putMetadata("age", age)
 								.putMetadata("postalCode", signupConfirmForm.getPostalCode())
 								.putMetadata("address", signupConfirmForm.getAddress())
-								.putMetadata("password", signupConfirmForm.getPassword())
+								.putMetadata("password", password)
+								.putMetadata("passwordConfirmation", signupConfirmForm.getPasswordConfirmation())
 								.putMetadata("roleId", signupConfirmForm.getRoleId().toString())
 								.build())
 				.build();

@@ -54,13 +54,6 @@ public class AuthController {
 	@GetMapping("/signup/input")
 	public String input(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
-
-		//		パスワードとパスワード（確認用）の入力値が一致しなければBindingResultオブジェクトにエラー内容を追加
-		if (!userService.isSamePassword(signupForm.getPassword(), signupForm.getPasswordConfirmation())) {
-			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
-			bindingResult.addError(fieldError);
-		}
-
 		if (bindingResult.hasErrors()) {
 			return "auth/signup";
 		}
@@ -75,15 +68,13 @@ public class AuthController {
 
 		SignupConfirmForm signupConfirmForm = new SignupConfirmForm(signupForm.getName(), signupForm.getFurigana(),
 				signupForm.getAge(), signupForm.getPostalCode(), signupForm.getAddress(), signupForm.getEmail(),
-				signupForm.getJob(), signupForm.getPassword(),
+				signupForm.getJob(), signupForm.getPassword(), signupForm.getPasswordConfirmation(),
 				signupForm.getRoleId());
 
-		if (signupConfirmForm.getRoleId() == 2) {
-			String sessionId = stripeService.createStripeSession(signupConfirmForm, httpServletRequest);
-			model.addAttribute("sessionId", sessionId);
-		}
+		String sessionId = stripeService.createStripeSession(signupConfirmForm, httpServletRequest);
 
 		model.addAttribute("signupConfirmForm", signupConfirmForm);
+		model.addAttribute("sessionId", sessionId);
 
 		return "auth/confirm";
 	}
@@ -97,8 +88,14 @@ public class AuthController {
 			bindingResult.addError(fieldError);
 		}
 
+		//		パスワードとパスワード（確認用）の入力値が一致しなければBindingResultオブジェクトにエラー内容を追加
+		if (!userService.isSamePassword(signupConfirmForm.getPassword(), signupConfirmForm.getPasswordConfirmation())) {
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
+			bindingResult.addError(fieldError);
+		}
+
 		if (bindingResult.hasErrors()) {
-			return "/signup";
+			return "auth/signup";
 		}
 
 		User createdUser = userService.create(signupConfirmForm);
@@ -124,6 +121,6 @@ public class AuthController {
 			model.addAttribute("errorMessage", errorMessage);
 		}
 
-		return "auth/verify";
+		return "auth/signup/confirm/verify";
 	}
 }
