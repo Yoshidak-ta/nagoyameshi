@@ -27,6 +27,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{name}"></span>
+											 <input type="hidden" name="name" th:value="*{name}">
 										 </div>
 									 </div>
 								 </div>
@@ -38,6 +39,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{furigana}"></span>
+											 <input type="hidden" name="furigana"th:value="*{furigana}">
 										 </div>
 									 </div>
 								 </div>
@@ -49,7 +51,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{age}"></span>
-											 <input type="hidden" name="age" th:value="${age}">
+											 <input type="hidden" name="age" th:value="*{age}">
 										 </div>
 									 </div>
 								 </div>
@@ -61,6 +63,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{postalCode}"></span>
+											 <input type="hidden" name="postalCode" th:value="*{postalCode}">
 										 </div>
 									 </div>
 								 </div>
@@ -72,7 +75,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{address}"></span>
-											 <input type="hidden" name="address" th:value="${address}">
+											 <input type="hidden" name="address" th:value="*{address}">
 										 </div>
 									 </div>
 								 </div>
@@ -84,6 +87,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{email}"></span>
+											 <input type="hidden" name="email" th:value="*{email}">
 										 </div>
 									 </div>
 								 </div>
@@ -95,6 +99,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{job}"></span>
+											 <input type="hidden" name="job" th:value="*{job}">
 										 </div>
 									 </div>
 								 </div>
@@ -106,7 +111,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{password}"></span>
-											 <input type="hidden" name="password"th:value="${password}"> 
+											 <input type="hidden" name="password" th:value="*{password}"> 
 										 </div>
 									 </div>
 								 </div>
@@ -118,6 +123,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:if="${signupConfirmForm.getRoleId() == 2}">希望する</span>
+											 <input type="hidden" name="roleId" th:value="*{roleId}">
 										 </div>
 									 </div>
 								 </div>
@@ -136,6 +142,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{name}"></span>
+											 <input type="hidden" name="name" th:value="*{name}">
 										 </div>
 									 </div>
 								 </div>
@@ -147,6 +154,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{furigana}"></span>
+											 <input type="hidden" name="furigana" th:value="*{furigana}">
 										 </div>
 									 </div>
 								 </div>
@@ -170,6 +178,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{postalCode}"></span>
+											 <input type="hidden" name="postalCode" th:value="*{postalCode}">
 										 </div>
 									 </div>
 								 </div>
@@ -193,6 +202,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{email}"></span>
+											 <input type="hidden" name="email" th:value="*{email}">
 										 </div>
 									 </div>
 								 </div>
@@ -204,6 +214,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{job}"></span>
+											 <input type="hidden" name="job" th:value="*{job}">
 										 </div>
 									 </div>
 								 </div>
@@ -215,7 +226,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{password}"></span>
-											 <input type="hidden" name="password" th:value="${password}">
+											 <input type="hidden" name="password" th:value="*{password}">
 
 										 </div>
 									 </div>
@@ -228,6 +239,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:if="${signupConfirmForm.getRoleId() == 1}">希望しない</span>
+											 <input type="hidden" name="roleId" th:value="*{roleId}">
 										 </div>
 									 </div>
 								 </div>
