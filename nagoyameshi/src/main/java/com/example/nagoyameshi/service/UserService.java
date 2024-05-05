@@ -1,5 +1,7 @@
 package com.example.nagoyameshi.service;
 
+import java.util.Map;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.SignupConfirmForm;
-import com.example.nagoyameshi.form.UserEditForm;
+import com.example.nagoyameshi.form.UserConfirmForm;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
 
@@ -44,16 +46,48 @@ public class UserService {
 	}
 
 	@Transactional
-	public void update(UserEditForm userEditForm) {
-		User user = userRepository.getReferenceById(userEditForm.getId());
+	public void update(UserConfirmForm userConfirmForm) {
+		User user = userRepository.getReferenceById(userConfirmForm.getId());
+		Role role = roleRepository.getReferenceById(userConfirmForm.getRoleId());
 
-		user.setName(userEditForm.getName());
-		user.setFurigana(userEditForm.getFurigana());
-		user.setAge(userEditForm.getAge());
-		user.setPostalCode(userEditForm.getPostalCode());
-		user.setAddress(userEditForm.getAddress());
-		user.setEmail(userEditForm.getEmail());
-		user.setJob(userEditForm.getJob());
+		user.setName(userConfirmForm.getName());
+		user.setFurigana(userConfirmForm.getFurigana());
+		user.setAge(userConfirmForm.getAge());
+		user.setPostalCode(userConfirmForm.getPostalCode());
+		user.setAddress(userConfirmForm.getAddress());
+		user.setEmail(userConfirmForm.getEmail());
+		user.setJob(userConfirmForm.getJob());
+		user.setRole(role);
+
+		userRepository.save(user);
+
+	}
+
+	@Transactional
+	public void primeUpdate(Map<String, String> paymentIntentObject) {
+		Integer roleId = Integer.valueOf(paymentIntentObject.get("roleId"));
+
+		Integer id = Integer.valueOf(paymentIntentObject.get("id"));
+		String name = paymentIntentObject.get("name");
+		String furigana = paymentIntentObject.get("furigana");
+		Integer age = Integer.valueOf(paymentIntentObject.get("age"));
+		String postalCode = paymentIntentObject.get("postalCode");
+		String address = paymentIntentObject.get("address");
+		String email = paymentIntentObject.get("email");
+		String job = paymentIntentObject.get("job");
+		Role role = roleRepository.getReferenceById(roleId);
+
+		User user = userRepository.getReferenceById(id);
+
+		user.setName(name);
+		user.setFurigana(furigana);
+		user.setAge(age);
+		user.setPostalCode(postalCode);
+		user.setAddress(address);
+		user.setEmail(email);
+		user.setJob(job);
+		user.setRole(role);
+		user.setEnabled(true);
 
 		userRepository.save(user);
 
@@ -77,9 +111,9 @@ public class UserService {
 	}
 
 	//	メールアドレスが変更されたかチェック
-	public boolean isEmailChanged(UserEditForm userEditForm) {
-		User currentUser = userRepository.getReferenceById(userEditForm.getId());
-		return !userEditForm.getEmail().equals(currentUser.getEmail());
+	public boolean isEmailChanged(UserConfirmForm userConfirmForm) {
+		User currentUser = userRepository.getReferenceById(userConfirmForm.getId());
+		return !userConfirmForm.getEmail().equals(currentUser.getEmail());
 	}
 
 }

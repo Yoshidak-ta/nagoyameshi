@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+		<div th:replace="~{fragment :: meta}"></div>
+		
+		<div th:replace="~{fragment :: styles}"></div>
+		
+		<title>会員登録確認</title>
+	</head>
+	<body>
+		<div class="nagoyameshi-wrapper">
+			<div th:replace="~{fragment :: header}"></div>
+			
+			<main>
+				<div class="container pt-4 pb-5 nagoyameshi-container">
+                     <div class="row justify-content-center">
+                         <div class="col-xl-5 col-lg-6 col-md-8">
+             
+                             <h1 class="mb-4 text-center">予約内容確認</h1>
+                             
+                             <div th:if="${signupConfirmForm.getRoleId() == 2}" th:object="${signupConfirmForm}">
+								 <input type="hidden" th:field="*{id}">
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">氏名</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{name}"></span>
+											 <input type="hidden" name="name" th:value="*{name}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">フリガナ</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{furigana}"></span>
+											 <input type="hidden" name="furigana"th:value="*{furigana}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">年齢</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{age}"></span>
+											 <input type="hidden" name="age" th:value="*{age}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">郵便番号</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{postalCode}"></span>
+											 <input type="hidden" name="postalCode" th:value="*{postalCode}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">住所</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{address}"></span>
+											 <input type="hidden" name="address" th:value="*{address}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">メール</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{email}"></span>
+											 <input type="hidden" name="email" th:value="*{email}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">職業</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{job}"></span>
+											 <input type="hidden" name="job" th:value="*{job}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">パスワード</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{password}"></span>
+											 <input type="hidden" name="password" th:value="*{password}"> 
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">有料会員登録</span>
+										 </div>
+										 <div class="col">
+											 <span th:if="${signupConfirmForm.getRoleId() == 2}">希望する</span>
+											 <input type="hidden" name="roleId" th:value="*{roleId}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="d-flex justify-content-center">
+                                     <button  id="subscriptionButton" class="btn text-white shadow-sm w-100 nagoyameshi-btn">決済する</button>
+                                 </div>
+							 </div>
+							 
+							 <!-- 有料会員を希望しなかった場合 -->
+							 <form th:if="${signupConfirmForm.getRoleId() == 1}" method="post" th:action="@{/signup/register}" th:object="${signupConfirmForm}">
+								 <input type="hidden" th:field="*{id}">
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">氏名</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{name}"></span>
+											 <input type="hidden" name="name" th:value="*{name}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">フリガナ</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{furigana}"></span>
+											 <input type="hidden" name="furigana" th:value="*{furigana}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">年齢</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{age}"></span>
+											 <input type="hidden" name="age" th:value="*{age}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">郵便番号</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{postalCode}"></span>
+											 <input type="hidden" name="postalCode" th:value="*{postalCode}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">住所</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{address}"></span>
+											 <input type="hidden" name="address" th:value="${address}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">メール</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{email}"></span>
+											 <input type="hidden" name="email" th:value="*{email}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">職業</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{job}"></span>
+											 <input type="hidden" name="job" th:value="*{job}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">パスワード</span>
+										 </div>
+										 <div class="col">
+											 <span th:text="*{password}"></span>
+											 <input type="hidden" name="password" th:value="*{password}">
+
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="container mb-4">
+									 <div class="row pb-2 mb-2 border-bottom">
+										 <div class="col-6">
+											 <span class="fw-bold">有料会員登録</span>
+										 </div>
+										 <div class="col">
+											 <span th:if="${signupConfirmForm.getRoleId() == 1}">希望しない</span>
+											 <input type="hidden" name="roleId" th:value="*{roleId}">
+										 </div>
+									 </div>
+								 </div>
+								 
+								 <div class="d-flex justify-content-center">
+									 <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">登録する</button>
+                                 </div>
+							 </form>
+                         </div>
+                     </div>
+                 </div>
+			</main>
+			
+			<!-- フッター -->
+			<div th:replace="~{fragment :: footer}"></div>
+		</div>
+		
+		<div th:replace="~{fragment :: scripts}"></div>
+		<script src="https://js.stripe.com/v3"></script>
+		<script th:inline="javascript">
+			const sessionId = /*[[${sessionId}]]*/"sessionId";
+		</script>
+		<script th:src="@{/js/stripe.js}"></script>
+	</body>
+</html>

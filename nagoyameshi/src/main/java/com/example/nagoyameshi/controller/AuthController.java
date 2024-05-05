@@ -17,7 +17,7 @@ import com.example.nagoyameshi.event.SignupEventPublisher;
 import com.example.nagoyameshi.form.SignupConfirmForm;
 import com.example.nagoyameshi.form.SignupForm;
 import com.example.nagoyameshi.repository.RoleRepository;
-import com.example.nagoyameshi.service.StripeService;
+import com.example.nagoyameshi.service.StripeSignupService;
 import com.example.nagoyameshi.service.UserService;
 import com.example.nagoyameshi.service.VerificationTokenService;
 
@@ -28,15 +28,15 @@ public class AuthController {
 	private final UserService userService;
 	private final SignupEventPublisher signupEventPublisher;
 	private final VerificationTokenService verificationTokenService;
-	private final StripeService stripeService;
+	private final StripeSignupService stripeSignupService;
 
 	public AuthController(UserService userService, SignupEventPublisher signupEventPublisher,
-			VerificationTokenService verificationTokenService, StripeService stripeService,
+			VerificationTokenService verificationTokenService, StripeSignupService stripeSignupService,
 			RoleRepository roleRepository) {
 		this.userService = userService;
 		this.signupEventPublisher = signupEventPublisher;
 		this.verificationTokenService = verificationTokenService;
-		this.stripeService = stripeService;
+		this.stripeSignupService = stripeSignupService;
 	}
 
 	@GetMapping("/login")
@@ -79,7 +79,7 @@ public class AuthController {
 				signupForm.getRoleId());
 
 		if (signupConfirmForm.getRoleId() == 2) {
-			String sessionId = stripeService.createStripeSession(signupConfirmForm, httpServletRequest);
+			String sessionId = stripeSignupService.createStripeSession(signupConfirmForm, httpServletRequest);
 			model.addAttribute("sessionId", sessionId);
 		}
 
@@ -110,7 +110,7 @@ public class AuthController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/signup/confirm/verify")
+	@GetMapping("/signup/register/verify")
 	public String verify(@RequestParam(name = "token") String token, Model model) {
 		VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
 

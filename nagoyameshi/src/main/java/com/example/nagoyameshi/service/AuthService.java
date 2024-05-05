@@ -14,12 +14,10 @@ import com.example.nagoyameshi.repository.UserRepository;
 public class AuthService {
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
-	private final UserService userService;
 
 	public AuthService(UserRepository userRepository, RoleRepository roleRepository, UserService userService) {
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
-		this.userService = userService;
 	}
 
 	@Transactional

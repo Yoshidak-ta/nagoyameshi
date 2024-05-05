@@ -17,18 +17,18 @@
 							<nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 								<ol class="breadcrumb mb-0">
 									<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
-									<li class="breadcrumb-item"><a th:href="@{/user}">会員情報</a></li>
+									<li class="breadcrumb-item"><a th:href="@{/users}">会員情報</a></li>
 									<li class="breadcrumb-item active" aria-current="page">会員情報編集</li>
 								</ol>							
 							</nav>
 							
 							<h1 class="mb-4 text-center">会員情報編集</h1>
 							
-							<form method="post" th:action="@{/user/update}" th:object="${userEditForm}">
+							<form method="get" th:action="@{/users/edit/input}" th:object="${userEditForm}">
 								<input type="hidden" th:field="*{id}">
 								
 								<div class="form-group row mb-3">
-									<div class="col-mb-5">
+									<div class="col-md-5">
 										<label for="name" class="col-form-label text-md-left fw-bold">
 											<div class="d-flex align-items-center">
 												<span class="me-1">氏名</span>
@@ -37,13 +37,13 @@
 										</label>
 									</div>
 									<div class="col-md-7">
-										<div th:if="${#fields.hasErrors('name')}" class="text-danger small mb-2" th:error="*{name}"></div>
-										<input type="text" class="form-control" th:field="*{name}"autocomplete="name" autofocus placeholder="愛知 太朗">
+										<div th:if="${#fields.hasErrors('name')}" class="text-danger small mb-2" th:errors="*{name}"></div>
+										<input type="text" class="form-control" th:field="*{name}"autocomplete="name" autofocus>
 									</div>
 								</div>
 								
 								<div class="form-group row mb-3">
-									<div class="col-mb-5">
+									<div class="col-md-5">
 										<label for="name" class="col-form-label text-md-left fw-bold">
 											<div class="d-flex align-items-center">
 												<span class="me-1">フリガナ</span>
@@ -52,13 +52,13 @@
 										</label>
 									</div>
 									<div class="col-md-7">
-										<div th:if="${#fields.hasErrors('furigana')}" class="text-danger small mb-2" th:error="*{furigana}"></div>
-										<input type="text" class="form-control" th:field="*{furigana}"  placeholder="アイチ タロウ">
+										<div th:if="${#fields.hasErrors('furigana')}" class="text-danger small mb-2" th:errors="*{furigana}"></div>
+										<input type="text" class="form-control" th:field="*{furigana}">
 									</div>
 								</div>
 								
 								<div class="form-group row mb-3">
-									<div class="col-mb-5">
+									<div class="col-md-5">
 										<label for="name" class="col-form-label text-md-left fw-bold">
 											<div class="d-flex align-items-center">
 												<span class="me-1">年齢</span>
@@ -67,13 +67,13 @@
 										</label>
 									</div>
 									<div class="col-md-7">
-										<div th:if="${#fields.hasErrors('age')}" class="text-danger small mb-2" th:error="*{age}"></div>
+										<div th:if="${#fields.hasErrors('age')}" class="text-danger small mb-2" th:errors="*{age}"></div>
 										<input type="text" class="form-control" th:field="*{age}">
 									</div>
 								</div>
 								
 								<div class="form-group row mb-3">
-									<div class="col-mb-5">
+									<div class="col-md-5">
 										<label for="name" class="col-form-label text-md-left fw-bold">
 											<div class="d-flex align-items-center">
 												<span class="me-1">郵便番号</span>
@@ -82,13 +82,13 @@
 										</label>
 									</div>
 									<div class="col-md-7">
-										<div th:if="${#fields.hasErrors('postalCode')}" class="text-danger small mb-2" th:error="*{postalCode}"></div>
-										<input type="text" class="form-control" th:field="*{postalCode}"autocomplete="postal-code" placeholder="123-4565">
+										<div th:if="${#fields.hasErrors('postalCode')}" class="text-danger small mb-2" th:errors="*{postalCode}"></div>
+										<input type="text" class="form-control" th:field="*{postalCode}"autocomplete="postal-code">
 									</div>
 								</div>	
 									
 								<div class="form-group row mb-3">
-									<div class="col-mb-5">
+									<div class="col-md-5">
 										<label for="name" class="col-form-label text-md-left fw-bold">
 											<div class="d-flex align-items-center">
 												<span class="me-1">住所</span>
@@ -97,13 +97,13 @@
 										</label>
 									</div>
 									<div class="col-md-7">
-										<div th:if="${#fields.hasErrors('address')}" class="text-danger small mb-2" th:error="*{address}"></div>
-										<input type="text" class="form-control" th:field="*{address}" placeholder="東京都練馬区山崎町300番地">
+										<div th:if="${#fields.hasErrors('address')}" class="text-danger small mb-2" th:errors="*{address}"></div>
+										<input type="text" class="form-control" th:field="*{address}">
 									</div>
 								</div>
 								
 								<div class="form-group row mb-3">
-									<div class="col-mb-5">
+									<div class="col-md-5">
 										<label for="name" class="col-form-label text-md-left fw-bold">
 											<div class="d-flex align-items-center">
 												<span class="me-1">メールアドレス</span>
@@ -112,13 +112,13 @@
 										</label>
 									</div>
 									<div class="col-md-7">
-										<div th:if="${#fields.hasErrors('email')}" class="text-danger small mb-2" th:error="*{email}"></div>
-										<input type="text" class="form-control" th:field="*{email}" autocomplete="email" placeholder="taro@nagoya.meshi.jp">
+										<div th:if="${#fields.hasErrors('email')}" class="text-danger small mb-2" th:errors="*{email}"></div>
+										<input type="text" class="form-control" th:field="*{email}" autocomplete="email">
 									</div>
 								</div>
 								
 								<div class="form-group row mb-3">
-									<div class="col-mb-5">
+									<div class="col-md-5">
 										<label for="name" class="col-form-label text-md-left fw-bold">
 											<div class="d-flex align-items-center">
 												<span class="me-1">職業</span>
@@ -127,7 +127,7 @@
 										</label>
 									</div>
 									<div class="col-md-7">
-										<div th:if="${#fields.hasErrors('job')}" class="text-danger small mb-2" th:error="*{job}"></div>
+										<div th:if="${#fields.hasErrors('job')}" class="text-danger small mb-2" th:errors="*{job}"></div>
 										<select name="job" class="form-control" th:field="*{job}">
 											<option value="経営者・役員">経営者・役員</option>
 											<option value="会社員">会社員</option>
@@ -144,6 +144,32 @@
 									</div>
 								</div>
 								
+								<div class="form-group row">
+									<div class="col-md-5">
+										<label for="role" class="col-form-label text-md-left fw-bold">
+											<div class="d-flex align-items-center">
+												<span class="me-1">有料会員登録</span>
+												<span class="badge bg-danger">必須</span>
+											</div>
+										</label>
+									</div>
+									<div class="col-md-7">
+										<div>
+										    <input type="radio" th:field="*{roleId}" value="2">
+										    <label for="">希望する</label>
+										<div>
+											<input type="radio" th:field="*{roleId}" value="1">
+										    <label for="">希望しない</label>
+										</div>
+									</div>
+										
+									</div>
+								</div>
+								<details>
+									<summary>有料会員特典はこちら</summary><br>
+							            <img th:src="@{/images/primead2.jpg}" alt="有料会員特典" width="500" height="700">
+								</details>
+																
 								<div class="form-group d-flex justify-content-center my-4">
 									<button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">更新</button>
 								</div>

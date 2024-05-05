@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
-import com.example.nagoyameshi.service.StripeService;
+import com.example.nagoyameshi.service.StripeSignupService;
 import com.stripe.Stripe;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.model.Event;
@@ -16,7 +16,7 @@ import com.stripe.net.Webhook;
 
 @Controller
 public class StripeWebhookController {
-	private final StripeService stripeService;
+	private final StripeSignupService stripeService;
 
 	@Value("${stripe.api-key}")
 	private String stripeApiKey;
@@ -24,7 +24,7 @@ public class StripeWebhookController {
 	@Value("${stripe.webhook-secret}")
 	private String webhookSecret;
 
-	public StripeWebhookController(StripeService stripeService) {
+	public StripeWebhookController(StripeSignupService stripeService) {
 		this.stripeService = stripeService;
 	}
 

@@ -17,9 +17,9 @@
                          <div class="col-xl-5 col-lg-6 col-md-8">
              
                              <h1 class="mb-4 text-center">予約内容確認</h1>
-                             
+                             <!-- 有料会員を希望した場合 -->
                              <div th:if="${signupConfirmForm.getRoleId() == 2}" th:object="${signupConfirmForm}">
-								 
+								 <input type="hidden" th:field="*{id}">
 								 <div class="container mb-4">
 									 <div class="row pb-2 mb-2 border-bottom">
 										 <div class="col-6">
@@ -129,12 +129,13 @@
 								 </div>
 								 
 								 <div class="d-flex justify-content-center">
-                                     <button  id="paymentButton" class="btn text-white shadow-sm w-100 nagoyameshi-btn">決済する</button>
+                                     <button  id="subscriptionButton" class="btn text-white shadow-sm w-100 nagoyameshi-btn">決済する</button>
                                  </div>
 							 </div>
 							 
+							 <!-- 有料会員を希望しなかった場合 -->
 							 <form th:if="${signupConfirmForm.getRoleId() == 1}" method="post" th:action="@{/signup/register}" th:object="${signupConfirmForm}">
-								 
+								 <input type="hidden" th:field="*{id}">
 								 <div class="container mb-4">
 									 <div class="row pb-2 mb-2 border-bottom">
 										 <div class="col-6">
@@ -166,7 +167,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:text="*{age}"></span>
-											 <input type="hidden" name="age" th:value="${age}">
+											 <input type="hidden" name="age" th:value="*{age}">
 										 </div>
 									 </div>
 								 </div>
