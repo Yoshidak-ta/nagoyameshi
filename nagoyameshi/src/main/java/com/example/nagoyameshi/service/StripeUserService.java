@@ -33,7 +33,9 @@ public class StripeUserService {
 		Stripe.apiKey = stripeApiKey;
 		String requestUrl = new String(httpServletRequest.getRequestURL());
 		String age = (userConfirmForm.getAge() != null) ? userConfirmForm.getAge().toString() : "デフォルト値または空文字列";
-		String domain = "http://localhost:8080/";
+		String roleId = (userConfirmForm.getRoleId() != null) ? userConfirmForm.getRoleId().toString()
+				: "デフォルト値または空文字列";
+		String domain = "http://localhost:8080";
 		SessionCreateParams params = SessionCreateParams.builder()
 				.addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
 				.addLineItem(
@@ -42,8 +44,8 @@ public class StripeUserService {
 								.setQuantity(1L)
 								.build())
 				.setMode(SessionCreateParams.Mode.SUBSCRIPTION)
-				.setSuccessUrl(domain + "/users")
-				.setCancelUrl(domain + "/users/edit")
+				.setSuccessUrl(domain + "users")
+				.setCancelUrl(domain + "users/edit")
 				.setSubscriptionData(
 						SessionCreateParams.SubscriptionData.builder()
 								.putMetadata("id", userConfirmForm.getId().toString())
@@ -52,7 +54,7 @@ public class StripeUserService {
 								.putMetadata("age", age)
 								.putMetadata("postalCode", userConfirmForm.getPostalCode())
 								.putMetadata("address", userConfirmForm.getAddress())
-								.putMetadata("roleId", userConfirmForm.getRoleId().toString())
+								.putMetadata("roleId", roleId)
 								.build())
 				.build();
 		try {

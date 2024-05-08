@@ -17,9 +17,9 @@
                          <div class="col-xl-5 col-lg-6 col-md-8">
              
                              <h1 class="mb-4 text-center">会員情報編集確認</h1>
-                             <!-- 有料会員を希望した場合 -->
-                             <div th:if="{userConfirmForm.getRoleId() == 2}" th:object="${userConfirmForm}">
-								 
+                             <!-- 一般会員が有料会員を希望した場合 -->
+                             <div th:if="${userConfirmForm.getRoleId() == 2 && roleId == 1}" th:object="${userConfirmForm}">
+								 <input type="hidden" th:field="*{id}">
 								 <div class="container mb-4">
 									 <div class="row pb-2 mb-2 border-bottom">
 										 <div class="col-6">
@@ -116,13 +116,14 @@
 									 </div>
 								 </div>
 								 
-								 <div class="d-flex justify-content-center">
+								 <div th:if="${user.getRole()}" class="d-flex justify-content-center">
                                      <button  id="subscriptionButton" class="btn text-white shadow-sm w-100 nagoyameshi-btn">決済する</button>
                                  </div>
 							 </div>
 						
-						     <!-- 有料会員を希望しなかった場合 -->
-							 <form th:if="${userConfirmForm.getRoleId() == 1}" method="post" th:action="@{/users/update}" th:object="${userConfirmForm}">
+						     <!-- 有料会員または有料会員を希望しなかった場合 -->
+							 <form method="post" th:action="@{/users/update}" th:object="${userConfirmForm}">
+								 <input type="hidden" th:field="*{id}">
 								 <div class="container mb-4">
 									 <div class="row pb-2 mb-2 border-bottom">
 										 <div class="col-6">
@@ -214,6 +215,7 @@
 										 </div>
 										 <div class="col">
 											 <span th:if="${userConfirmForm.getRoleId() == 1}">希望しない</span>
+											 <span th:if="${userConfirmForm.getRoleId() == 2}">希望する</span>
 											 <input type="hidden" name="roleId" th:value="*{roleId}">
 										 </div>
 									 </div>

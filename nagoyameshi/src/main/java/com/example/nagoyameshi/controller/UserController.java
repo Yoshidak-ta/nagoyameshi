@@ -12,10 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.UserConfirmForm;
 import com.example.nagoyameshi.form.UserEditForm;
+import com.example.nagoyameshi.repository.FavoriteRepository;
+import com.example.nagoyameshi.repository.ReservationRepository;
+import com.example.nagoyameshi.repository.ReviewRepository;
+import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
+import com.example.nagoyameshi.repository.VerificationTokenRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.StripeUserService;
 import com.example.nagoyameshi.service.UserService;
@@ -28,12 +34,24 @@ public class UserController {
 	private final UserRepository userRepository;
 	private final UserService userService;
 	private final StripeUserService stripeUserService;
+	private final VerificationTokenRepository verificationTokenRepository;
+	private final ReservationRepository reservationRepository;
+	private final FavoriteRepository favoriteRepository;
+	private final ReviewRepository reviewRepository;
+	private final RoleRepository roleRepository;
 
 	public UserController(UserRepository userRepository, UserService userService,
-			StripeUserService stripeUserService) {
+			StripeUserService stripeUserService, VerificationTokenRepository verificationTokenRepository,
+			ReservationRepository reservationRepository, FavoriteRepository favoriteRepository,
+			ReviewRepository reviewRepository, RoleRepository roleRepository) {
 		this.userRepository = userRepository;
 		this.userService = userService;
 		this.stripeUserService = stripeUserService;
+		this.verificationTokenRepository = verificationTokenRepository;
+		this.favoriteRepository = favoriteRepository;
+		this.reservationRepository = reservationRepository;
+		this.reviewRepository = reviewRepository;
+		this.roleRepository = roleRepository;
 	}
 
 	@GetMapping
@@ -70,8 +88,12 @@ public class UserController {
 	}
 
 	@GetMapping("/edit/confirm")
-	public String confirm(@ModelAttribute UserEditForm userEditForm, HttpServletRequest httpServletRequest,
+	public String confirm(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			@ModelAttribute UserEditForm userEditForm, HttpServletRequest httpServletRequest,
 			Model model) {
+
+		User user = userDetailsImpl.getUser();
+		Role roleId = roleRepository.getReferenceById(user.getRole().getId());
 
 		UserConfirmForm userConfirmForm = new UserConfirmForm(userEditForm.getId(), userEditForm.getName(),
 				userEditForm.getFurigana(),
@@ -84,9 +106,11 @@ public class UserController {
 			model.addAttribute("sessionId", sessionId);
 		}
 
+		model.addAttribute("user", user);
+		model.addAttribute("roleId", roleId);
 		model.addAttribute("userConfirmForm", userConfirmForm);
 
-		return "auth/confirm";
+		return "users/confirm";
 	}
 
 	@PostMapping("/update")
@@ -106,6 +130,27 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("successMessage", "会員情報を編集しました。");
 
 		return "redirect:/users";
+	}
+
+	@PostMapping("/delete")
+	public String delete(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			RedirectAttributes redirectAttributes) {
+
+		userService.dropForeignKeyFromReservations();
+		userService.dropForeignKeyFromReviews();
+
+		User user = userDetailsImpl.getUser();
+		Integer userId = user.getId();
+		userRepository.deleteById(userId);
+		verificationTokenRepository.deleteByUser_id(user);
+		reservationRepository.deleteByUser_id(user);
+		reviewRepository.deleteByUser_id(user);
+		favoriteRepository.deleteByUser_id(user);
+
+		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");
+
+		return "redirect:/";
+
 	}
 
 }

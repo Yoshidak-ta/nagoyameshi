@@ -1,0 +1,113 @@
+package com.example.nagoyameshi.controller;
+
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.example.nagoyameshi.entity.User;
+import com.example.nagoyameshi.form.UserConfirmForm;
+import com.example.nagoyameshi.form.UserEditForm;
+import com.example.nagoyameshi.repository.UserRepository;
+import com.example.nagoyameshi.security.UserDetailsImpl;
+import com.example.nagoyameshi.service.StripeUserService;
+import com.example.nagoyameshi.service.UserService;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+@Controller
+@RequestMapping("/users")
+public class UserController {
+	private final UserRepository userRepository;
+	private final UserService userService;
+	private final StripeUserService stripeUserService;
+
+	public UserController(UserRepository userRepository, UserService userService,
+			StripeUserService stripeUserService) {
+		this.userRepository = userRepository;
+		this.userService = userService;
+		this.stripeUserService = stripeUserService;
+	}
+
+	@GetMapping
+	public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
+
+		model.addAttribute("user", user);
+
+		return "users/index";
+	}
+
+	@GetMapping("/edit")
+	public String edit(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
+		UserEditForm userEditForm = new UserEditForm(user.getId(), user.getName(), user.getFurigana(), user.getAge(),
+				user.getPostalCode(), user.getAddress(), user.getEmail(), user.getJob(), user.getRole().getId());
+
+		model.addAttribute("userEditForm", userEditForm);
+
+		return "users/edit";
+	}
+
+	@GetMapping("/edit/input")
+	public String input(@ModelAttribute @Validated UserEditForm userEditForm, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+
+		if (bindingResult.hasErrors()) {
+			return "users/edit";
+		}
+
+		redirectAttributes.addFlashAttribute("userEditForm", userEditForm);
+
+		return "redirect:/users/edit/confirm";
+	}
+
+	@GetMapping("/edit/confirm")
+	public String confirm(@ModelAttribute UserEditForm userEditForm,
+			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, HttpServletRequest httpServletRequest,
+			Model model) {
+
+		UserConfirmForm userConfirmForm = new UserConfirmForm(userEditForm.getId(), userEditForm.getName(),
+				userEditForm.getFurigana(),
+				userEditForm.getAge(), userEditForm.getPostalCode(), userEditForm.getAddress(), userEditForm.getEmail(),
+				userEditForm.getJob(),
+				userEditForm.getRoleId());
+
+		if (userConfirmForm.getRoleId() == 2) {
+			String sessionId = stripeUserService.createStripeSession(userConfirmForm, httpServletRequest);
+			userService.roleUser(userDetailsImpl.getUser());
+			model.addAttribute("sessionId", sessionId);
+		}
+
+		model.addAttribute("userConfirmForm", userConfirmForm);
+
+		return "users/confirm";
+	}
+
+	@PostMapping("/update")
+	public String update(@ModelAttribute @Validated UserConfirmForm userConfirmForm, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		//		メールアドレスが変更されておりかつ登録済みであればBindingRsultオブジェクトにエラー内容を追加
+		if (userService.isEmailChanged(userConfirmForm) && userService.isEmailRegistered(userConfirmForm.getEmail())) {
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "既に登録済みのメールアドレスです。");
+			bindingResult.addError(fieldError);
+		}
+
+		if (bindingResult.hasErrors()) {
+			return "users/edit";
+		}
+
+		userService.update(userConfirmForm);
+		redirectAttributes.addFlashAttribute("successMessage", "会員情報を編集しました。");
+
+		return "redirect:/users";
+	}
+
+}

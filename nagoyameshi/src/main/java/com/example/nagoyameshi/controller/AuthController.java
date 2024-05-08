@@ -30,7 +30,8 @@ public class AuthController {
 	private final VerificationTokenService verificationTokenService;
 	private final StripeSignupService stripeSignupService;
 
-	public AuthController(UserService userService, SignupEventPublisher signupEventPublisher,
+	public AuthController(UserService userService,
+			SignupEventPublisher signupEventPublisher,
 			VerificationTokenService verificationTokenService, StripeSignupService stripeSignupService,
 			RoleRepository roleRepository) {
 		this.userService = userService;
@@ -98,7 +99,7 @@ public class AuthController {
 		}
 
 		if (bindingResult.hasErrors()) {
-			return "/signup";
+			return "auth/signup";
 		}
 
 		User createdUser = userService.create(signupConfirmForm);
@@ -126,4 +127,5 @@ public class AuthController {
 
 		return "auth/verify";
 	}
+
 }

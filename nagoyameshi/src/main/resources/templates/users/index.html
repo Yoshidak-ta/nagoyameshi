@@ -13,7 +13,7 @@
 			<main>
 				<div class="container nagoyameshi-container">
 					<div class="row justify-content-center">
-						<div class="col-xl-6 col-lg-7 col-md-8">
+						<div class="col-xl-5 col-lg-6 col-md-8">
 							<nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 								<ol class="breadcrumb mb-0">
 									<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
@@ -23,11 +23,29 @@
 							
 							<h1 class="mb-3 text-center">会員情報</h1>
 							
-							<div class="d-flex justify-content-end align-items-end mb-3">
-								<div>
-									<a th:href="@{/user/edit}">編集</a>
-								</div>
+							<div class="col">
+							    <div class="d-flex justify-content-end  align-items-end mb-3">
+								    <a th:href="@{/users/edit}">編集</a>
+							    	<a href="#" class="nagoyameshi-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteUserModal' + user.getId()}">退会</a>
+								    <!-- 削除モーダル作成 -->
+							         <div class="modal fade" th:id="${'deleteUserModal' + user.getId()}" tabindex="-1" th:aria-labelledby="${'deleteuserModalLabel' + user.getId()}">
+									     <div class="modal-dialog">
+										     <div class="modal-content">
+											     <div class="modal-header">
+												     <h5 class="modal-title" th:id="${'deleteUserModalLabel' + user.getId()}">退会してもよろしいでしょうか？</h5>
+												     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+											     </div>
+		   							             <div class="modal-footer">
+											         <form method="post" th:action="@{/users/delete}">
+												         <button type="submit" class="btn nagoyameshi-btn-danger text-white shadow-sm">削除</button>
+											         </form>
+		   							             </div>
+										     </div>
+									     </div>
+   								     </div>
+							    </div>
 							</div>
+								
 							
 							<div th:if="${successMessage}" class="alert alert-info">
 								<span th:text="${successMessage}"></span>
@@ -104,11 +122,11 @@
                                      </div>
                                 </div>
 							</div>
-						</div>
+						</div>	
 						<div sec:authorize="hasRole('ROLE_GENERAL')" class="col-xl-8 col-lg-9 col-md-10 mb-4">
 						     <img th:src="@{/images/primead1.jpg}" class="w-100" alt="有料会員特典">
 						     <a th:href="@{/users/edit}" class="btn text-white shadow-sm w-100 nagoyameshi-btn mt-4">有料会員登録（会員情報編集）</a>
-					    </div>			
+					    </div>	
 					</div>
 				</div>
 			</main>
