@@ -11697,3 +11697,4 @@
 2024-05-08 17:29:08,279 [Worker-1003: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
 2024-05-08 17:31:07,419 [Worker-1002: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2024-05-08 17:31:07,420 [Worker-1002: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-08 17:31:07,431 [Worker-1002: ビルド] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\pleiades\2022-12\kadai_002\nagoyameshi\src\test\resources
