@@ -16,12 +16,10 @@ import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.UserConfirmForm;
 import com.example.nagoyameshi.form.UserEditForm;
-import com.example.nagoyameshi.repository.FavoriteRepository;
 import com.example.nagoyameshi.repository.ReservationRepository;
 import com.example.nagoyameshi.repository.ReviewRepository;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
-import com.example.nagoyameshi.repository.VerificationTokenRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.StripeUserService;
 import com.example.nagoyameshi.service.UserService;
@@ -34,21 +32,17 @@ public class UserController {
 	private final UserRepository userRepository;
 	private final UserService userService;
 	private final StripeUserService stripeUserService;
-	private final VerificationTokenRepository verificationTokenRepository;
 	private final ReservationRepository reservationRepository;
-	private final FavoriteRepository favoriteRepository;
 	private final ReviewRepository reviewRepository;
 	private final RoleRepository roleRepository;
 
 	public UserController(UserRepository userRepository, UserService userService,
-			StripeUserService stripeUserService, VerificationTokenRepository verificationTokenRepository,
-			ReservationRepository reservationRepository, FavoriteRepository favoriteRepository,
+			StripeUserService stripeUserService,
+			ReservationRepository reservationRepository,
 			ReviewRepository reviewRepository, RoleRepository roleRepository) {
 		this.userRepository = userRepository;
 		this.userService = userService;
 		this.stripeUserService = stripeUserService;
-		this.verificationTokenRepository = verificationTokenRepository;
-		this.favoriteRepository = favoriteRepository;
 		this.reservationRepository = reservationRepository;
 		this.reviewRepository = reviewRepository;
 		this.roleRepository = roleRepository;
@@ -136,16 +130,16 @@ public class UserController {
 	public String delete(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			RedirectAttributes redirectAttributes) {
 
+		User user = userDetailsImpl.getUser();
+
 		userService.dropForeignKeyFromReservations();
 		userService.dropForeignKeyFromReviews();
 
-		User user = userDetailsImpl.getUser();
-		Integer userId = user.getId();
-		userRepository.deleteById(userId);
-		verificationTokenRepository.deleteByUser_id(user);
 		reservationRepository.deleteByUser_id(user);
 		reviewRepository.deleteByUser_id(user);
-		favoriteRepository.deleteByUser_id(user);
+
+		Integer userId = user.getId();
+		userRepository.deleteById(userId);
 
 		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");
 
