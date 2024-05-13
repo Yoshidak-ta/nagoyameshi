@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-end align-items-end mb-3">
+		    					    <a th:href="@{/admin/stores/__${store.getId()}__/menus/__${menu.getId()}__/edit}">編集</a>
+		    					    <a href="#" class="nagoyameshi-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteMenuModal' + menu.getId()}">削除</a>
+		    			            <!-- 削除モーダル -->
+		    				        <div class="modal fade" th:id="${'deleteMenuModal' + menu.getId()}" tabindex="-1" th:aria-labelledby="${'deleteMenuModalLabel' + menu.getId()}">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" th:id="${'deleteMenuModalLabel' + menu.getId()}" th:text="${store.getName() + 'のメニューを削除してもよろしいでしょうか？'}"></h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+												</div>
+												<div class="modal-footer">
+													<form method="post" th:action="@{/admin/stores/__${store.getId()}__/menus/__${menu.getId()}__/delete}">
+														<button type="submit" class="btn nagoyameshi-btn-danger text-white shadow-sm">削除</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+	    			    	    </div>

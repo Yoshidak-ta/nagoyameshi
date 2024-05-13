@@ -3,7 +3,6 @@ package com.example.nagoyameshi.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,13 +11,16 @@ import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.SignupConfirmForm;
 import com.example.nagoyameshi.form.UserConfirmForm;
+import com.example.nagoyameshi.repository.FavoriteRepository;
+import com.example.nagoyameshi.repository.ReservationRepository;
+import com.example.nagoyameshi.repository.ReviewRepository;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
+import com.example.nagoyameshi.repository.VerificationTokenRepository;
 
 @Service
 public class UserService {
 	private final RoleRepository roleRepository;
-	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	public UserService(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -44,6 +46,36 @@ public class UserService {
 		user.setEnabled(false);
 
 		return userRepository.save(user);
+
+	}
+
+	@Transactional
+	public void primecreate(Map<String, String> paymentIntentObject) {
+		User user = new User();
+		Integer roleId = Integer.valueOf(paymentIntentObject.get("roleId"));
+
+		String name = paymentIntentObject.get("name");
+		String furigana = paymentIntentObject.get("furigana");
+		Integer age = Integer.valueOf(paymentIntentObject.get("age"));
+		String postalCode = paymentIntentObject.get("postalCode");
+		String address = paymentIntentObject.get("address");
+		String email = paymentIntentObject.get("email");
+		String job = paymentIntentObject.get("job");
+		String password = paymentIntentObject.get("password");
+		Role role = roleRepository.getReferenceById(roleId);
+
+		user.setName(name);
+		user.setFurigana(furigana);
+		user.setAge(age);
+		user.setPostalCode(postalCode);
+		user.setAddress(address);
+		user.setEmail(email);
+		user.setJob(job);
+		user.setPassword(password);
+		user.setRole(role);
+		user.setEnabled(true);
+
+		userRepository.save(user);
 
 	}
 
@@ -112,35 +144,46 @@ public class UserService {
 		userRepository.save(user);
 	}
 
-	//	有料会員登録者のRoleを上書きする
-	public void roleUser(User user) {
-		Integer roleId = user.getRole().getId();
-		roleId = 2;
-		Role role = roleRepository.getReferenceById(roleId);
-		user.setRole(role);
-
-		userRepository.save(user);
-	}
-
 	//	メールアドレスが変更されたかチェック
 	public boolean isEmailChanged(UserConfirmForm userConfirmForm) {
 		User currentUser = userRepository.getReferenceById(userConfirmForm.getId());
 		return !userConfirmForm.getEmail().equals(currentUser.getEmail());
 	}
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	//	有料会員のroleIdを2にする
+	public void roleUpdate(User user, Integer roleId) {
+		roleId = 2;
+		Role role = roleRepository.getReferenceById(roleId);
 
-	// reviewsテーブルからuser_idという外部キー制約を削除する
-	public void dropForeignKeyFromReviews() {
-		String sql = "ALTER TABLE reviews DROP FOREIGN KEY reviews_ibfk_2";
-		jdbcTemplate.execute(sql);
+		user.setRole(role);
+
+		userRepository.save(user);
 	}
 
-	//  reservationsテーブルからuser_idという外部キー制約を削除する	
-	public void dropForeignKeyFromReservations() {
-		String sql = "ALTER TABLE reservations DROP FOREIGN KEY reservations_ibfk_2";
-		jdbcTemplate.execute(sql);
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private VerificationTokenRepository verificationTokenRepository;
+
+	@Autowired
+	private ReviewRepository reviewRepository;
+
+	@Autowired
+	private FavoriteRepository favoriteRepository;
+
+	@Autowired
+	private ReservationRepository reservationRepository;
+
+	@Transactional
+	public void deleteUserWithAssociations(int userId) {
+		// 関連するテーブルから先にデータを削除
+		verificationTokenRepository.deleteByUser_id(userId);
+		reviewRepository.deleteByUser_id(userId);
+		favoriteRepository.deleteByUser_id(userId);
+		reservationRepository.deleteByUser_id(userId);
+		// 最後にユーザー自身を削除
+		userRepository.deleteById(userId);
 	}
 
 }

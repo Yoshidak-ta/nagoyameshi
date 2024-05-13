@@ -122,7 +122,7 @@
 							 </div>
 						
 						     <!-- 有料会員または有料会員を希望しなかった場合 -->
-							 <form method="post" th:action="@{/users/update}" th:object="${userConfirmForm}">
+							 <form method="post" th:if="${userConfirmForm.getRoleId() == 1 || roleId == 2}" th:action="@{/users/update}" th:object="${userConfirmForm}">
 								 <input type="hidden" th:field="*{id}">
 								 <div class="container mb-4">
 									 <div class="row pb-2 mb-2 border-bottom">

@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.SignupConfirmForm;
+import com.example.nagoyameshi.repository.UserRepository;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Event;
@@ -22,10 +24,12 @@ public class StripeSignupService {
 	@Value("${stripe.api-key}")
 	private String stripeApiKey;
 
-	private final AuthService authService;
+	private final UserService userService;
+	private final UserRepository userRepository;
 
-	public StripeSignupService(AuthService authService) {
-		this.authService = authService;
+	public StripeSignupService(UserService userService, UserRepository userRepository) {
+		this.userService = userService;
+		this.userRepository = userRepository;
 	}
 
 	//	セッションを作成し、Stripeに必要な情報を返す
@@ -33,7 +37,7 @@ public class StripeSignupService {
 		Stripe.apiKey = stripeApiKey;
 		String requestUrl = new String(httpServletRequest.getRequestURL());
 		String age = (signupConfirmForm.getAge() != null) ? signupConfirmForm.getAge().toString() : "デフォルト値または空文字列";
-		String domain = "http://localhost:8080/";
+		String domain = "http://localhost:8080";
 		SessionCreateParams params = SessionCreateParams.builder()
 				.addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
 				.addLineItem(
@@ -73,7 +77,10 @@ public class StripeSignupService {
 			try {
 				session = Session.retrieve(session.getId(), params, null);
 				Map<String, String> paymentIntentObject = session.getPaymentIntentObject().getMetadata();
-				authService.create(paymentIntentObject);
+				userService.primecreate(paymentIntentObject);
+				User user = userRepository.findByName(paymentIntentObject.get("name"));
+				Integer roleId = Integer.valueOf(paymentIntentObject.get("roleId"));
+				userService.roleUpdate(user, roleId);
 			} catch (StripeException e) {
 				e.printStackTrace();
 			}

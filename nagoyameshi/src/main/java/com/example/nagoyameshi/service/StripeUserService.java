@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.UserConfirmForm;
+import com.example.nagoyameshi.repository.RoleRepository;
+import com.example.nagoyameshi.repository.UserRepository;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Event;
@@ -23,9 +26,13 @@ public class StripeUserService {
 	private String stripeApiKey;
 
 	private final UserService userService;
+	private final RoleRepository roleRepository;
+	private final UserRepository userRepository;
 
-	public StripeUserService(UserService userService) {
+	public StripeUserService(UserService userService, RoleRepository roleRepository, UserRepository userRepository) {
 		this.userService = userService;
+		this.roleRepository = roleRepository;
+		this.userRepository = userRepository;
 	}
 
 	//	セッションを作成し、Stripeに必要な情報を返す
@@ -44,11 +51,10 @@ public class StripeUserService {
 								.setQuantity(1L)
 								.build())
 				.setMode(SessionCreateParams.Mode.SUBSCRIPTION)
-				.setSuccessUrl(domain + "users")
-				.setCancelUrl(domain + "users/edit")
+				.setSuccessUrl(domain + "/users")
+				.setCancelUrl(domain + "/users/edit")
 				.setSubscriptionData(
 						SessionCreateParams.SubscriptionData.builder()
-								.putMetadata("id", userConfirmForm.getId().toString())
 								.putMetadata("name", userConfirmForm.getName())
 								.putMetadata("furigana", userConfirmForm.getFurigana())
 								.putMetadata("age", age)
@@ -76,6 +82,10 @@ public class StripeUserService {
 				session = Session.retrieve(session.getId(), params, null);
 				Map<String, String> paymentIntentObject = session.getPaymentIntentObject().getMetadata();
 				userService.primeUpdate(paymentIntentObject);
+				User user = userRepository.findByName(paymentIntentObject.get("name"));
+				Integer roleId = Integer.valueOf(paymentIntentObject.get("roleId"));
+				userService.roleUpdate(user, roleId);
+
 			} catch (StripeException e) {
 				e.printStackTrace();
 			}

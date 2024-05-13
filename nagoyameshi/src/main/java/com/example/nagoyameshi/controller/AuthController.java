@@ -52,6 +52,7 @@ public class AuthController {
 		return "auth/signup";
 	}
 
+	//	値渡せていない？
 	@GetMapping("/signup/input")
 	public String input(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
@@ -79,11 +80,9 @@ public class AuthController {
 				signupForm.getJob(), signupForm.getPassword(),
 				signupForm.getRoleId());
 
-		if (signupConfirmForm.getRoleId() == 2) {
-			String sessionId = stripeSignupService.createStripeSession(signupConfirmForm, httpServletRequest);
-			model.addAttribute("sessionId", sessionId);
-		}
+		String sessionId = stripeSignupService.createStripeSession(signupConfirmForm, httpServletRequest);
 
+		model.addAttribute("sessionId", sessionId);
 		model.addAttribute("signupConfirmForm", signupConfirmForm);
 
 		return "auth/confirm";

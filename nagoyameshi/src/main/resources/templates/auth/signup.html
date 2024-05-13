@@ -179,14 +179,14 @@
 									</div>
 									<div class="col-md-7">
 										<div>
+											<div th:if="${#fields.hasErrors('roleId')}" class="text-danger small mb-2" th:errors="*{roleId}"></div>
 										    <input type="radio" th:field="*{roleId}" value="2">
 										    <label for="">希望する</label>
+										</div>
 										<div>
 											<input type="radio" th:field="*{roleId}" value="1">
 										    <label for="">希望しない</label>
-										</div>
-									</div>
-										
+										</div>										
 									</div>
 								</div>
 								<details>

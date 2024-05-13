@@ -9,6 +9,8 @@ import com.example.nagoyameshi.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	public User findByEmail(String email);
 
+	public User findByName(String name);
+
 	public Page<User> findByRole_id(Integer role, Pageable pageable);
 
 	public Page<User> findByNameLike(String keyword, Pageable pageable);

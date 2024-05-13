@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.UserConfirmForm;
 import com.example.nagoyameshi.form.UserEditForm;
-import com.example.nagoyameshi.repository.ReservationRepository;
-import com.example.nagoyameshi.repository.ReviewRepository;
-import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
 import com.example.nagoyameshi.service.StripeUserService;
@@ -32,20 +28,12 @@ public class UserController {
 	private final UserRepository userRepository;
 	private final UserService userService;
 	private final StripeUserService stripeUserService;
-	private final ReservationRepository reservationRepository;
-	private final ReviewRepository reviewRepository;
-	private final RoleRepository roleRepository;
 
 	public UserController(UserRepository userRepository, UserService userService,
-			StripeUserService stripeUserService,
-			ReservationRepository reservationRepository,
-			ReviewRepository reviewRepository, RoleRepository roleRepository) {
+			StripeUserService stripeUserService) {
 		this.userRepository = userRepository;
 		this.userService = userService;
 		this.stripeUserService = stripeUserService;
-		this.reservationRepository = reservationRepository;
-		this.reviewRepository = reviewRepository;
-		this.roleRepository = roleRepository;
 	}
 
 	@GetMapping
@@ -86,8 +74,8 @@ public class UserController {
 			@ModelAttribute UserEditForm userEditForm, HttpServletRequest httpServletRequest,
 			Model model) {
 
-		User user = userDetailsImpl.getUser();
-		Role roleId = roleRepository.getReferenceById(user.getRole().getId());
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
+		Integer roleId = user.getRole().getId();
 
 		UserConfirmForm userConfirmForm = new UserConfirmForm(userEditForm.getId(), userEditForm.getName(),
 				userEditForm.getFurigana(),
@@ -95,12 +83,11 @@ public class UserController {
 				userEditForm.getJob(),
 				userEditForm.getRoleId());
 
-		if (userConfirmForm.getRoleId() == 2) {
+		if (userEditForm.getRoleId() == 2) {
 			String sessionId = stripeUserService.createStripeSession(userConfirmForm, httpServletRequest);
 			model.addAttribute("sessionId", sessionId);
 		}
 
-		model.addAttribute("user", user);
 		model.addAttribute("roleId", roleId);
 		model.addAttribute("userConfirmForm", userConfirmForm);
 
@@ -130,16 +117,8 @@ public class UserController {
 	public String delete(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			RedirectAttributes redirectAttributes) {
 
-		User user = userDetailsImpl.getUser();
-
-		userService.dropForeignKeyFromReservations();
-		userService.dropForeignKeyFromReviews();
-
-		reservationRepository.deleteByUser_id(user);
-		reviewRepository.deleteByUser_id(user);
-
-		Integer userId = user.getId();
-		userRepository.deleteById(userId);
+		userService.deleteUserWithAssociations(userDetailsImpl.getUser().getId());
+		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");
 
 		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");
 

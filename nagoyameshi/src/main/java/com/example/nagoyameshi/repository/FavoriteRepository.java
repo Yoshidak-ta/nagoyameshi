@@ -13,6 +13,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
 
 	public Favorite findByStoreAndUser(Store store, User user);
 
-	public Favorite deleteByUser_id(User user);
+	public Favorite deleteByUser_id(int userId);
 
 }

@@ -28,7 +28,7 @@
 								    <a th:href="@{/users/edit}">編集</a>
 							    	<a href="#" class="nagoyameshi-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteUserModal' + user.getId()}">退会</a>
 								    <!-- 削除モーダル作成 -->
-							         <div class="modal fade" th:id="${'deleteUserModal' + user.getId()}" tabindex="-1" th:aria-labelledby="${'deleteuserModalLabel' + user.getId()}">
+							        <div class="modal fade" th:id="${'deleteUserModal' + user.getId()}" tabindex="-1" th:aria-labelledby="${'deleteuserModalLabel' + user.getId()}">
 									     <div class="modal-dialog">
 										     <div class="modal-content">
 											     <div class="modal-header">
