@@ -3,6 +3,7 @@ package com.example.nagoyameshi.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,17 +12,14 @@ import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.SignupConfirmForm;
 import com.example.nagoyameshi.form.UserConfirmForm;
-import com.example.nagoyameshi.repository.FavoriteRepository;
-import com.example.nagoyameshi.repository.ReservationRepository;
-import com.example.nagoyameshi.repository.ReviewRepository;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
-import com.example.nagoyameshi.repository.VerificationTokenRepository;
 
 @Service
 public class UserService {
 	private final RoleRepository roleRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final UserRepository userRepository;
 
 	public UserService(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
 		this.roleRepository = roleRepository;
@@ -46,36 +44,6 @@ public class UserService {
 		user.setEnabled(false);
 
 		return userRepository.save(user);
-
-	}
-
-	@Transactional
-	public void primecreate(Map<String, String> paymentIntentObject) {
-		User user = new User();
-		Integer roleId = Integer.valueOf(paymentIntentObject.get("roleId"));
-
-		String name = paymentIntentObject.get("name");
-		String furigana = paymentIntentObject.get("furigana");
-		Integer age = Integer.valueOf(paymentIntentObject.get("age"));
-		String postalCode = paymentIntentObject.get("postalCode");
-		String address = paymentIntentObject.get("address");
-		String email = paymentIntentObject.get("email");
-		String job = paymentIntentObject.get("job");
-		String password = paymentIntentObject.get("password");
-		Role role = roleRepository.getReferenceById(roleId);
-
-		user.setName(name);
-		user.setFurigana(furigana);
-		user.setAge(age);
-		user.setPostalCode(postalCode);
-		user.setAddress(address);
-		user.setEmail(email);
-		user.setJob(job);
-		user.setPassword(password);
-		user.setRole(role);
-		user.setEnabled(true);
-
-		userRepository.save(user);
 
 	}
 
@@ -161,29 +129,18 @@ public class UserService {
 	}
 
 	@Autowired
-	private UserRepository userRepository;
+	private JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	private VerificationTokenRepository verificationTokenRepository;
+	//	外部キーを一次的削除に変更
+	public void dropForeignKey() {
+		String sql = "SET FOREIGN_KEY_CHECKS = 0";
+		jdbcTemplate.execute(sql);
+	}
 
-	@Autowired
-	private ReviewRepository reviewRepository;
-
-	@Autowired
-	private FavoriteRepository favoriteRepository;
-
-	@Autowired
-	private ReservationRepository reservationRepository;
-
-	@Transactional
-	public void deleteUserWithAssociations(int userId) {
-		// 関連するテーブルから先にデータを削除
-		verificationTokenRepository.deleteByUser_id(userId);
-		reviewRepository.deleteByUser_id(userId);
-		favoriteRepository.deleteByUser_id(userId);
-		reservationRepository.deleteByUser_id(userId);
-		// 最後にユーザー自身を削除
-		userRepository.deleteById(userId);
+	//外部キー一次的削除を解除
+	public void checkForeignKey() {
+		String sql = "SET FOREIGN_KEY_CHECKS = 1";
+		jdbcTemplate.execute(sql);
 	}
 
 }

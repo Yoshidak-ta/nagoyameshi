@@ -17,7 +17,7 @@ import com.example.nagoyameshi.form.UserConfirmForm;
 import com.example.nagoyameshi.form.UserEditForm;
 import com.example.nagoyameshi.repository.UserRepository;
 import com.example.nagoyameshi.security.UserDetailsImpl;
-import com.example.nagoyameshi.service.StripeUserService;
+import com.example.nagoyameshi.service.StripeService;
 import com.example.nagoyameshi.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,13 +27,13 @@ import jakarta.servlet.http.HttpServletRequest;
 public class UserController {
 	private final UserRepository userRepository;
 	private final UserService userService;
-	private final StripeUserService stripeUserService;
+	private final StripeService stripeService;
 
 	public UserController(UserRepository userRepository, UserService userService,
-			StripeUserService stripeUserService) {
+			StripeService stripeService) {
 		this.userRepository = userRepository;
 		this.userService = userService;
-		this.stripeUserService = stripeUserService;
+		this.stripeService = stripeService;
 	}
 
 	@GetMapping
@@ -75,7 +75,6 @@ public class UserController {
 			Model model) {
 
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		Integer roleId = user.getRole().getId();
 
 		UserConfirmForm userConfirmForm = new UserConfirmForm(userEditForm.getId(), userEditForm.getName(),
 				userEditForm.getFurigana(),
@@ -84,11 +83,10 @@ public class UserController {
 				userEditForm.getRoleId());
 
 		if (userEditForm.getRoleId() == 2) {
-			String sessionId = stripeUserService.createStripeSession(userConfirmForm, httpServletRequest);
+			String sessionId = stripeService.createStripeSession(userConfirmForm, httpServletRequest);
 			model.addAttribute("sessionId", sessionId);
 		}
 
-		model.addAttribute("roleId", roleId);
 		model.addAttribute("userConfirmForm", userConfirmForm);
 
 		return "users/confirm";
@@ -116,9 +114,11 @@ public class UserController {
 	@PostMapping("/delete")
 	public String delete(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			RedirectAttributes redirectAttributes) {
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 
-		userService.deleteUserWithAssociations(userDetailsImpl.getUser().getId());
-		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");
+		userService.dropForeignKey();
+		userRepository.deleteById(user.getId());
+		userService.checkForeignKey();
 
 		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");
 

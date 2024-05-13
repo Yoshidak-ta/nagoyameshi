@@ -17,7 +17,6 @@ import com.example.nagoyameshi.event.SignupEventPublisher;
 import com.example.nagoyameshi.form.SignupConfirmForm;
 import com.example.nagoyameshi.form.SignupForm;
 import com.example.nagoyameshi.repository.RoleRepository;
-import com.example.nagoyameshi.service.StripeSignupService;
 import com.example.nagoyameshi.service.UserService;
 import com.example.nagoyameshi.service.VerificationTokenService;
 
@@ -28,16 +27,14 @@ public class AuthController {
 	private final UserService userService;
 	private final SignupEventPublisher signupEventPublisher;
 	private final VerificationTokenService verificationTokenService;
-	private final StripeSignupService stripeSignupService;
 
 	public AuthController(UserService userService,
 			SignupEventPublisher signupEventPublisher,
-			VerificationTokenService verificationTokenService, StripeSignupService stripeSignupService,
+			VerificationTokenService verificationTokenService,
 			RoleRepository roleRepository) {
 		this.userService = userService;
 		this.signupEventPublisher = signupEventPublisher;
 		this.verificationTokenService = verificationTokenService;
-		this.stripeSignupService = stripeSignupService;
 	}
 
 	@GetMapping("/login")
@@ -77,12 +74,8 @@ public class AuthController {
 
 		SignupConfirmForm signupConfirmForm = new SignupConfirmForm(signupForm.getName(), signupForm.getFurigana(),
 				signupForm.getAge(), signupForm.getPostalCode(), signupForm.getAddress(), signupForm.getEmail(),
-				signupForm.getJob(), signupForm.getPassword(),
-				signupForm.getRoleId());
+				signupForm.getJob(), signupForm.getPassword());
 
-		String sessionId = stripeSignupService.createStripeSession(signupConfirmForm, httpServletRequest);
-
-		model.addAttribute("sessionId", sessionId);
 		model.addAttribute("signupConfirmForm", signupConfirmForm);
 
 		return "auth/confirm";
