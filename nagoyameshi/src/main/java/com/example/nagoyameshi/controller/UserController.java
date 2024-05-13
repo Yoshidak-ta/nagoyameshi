@@ -116,8 +116,9 @@ public class UserController {
 			RedirectAttributes redirectAttributes) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 
+		userService.premissionForeignKey();
 		userService.dropForeignKey();
-		userRepository.deleteById(user.getId());
+		userService.dropUserId(user);
 		userService.checkForeignKey();
 
 		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");

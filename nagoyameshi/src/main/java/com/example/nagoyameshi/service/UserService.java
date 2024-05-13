@@ -12,19 +12,34 @@ import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.form.SignupConfirmForm;
 import com.example.nagoyameshi.form.UserConfirmForm;
+import com.example.nagoyameshi.repository.FavoriteRepository;
+import com.example.nagoyameshi.repository.ReservationRepository;
+import com.example.nagoyameshi.repository.ReviewRepository;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
+import com.example.nagoyameshi.repository.VerificationTokenRepository;
 
 @Service
 public class UserService {
 	private final RoleRepository roleRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final UserRepository userRepository;
+	private final ReservationRepository reservationRepository;
+	private final ReviewRepository reviewRepository;
+	private final VerificationTokenRepository verificationTokenRepository;
+	private final FavoriteRepository favoriteRepository;
 
-	public UserService(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+	public UserService(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder,
+			ReservationRepository reservationRepository, ReviewRepository reviewRepository,
+			VerificationTokenRepository verificationTokenRepository, FavoriteRepository favoriteRepository) {
 		this.roleRepository = roleRepository;
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.reservationRepository = reservationRepository;
+		this.reviewRepository = reviewRepository;
+		this.verificationTokenRepository = verificationTokenRepository;
+		this.favoriteRepository = favoriteRepository;
+
 	}
 
 	@Transactional
@@ -131,16 +146,65 @@ public class UserService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	//	外部キーを一次的削除に変更
-	public void dropForeignKey() {
-		String sql = "SET FOREIGN_KEY_CHECKS = 0";
-		jdbcTemplate.execute(sql);
+	@Transactional
+	public void premissionForeignKey() {
+		String sqlVerificationTokens = "ALTER TABLE verification_tokens MODIFY user_id INT NULL;";
+		String sqlReservations = "ALTER TABLE reservations MODIFY user_id INT NULL;";
+		String sqlReviews = "ALTER TABLE reviews MODIFY user_id INT NULL;";
+		String sqlFavorites = "ALTER TABLE favorites MODIFY user_id INT NULL;";
+
+		jdbcTemplate.execute(sqlVerificationTokens);
+		jdbcTemplate.execute(sqlReservations);
+		jdbcTemplate.execute(sqlReviews);
+		jdbcTemplate.execute(sqlFavorites);
 	}
 
-	//外部キー一次的削除を解除
-	public void checkForeignKey() {
-		String sql = "SET FOREIGN_KEY_CHECKS = 1";
-		jdbcTemplate.execute(sql);
+	@Transactional
+	public void dropForeignKey() {
+		String sqlVerifications = "ALTER TABLE verification_tokens DROP FOREIGN KEY verification_tokens_ibfk_1;";
+		String sqlReservations = "ALTER TABLE reservations DROP FOREIGN KEY reservations_ibfk_2;";
+		String sqlReviews = "ALTER TABLE reviews DROP FOREIGN KEY reviews_ibfk_2;";
+		String sqlFavorite = "ALTER TABLE favorites DROP FOREIGN KEY favorites_ibfk_2;";
+
+		jdbcTemplate.execute(sqlVerifications);
+		jdbcTemplate.execute(sqlReservations);
+		jdbcTemplate.execute(sqlReviews);
+		jdbcTemplate.execute(sqlFavorite);
 	}
+
+	@Transactional
+	public void checkForeignKey() {
+		String sqlVerifications = "ALTER TABLE verification_tokens ADD CONSTRAINT verification_tokens_ibfk_1 FOREIGN KEY (user_id) REFERENCES users(id);";
+		String sqlReservations = "ALTER TABLE reservations ADD CONSTRAINT reservations_ibfk_2 FOREIGN KEY (user_id) REFERENCES users(id);";
+		String sqlReviews = "ALTER TABLE reviews ADD CONSTRAINT reviews_ibfk_2 FOREIGN KEY (user_id) REFERENCES users(id);";
+		String sqlFavorite = "ALTER TABLE favorites ADD CONSTRAINT favorites_ibfk_2 FOREIGN KEY (user_id) REFERENCES users(id);";
+
+		jdbcTemplate.execute(sqlVerifications);
+		jdbcTemplate.execute(sqlReservations);
+		jdbcTemplate.execute(sqlReviews);
+		jdbcTemplate.execute(sqlFavorite);
+	}
+
+	@Transactional
+	public void dropUserId(User user) {
+		Integer userId = user.getId();
+		userRepository.deleteById(userId);
+		verificationTokenRepository.deleteByUser(user);
+		reservationRepository.deleteByUser(user);
+		reviewRepository.deleteByUser(user);
+		favoriteRepository.deleteByUser(user);
+	}
+
+	//	//	外部キーを一次的削除に変更
+	//	public void dropForeignKey() {
+	//		String sql = "SET FOREIGN_KEY_CHECKS = 0";
+	//		jdbcTemplate.execute(sql);
+	//	}
+	//
+	//	//外部キー一次的削除を解除
+	//	public void checkForeignKey() {
+	//		String sql = "SET FOREIGN_KEY_CHECKS = 1";
+	//		jdbcTemplate.execute(sql);
+	//	}
 
 }
