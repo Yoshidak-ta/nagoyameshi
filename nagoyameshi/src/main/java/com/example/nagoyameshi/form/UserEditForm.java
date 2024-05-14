@@ -32,7 +32,4 @@ public class UserEditForm {
 	@NotBlank(message = "職業を選択してください。")
 	private String job;
 
-	@NotNull(message = "どちらか選択してください。")
-	private Integer roleId;
-
 }

@@ -22,6 +22,10 @@
 						ログアウトしました。
 					</div>
 					
+					<div th:if="${param.reserved}" class="alert alert-info">
+						有料会員登録が完了しました。
+					</div>
+					
 					<div th:if="${successMessage}" class="alert alert-info">
 						<span th:text="${successMessage}"></span>
 					</div>

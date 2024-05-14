@@ -24,7 +24,7 @@
 							
 							<h1 class="mb-4 text-center">会員情報編集</h1>
 							
-							<form method="get" th:action="@{/users/edit/input}" th:object="${userEditForm}">
+							<form method="post" th:action="@{/users/update}" th:object="${userEditForm}">
 								<input type="hidden" th:field="*{id}">
 								
 								<div class="form-group row mb-3">
@@ -143,33 +143,7 @@
 										</select>
 									</div>
 								</div>
-								
-								<div class="form-group row">
-									<div class="col-md-5">
-										<label for="role" class="col-form-label text-md-left fw-bold">
-											<div class="d-flex align-items-center">
-												<span class="me-1">有料会員登録</span>
-												<span class="badge bg-danger">必須</span>
-											</div>
-										</label>
-									</div>
-									<div class="col-md-7">
-										<div>
-										    <input type="radio" th:field="*{roleId}" value="2">
-										    <label for="">希望する</label>
-										<div>
-											<input type="radio" th:field="*{roleId}" value="1">
-										    <label for="">希望しない</label>
-										</div>
-									</div>
-										
-									</div>
-								</div>
-								<details>
-									<summary>有料会員特典はこちら</summary><br>
-							            <img th:src="@{/images/primead2.jpg}" alt="有料会員特典" width="500" height="700">
-								</details>
-																
+											
 								<div class="form-group d-flex justify-content-center my-4">
 									<button type="submit" class="btn text-white shadow-sm w-50 nagoyameshi-btn">更新</button>
 								</div>

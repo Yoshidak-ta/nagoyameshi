@@ -1,60 +1,46 @@
 package com.example.nagoyameshi.service;
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.nagoyameshi.entity.Role;
 import com.example.nagoyameshi.entity.User;
-import com.example.nagoyameshi.form.SignupConfirmForm;
-import com.example.nagoyameshi.form.UserConfirmForm;
-import com.example.nagoyameshi.repository.FavoriteRepository;
-import com.example.nagoyameshi.repository.ReservationRepository;
-import com.example.nagoyameshi.repository.ReviewRepository;
+import com.example.nagoyameshi.form.SignupForm;
+import com.example.nagoyameshi.form.UserEditForm;
+import com.example.nagoyameshi.repository.CardRepository;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.repository.UserRepository;
-import com.example.nagoyameshi.repository.VerificationTokenRepository;
 
 @Service
 public class UserService {
 	private final RoleRepository roleRepository;
 	private final PasswordEncoder passwordEncoder;
 	private final UserRepository userRepository;
-	private final ReservationRepository reservationRepository;
-	private final ReviewRepository reviewRepository;
-	private final VerificationTokenRepository verificationTokenRepository;
-	private final FavoriteRepository favoriteRepository;
+	private final CardRepository cardRepository;
 
 	public UserService(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder,
-			ReservationRepository reservationRepository, ReviewRepository reviewRepository,
-			VerificationTokenRepository verificationTokenRepository, FavoriteRepository favoriteRepository) {
+			CardRepository cardRepository) {
 		this.roleRepository = roleRepository;
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
-		this.reservationRepository = reservationRepository;
-		this.reviewRepository = reviewRepository;
-		this.verificationTokenRepository = verificationTokenRepository;
-		this.favoriteRepository = favoriteRepository;
+		this.cardRepository = cardRepository;
 
 	}
 
 	@Transactional
-	public User create(SignupConfirmForm signupConfirmForm) {
+	public User create(SignupForm signupForm) {
 		User user = new User();
 		Role role_general = roleRepository.findByName("ROLE_GENERAL");
 
-		user.setName(signupConfirmForm.getName());
-		user.setFurigana(signupConfirmForm.getFurigana());
-		user.setAge(signupConfirmForm.getAge());
-		user.setPostalCode(signupConfirmForm.getPostalCode());
-		user.setAddress(signupConfirmForm.getAddress());
-		user.setEmail(signupConfirmForm.getEmail());
-		user.setJob(signupConfirmForm.getJob());
-		user.setPassword(passwordEncoder.encode(signupConfirmForm.getPassword()));
+		user.setName(signupForm.getName());
+		user.setFurigana(signupForm.getFurigana());
+		user.setAge(signupForm.getAge());
+		user.setPostalCode(signupForm.getPostalCode());
+		user.setAddress(signupForm.getAddress());
+		user.setEmail(signupForm.getEmail());
+		user.setJob(signupForm.getJob());
+		user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
 		user.setRole(role_general);
 		user.setEnabled(false);
 
@@ -63,48 +49,16 @@ public class UserService {
 	}
 
 	@Transactional
-	public void update(UserConfirmForm userConfirmForm) {
-		User user = userRepository.getReferenceById(userConfirmForm.getId());
-		Role role = roleRepository.getReferenceById(userConfirmForm.getRoleId());
+	public void update(UserEditForm userEditForm) {
+		User user = userRepository.getReferenceById(userEditForm.getId());
 
-		user.setName(userConfirmForm.getName());
-		user.setFurigana(userConfirmForm.getFurigana());
-		user.setAge(userConfirmForm.getAge());
-		user.setPostalCode(userConfirmForm.getPostalCode());
-		user.setAddress(userConfirmForm.getAddress());
-		user.setEmail(userConfirmForm.getEmail());
-		user.setJob(userConfirmForm.getJob());
-		user.setRole(role);
-
-		userRepository.save(user);
-
-	}
-
-	@Transactional
-	public void primeUpdate(Map<String, String> paymentIntentObject) {
-		Integer roleId = Integer.valueOf(paymentIntentObject.get("roleId"));
-
-		Integer id = Integer.valueOf(paymentIntentObject.get("id"));
-		String name = paymentIntentObject.get("name");
-		String furigana = paymentIntentObject.get("furigana");
-		Integer age = Integer.valueOf(paymentIntentObject.get("age"));
-		String postalCode = paymentIntentObject.get("postalCode");
-		String address = paymentIntentObject.get("address");
-		String email = paymentIntentObject.get("email");
-		String job = paymentIntentObject.get("job");
-		Role role = roleRepository.getReferenceById(roleId);
-
-		User user = userRepository.getReferenceById(id);
-
-		user.setName(name);
-		user.setFurigana(furigana);
-		user.setAge(age);
-		user.setPostalCode(postalCode);
-		user.setAddress(address);
-		user.setEmail(email);
-		user.setJob(job);
-		user.setRole(role);
-		user.setEnabled(true);
+		user.setName(userEditForm.getName());
+		user.setFurigana(userEditForm.getFurigana());
+		user.setAge(userEditForm.getAge());
+		user.setPostalCode(userEditForm.getPostalCode());
+		user.setAddress(userEditForm.getAddress());
+		user.setEmail(userEditForm.getEmail());
+		user.setJob(userEditForm.getJob());
 
 		userRepository.save(user);
 
@@ -128,23 +82,21 @@ public class UserService {
 	}
 
 	//	メールアドレスが変更されたかチェック
-	public boolean isEmailChanged(UserConfirmForm userConfirmForm) {
-		User currentUser = userRepository.getReferenceById(userConfirmForm.getId());
-		return !userConfirmForm.getEmail().equals(currentUser.getEmail());
+	public boolean isEmailChanged(UserEditForm userEditForm) {
+		User currentUser = userRepository.getReferenceById(userEditForm.getId());
+		return !userEditForm.getEmail().equals(currentUser.getEmail());
 	}
 
 	//	有料会員のroleIdを2にする
-	public void roleUpdate(User user, Integer roleId) {
-		roleId = 2;
-		Role role = roleRepository.getReferenceById(roleId);
+	@Transactional
+	public void roleUpdate(String email) {
+		User user = userRepository.findByEmail(email);
+		Role role = roleRepository.getReferenceById(2);
 
 		user.setRole(role);
 
 		userRepository.save(user);
 	}
-
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
 
 	//	@Transactional
 	//	public void premissionForeignKey() {
@@ -185,26 +137,26 @@ public class UserService {
 	//		jdbcTemplate.execute(sqlFavorite);
 	//	}
 	//
-	@Transactional
-	public void dropUserId(User user) {
-		Integer userId = user.getId();
-		userRepository.deleteById(userId);
-		verificationTokenRepository.deleteByUser(user);
-		reservationRepository.deleteByUser(user);
-		reviewRepository.deleteByUser(user);
-		favoriteRepository.deleteByUser(user);
-	}
-
-	//	外部キーを一次的削除に変更
-	public void dropForeignKey() {
-		String sql = "SET FOREIGN_KEY_CHECKS = 0";
-		jdbcTemplate.execute(sql);
-	}
-
-	//外部キー一次的削除を解除
-	public void checkForeignKey() {
-		String sql = "SET FOREIGN_KEY_CHECKS = 1";
-		jdbcTemplate.execute(sql);
-	}
+	//	@Transactional
+	//	public void dropUserId(User user) {
+	//		Integer userId = user.getId();
+	//		userRepository.deleteById(userId);
+	//		verificationTokenRepository.deleteByUser(user);
+	//		reservationRepository.deleteByUser(user);
+	//		reviewRepository.deleteByUser(user);
+	//		favoriteRepository.deleteByUser(user);
+	//	}
+	//
+	//	//	外部キーを一次的削除に変更
+	//	public void dropForeignKey() {
+	//		String sql = "SET FOREIGN_KEY_CHECKS = 0";
+	//		jdbcTemplate.execute(sql);
+	//	}
+	//
+	//	//外部キー一次的削除を解除
+	//	public void checkForeignKey() {
+	//		String sql = "SET FOREIGN_KEY_CHECKS = 1";
+	//		jdbcTemplate.execute(sql);
+	//	}
 
 }

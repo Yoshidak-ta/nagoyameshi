@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.nagoyameshi.entity.User;
 import com.example.nagoyameshi.entity.VerificationToken;
 import com.example.nagoyameshi.event.SignupEventPublisher;
-import com.example.nagoyameshi.form.SignupConfirmForm;
 import com.example.nagoyameshi.form.SignupForm;
 import com.example.nagoyameshi.repository.RoleRepository;
 import com.example.nagoyameshi.service.UserService;
@@ -49,12 +48,15 @@ public class AuthController {
 		return "auth/signup";
 	}
 
-	//	値渡せていない？
-	@GetMapping("/signup/input")
-	public String input(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes) {
-
-		//		パスワードとパスワード（確認用）の入力値が一致しなければBindingResultオブジェクトにエラー内容を追加
+	@PostMapping("/signup/register")
+	public String register(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
+		//	メールアドレスが登録済みであれば、BindingResultオブジェクトにエラーの内容を追加する
+		if (userService.isEmailRegistered(signupForm.getEmail())) {
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "既に登録済みのメールアドレスです。");
+			bindingResult.addError(fieldError);
+		}
+		//	パスワードとパスワード（確認用）の入力値が一致しなければBindingResultオブジェクトにエラー内容を追加
 		if (!userService.isSamePassword(signupForm.getPassword(), signupForm.getPasswordConfirmation())) {
 			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
 			bindingResult.addError(fieldError);
@@ -64,37 +66,7 @@ public class AuthController {
 			return "auth/signup";
 		}
 
-		redirectAttributes.addFlashAttribute("signupForm", signupForm);
-
-		return "redirect:/signup/confirm";
-	}
-
-	@GetMapping("/signup/confirm")
-	public String confirm(@ModelAttribute SignupForm signupForm, HttpServletRequest httpServletRequest, Model model) {
-
-		SignupConfirmForm signupConfirmForm = new SignupConfirmForm(signupForm.getName(), signupForm.getFurigana(),
-				signupForm.getAge(), signupForm.getPostalCode(), signupForm.getAddress(), signupForm.getEmail(),
-				signupForm.getJob(), signupForm.getPassword());
-
-		model.addAttribute("signupConfirmForm", signupConfirmForm);
-
-		return "auth/confirm";
-	}
-
-	@PostMapping("/signup/register")
-	public String register(@ModelAttribute @Validated SignupConfirmForm signupConfirmForm, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
-		//		メールアドレスが登録済みであれば、BindingResultオブジェクトにエラーの内容を追加する
-		if (userService.isEmailRegistered(signupConfirmForm.getEmail())) {
-			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "既に登録済みのメールアドレスです。");
-			bindingResult.addError(fieldError);
-		}
-
-		if (bindingResult.hasErrors()) {
-			return "auth/signup";
-		}
-
-		User createdUser = userService.create(signupConfirmForm);
+		User createdUser = userService.create(signupForm);
 		String requestUrl = new String(httpServletRequest.getRequestURL());
 		signupEventPublisher.publishSignupEvent(createdUser, requestUrl);
 		redirectAttributes.addFlashAttribute("successMessage",
