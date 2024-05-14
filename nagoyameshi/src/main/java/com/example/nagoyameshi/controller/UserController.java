@@ -116,7 +116,7 @@ public class UserController {
 			RedirectAttributes redirectAttributes) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 
-		userService.premissionForeignKey();
+		//		userService.premissionForeignKey();
 		userService.dropForeignKey();
 		userService.dropUserId(user);
 		userService.checkForeignKey();
