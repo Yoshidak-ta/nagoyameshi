@@ -94,20 +94,20 @@ public class UserController {
 		return "redirect:/users";
 	}
 
-	//	@PostMapping("/delete")
-	//	public String delete(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
-	//			RedirectAttributes redirectAttributes) {
-	//		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-	//
-	//		//		userService.premissionForeignKey();
-	//		userService.dropForeignKey();
-	//		userService.dropUserId(user);
-	//		userService.checkForeignKey();
-	//
-	//		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");
-	//
-	//		return "redirect:/";
-	//
-	//	}
+	@PostMapping("/delete")
+	public String delete(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			RedirectAttributes redirectAttributes) {
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
+
+		userService.premissionForeignKey();
+		userService.dropForeignKey();
+		userService.dropUserId(user);
+		userService.checkForeignKey();
+
+		redirectAttributes.addFlashAttribute("successMessage", "退会しました。");
+
+		return "redirect:/";
+
+	}
 
 }

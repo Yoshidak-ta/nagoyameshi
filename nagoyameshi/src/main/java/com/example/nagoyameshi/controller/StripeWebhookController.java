@@ -40,7 +40,6 @@ public class StripeWebhookController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 
-		//		追加部分
 		switch (event.getType()) {
 		case "checkout.session.completed":
 			stripeService.processSessionCompleted(event);
@@ -50,7 +49,6 @@ public class StripeWebhookController {
 			stripeService.delete(event);
 			break;
 		}
-		//		ここまで
 
 		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}

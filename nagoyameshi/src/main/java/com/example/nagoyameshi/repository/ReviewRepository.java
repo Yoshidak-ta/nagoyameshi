@@ -21,7 +21,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
 	public List<Review> findByStore(Store store);
 
-	public Review deleteByUser(User user);
+	public void deleteByUser_id(Integer userId);
 
 	@Query("SELECT AVG(r.score) FROM Review r WHERE r.store = :store")
 	Double findAverageScoreByStore(@Param("store") Store store);

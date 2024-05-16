@@ -10,6 +10,6 @@ import com.example.nagoyameshi.entity.User;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 	public Page<Reservation> findByUserOrderByCreatedAtDesc(User user, Pageable pageable);
 
-	public Reservation deleteByUser(User user);
+	public void deleteByUser_id(Integer userId);
 
 }
